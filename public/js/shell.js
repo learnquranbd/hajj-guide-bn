@@ -1,60 +1,143 @@
-/* সাইট-শেল: হেডার, নেভিগেশন, ফুটার, থিম টগল */
-import { initFirebase } from './store.js';
+/* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
+import { initFirebase } from './store.js?v=3';
 
 const PAGES = [
-  ['/',           'হোম'],
-  ['/steps',      'ধাপে ধাপে'],
-  ['/rules',      'বিধি-বিধান'],
-  ['/dua',        'দোয়া'],
-  ['/map',        'মানচিত্র'],
-  ['/tips',       'টিপস'],
-  ['/checklist',  'চেকলিস্ট']
+  ['/',          'হোম',        '🕋'],
+  ['/steps',     'ধাপে ধাপে',  '🧭'],
+  ['/rules',     'বিধি-বিধান', '⚖️'],
+  ['/dua',       'দোয়া',       '🤲'],
+  ['/map',       'মানচিত্র',   '🗺️'],
+  ['/madinah',   'মদিনা',      '🕌'],
+  ['/tips',      'টিপস',       '💡'],
+  ['/checklist', 'চেকলিস্ট',   '✅']
 ];
 
 const here = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
 
-function theme(next) {
-  const cur = document.documentElement.getAttribute('data-theme')
-    || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
-  const val = next || (cur === 'dark' ? 'light' : 'dark');
+/* ---------- আইকন ---------- */
+const ICON = {
+  facebook: '<path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/>',
+  whatsapp: '<path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/>',
+  telegram: '<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 6.9-1.6 7.5c-.1.5-.4.7-.9.4l-2.4-1.8-1.2 1.1c-.1.1-.2.2-.5.2l.2-2.5 4.5-4c.2-.2 0-.3-.3-.1l-5.5 3.5-2.4-.7c-.5-.2-.5-.5.1-.8l9.4-3.6c.4-.2.8.1.6.8z"/>',
+  x: '<path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6L17.5 3zm-1.1 16.1h1.8L7.7 4.8H5.8l10.6 14.3z"/>',
+  link: '<path d="M10.6 13.4a1 1 0 0 1 0-1.4l3-3a1 1 0 0 1 1.4 1.4l-3 3a1 1 0 0 1-1.4 0zM8 16a4 4 0 0 1 0-5.7l2-2a1 1 0 1 1 1.4 1.4l-2 2A2 2 0 0 0 12.3 14l2-2a1 1 0 0 1 1.4 1.4l-2 2A4 4 0 0 1 8 16zm8-8a4 4 0 0 1 0 5.7l-.6.6a1 1 0 0 1-1.4-1.4l.6-.6A2 2 0 0 0 11.7 10l-.6.6A1 1 0 0 1 9.7 9.2l.6-.6A4 4 0 0 1 16 8z"/>',
+  share: '<path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2c0-.2.1-.4.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8a3 3 0 1 0-3-3c0 .3 0 .5.1.7L8.1 9.9a3 3 0 1 0 0 4.2l7.1 4.2c0 .2-.1.4-.1.6a2.9 2.9 0 1 0 2.9-2.8z"/>'
+};
+const svg = (d, s = 18) =>
+  `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor" aria-hidden="true">${d}</svg>`;
+
+/* ---------- থিম ---------- */
+function applyTheme(val) {
   document.documentElement.setAttribute('data-theme', val);
   try { localStorage.setItem('hajj-theme', val); } catch {}
   const b = document.getElementById('themeBtn');
-  if (b) b.textContent = val === 'dark' ? '☀' : '☾';
+  if (b) { b.textContent = val === 'dark' ? '☀' : '☾'; b.setAttribute('aria-label', val === 'dark' ? 'লাইট থিম' : 'ডার্ক থিম'); }
+}
+function currentTheme() {
+  return document.documentElement.getAttribute('data-theme')
+    || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
 }
 
+/* ---------- হেডার ---------- */
 function header() {
-  const links = PAGES.map(([href, label]) =>
-    `<a href="${href}"${href === here ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+  const link = ([href, label, ico], mobile) =>
+    `<a href="${href}"${href === here ? ' aria-current="page"' : ''}>` +
+    (mobile ? `<span class="nav-ico">${ico}</span>` : '') + label + `</a>`;
   return `<header class="topbar"><div class="wrap">
-    <a class="brand" href="/"><span class="brand-mark">🕋</span> হজ গাইড</a>
-    <button class="icon-btn nav-toggle" id="navBtn" aria-label="মেনু" aria-expanded="false">☰</button>
+    <a class="brand" href="/"><span class="brand-mark">🕋</span>
+      <span class="brand-txt">হজ গাইড<small>হজ্জে তামাত্তু · বাংলা</small></span></a>
+    <nav class="nav-desk">${PAGES.map(p => link(p, false)).join('')}</nav>
     <button class="icon-btn" id="themeBtn" aria-label="থিম পরিবর্তন">☾</button>
-    <nav class="nav" id="nav">${links}</nav>
-  </div></header>`;
+    <button class="icon-btn nav-toggle" id="navBtn" aria-label="মেনু খুলুন" aria-expanded="false" aria-controls="navDrawer">
+      <span class="bars"><i></i><i></i><i></i></span>
+    </button>
+  </div></header>
+  <div class="nav-scrim" id="navScrim" hidden></div>
+  <aside class="nav-drawer" id="navDrawer" hidden aria-label="মূল মেনু">
+    <div class="drawer-head"><span class="brand-mark">🕋</span><b>হজ গাইড</b>
+      <button class="icon-btn" id="navClose" aria-label="মেনু বন্ধ করুন">✕</button></div>
+    <nav class="nav-mob">${PAGES.map(p => link(p, true)).join('')}</nav>
+    <p class="drawer-foot">লাব্বাইক আল্লাহুম্মা লাব্বাইক</p>
+  </aside>`;
 }
 
+/* ---------- শেয়ার ---------- */
+function shareRail() {
+  const btn = (cls, label, href, icon) =>
+    `<a class="sh ${cls}" href="${href}" target="_blank" rel="noopener" aria-label="${label}" title="${label}">${icon}</a>`;
+  return `<div class="share-rail" id="shareRail">
+    <span class="share-lbl">শেয়ার</span>
+    ${btn('fb','ফেসবুকে শেয়ার','#',svg(ICON.facebook))}
+    ${btn('wa','হোয়াটসঅ্যাপে শেয়ার','#',svg(ICON.whatsapp))}
+    ${btn('tg','টেলিগ্রামে শেয়ার','#',svg(ICON.telegram))}
+    ${btn('xx','X-এ শেয়ার','#',svg(ICON.x))}
+    <button class="sh cp" id="copyLink" aria-label="লিংক কপি করুন" title="লিংক কপি করুন">${svg(ICON.link)}</button>
+  </div>
+  <button class="share-fab" id="shareFab" aria-label="শেয়ার করুন">${svg(ICON.share, 20)}</button>`;
+}
+
+function wireShare() {
+  const url = location.href.split('#')[0];
+  const title = document.title;
+  const u = encodeURIComponent(url), t = encodeURIComponent(title);
+  const set = (sel, href) => { const a = document.querySelector(sel); if (a) a.href = href; };
+  set('.share-rail .fb', `https://www.facebook.com/sharer/sharer.php?u=${u}`);
+  set('.share-rail .wa', `https://wa.me/?text=${t}%20${u}`);
+  set('.share-rail .tg', `https://t.me/share/url?url=${u}&text=${t}`);
+  set('.share-rail .xx', `https://twitter.com/intent/tweet?url=${u}&text=${t}`);
+
+  const copy = document.getElementById('copyLink');
+  copy?.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(url); toast('লিংক কপি হয়েছে ✓'); }
+    catch { toast('কপি করা যায়নি'); }
+  });
+
+  const fab = document.getElementById('shareFab');
+  fab?.addEventListener('click', async () => {
+    if (navigator.share) {
+      try { await navigator.share({ title, url }); return; } catch { /* বাতিল করেছেন */ }
+    }
+    document.getElementById('shareRail')?.classList.toggle('open');
+  });
+}
+
+function toast(msg) {
+  let el = document.getElementById('toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'toast'; el.className = 'toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+/* ---------- ফুটার ---------- */
 function footer() {
-  const col = (t, items) => `<div><h4>${t}</h4>${items}</div>`;
-  const links = a => a.map(([h, l]) => `<a href="${h}">${l}</a>`).join('');
-  return `<footer class="foot"><div class="wrap"><div class="foot-grid">
+  const links = a => a.map(([h, l, i]) => `<a href="${h}">${i} ${l}</a>`).join('');
+  return `<footer class="foot"><div class="wrap">
+  <div class="foot-grid">
     <div>
       <h4>🕋 হজ গাইড — বাংলা</h4>
       <p style="margin:0">হজ্জে তামাত্তুর পূর্ণাঙ্গ বাংলা নির্দেশিকা — ধাপে ধাপে করণীয়, ফরজ-ওয়াজিব,
-      শব্দে শব্দে দোয়ার অর্থ এবং মিনা-আরাফাত-মুজদালিফার মানচিত্র।</p>
+      শব্দে শব্দে দোয়ার অর্থ, মিনা-আরাফাতের মানচিত্র এবং মদিনা যিয়ারত।</p>
+      <p class="ar-mark">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
     </div>
-    ${col('পৃষ্ঠাসমূহ', links(PAGES.slice(0, 4)))}
-    ${col('আরও', links(PAGES.slice(4)))}
+    <div><h4>পৃষ্ঠাসমূহ</h4>${links(PAGES.slice(0, 4))}</div>
+    <div><h4>আরও</h4>${links(PAGES.slice(4))}</div>
   </div>
   <hr class="divider">
   <p class="muted" style="margin:0">
-    এই সাইটের তথ্য কুরআন, সহীহ হাদীস ও প্রচলিত ফিকহি গ্রন্থের ভিত্তিতে সংকলিত।
-    মাসআলা-সংক্রান্ত চূড়ান্ত সিদ্ধান্তের জন্য আপনার নির্ভরযোগ্য আলেম বা হজ গাইডের পরামর্শ নিন।
-    · শিক্ষামূলক উদ্দেশ্যে তৈরি · Firebase-এ হোস্টেড
+    এই সাইটের তথ্য কুরআন, সহীহ হাদীস ও প্রচলিত ফিকহি গ্রন্থের ভিত্তিতে সংকলিত; মাযহাবি বিধান মূলত
+    হানাফি মত অনুসারে। মাসআলা-সংক্রান্ত চূড়ান্ত সিদ্ধান্তের জন্য আপনার নির্ভরযোগ্য আলেম বা
+    হজ গাইডের পরামর্শ নিন। মানচিত্রগুলো পরিকল্পনামূলক স্কেচ — GPS-নির্ভুল নয়।
   </p>
   </div></footer>`;
 }
 
+/* ---------- মাউন্ট ---------- */
 export function mount() {
   try {
     const saved = localStorage.getItem('hajj-theme');
@@ -62,20 +145,33 @@ export function mount() {
   } catch {}
 
   document.body.insertAdjacentHTML('afterbegin', header());
-  document.body.insertAdjacentHTML('beforeend', footer());
+  document.body.insertAdjacentHTML('beforeend', shareRail() + footer());
 
-  const cur = document.documentElement.getAttribute('data-theme')
-    || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
-  const tb = document.getElementById('themeBtn');
-  tb.textContent = cur === 'dark' ? '☀' : '☾';
-  tb.addEventListener('click', () => theme());
+  applyTheme(currentTheme());
+  document.getElementById('themeBtn').addEventListener('click', () =>
+    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark'));
 
-  const nb = document.getElementById('navBtn'), nav = document.getElementById('nav');
-  nb.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    nb.setAttribute('aria-expanded', String(open));
-  });
+  /* ড্রয়ার */
+  const btn = document.getElementById('navBtn');
+  const drawer = document.getElementById('navDrawer');
+  const scrim = document.getElementById('navScrim');
+  const open = on => {
+    drawer.hidden = !on; scrim.hidden = !on;
+    void drawer.offsetHeight;          // রিফ্লো — rAF থ্রটল হলেও ট্রানজিশন নির্ভরযোগ্য থাকে
+    drawer.classList.toggle('open', on);
+    scrim.classList.toggle('open', on);
+    btn.setAttribute('aria-expanded', String(on));
+    btn.classList.toggle('is-open', on);
+    document.body.style.overflow = on ? 'hidden' : '';
+    if (on) drawer.querySelector('a')?.focus();
+  };
+  btn.addEventListener('click', () => open(drawer.hidden));
+  scrim.addEventListener('click', () => open(false));
+  document.getElementById('navClose').addEventListener('click', () => open(false));
+  drawer.addEventListener('click', e => { if (e.target.closest('a')) open(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !drawer.hidden) open(false); });
 
+  wireShare();
   initFirebase();
 }
 

@@ -10,76 +10,75 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=3">
 </head>
 <body>
 
-<section class="hero">
-  <div class="wrap section">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow">🕋 হজ্জে তামাত্তু · পূর্ণাঙ্গ বাংলা গাইড</span>
-        <h1>হজের প্রতিটি ধাপ, ঠিক যেভাবে করতে হয়</h1>
-        <p class="lead">
-          মীকাতে ইহরাম বাঁধা থেকে বিদায়ী তাওয়াফ পর্যন্ত — ১৭টি ধাপ, প্রতিটির করণীয়,
-          সময়, স্থান এবং সে মুহূর্তের মাসনূন দোয়া শব্দে শব্দে অর্থসহ।
-          সাথে মিনা-আরাফাত-মুজদালিফার ইন্টারঅ্যাক্টিভ মানচিত্র।
-        </p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="/steps">ধাপে ধাপে শুরু করুন →</a>
-          <a class="btn btn-ghost" href="/map">🗺️ মিনা জোন দেখুন</a>
-        </div>
-        <p class="muted" style="margin-top:18px">
-          কোনো অ্যাপ ইনস্টল লাগবে না · ইন্টারনেট ছাড়াও পড়া যায় · আপনার অগ্রগতি ব্রাউজারেই সংরক্ষিত থাকে
-        </p>
-      </div>
-
-      <div class="card" style="padding:18px">
-        <svg viewBox="0 0 420 320" role="img" aria-label="হজের যাত্রাপথ: মক্কা, মিনা, মুজদালিফা ও আরাফাত">
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#0f6b4f" stop-opacity=".16"/>
-              <stop offset="1" stop-color="#b8860b" stop-opacity=".10"/>
-            </linearGradient>
-            <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M0 0 L10 5 L0 10 z" fill="#b8860b"/>
-            </marker>
-          </defs>
-          <rect width="420" height="320" rx="14" fill="url(#sky)"/>
-          <!-- পথ -->
-          <path d="M70 250 C 130 250, 150 180, 190 175 S 280 165, 330 100"
-                fill="none" stroke="#b8860b" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#ar)" opacity=".8"/>
-          <!-- মক্কা / কাবা -->
-          <g transform="translate(40,215)">
-            <rect x="0" y="0" width="58" height="52" rx="5" fill="#1d2b24" stroke="#b8860b" stroke-width="2"/>
-            <rect x="0" y="16" width="58" height="8" fill="#b8860b"/>
-            <text x="29" y="70" text-anchor="middle" font-size="14" fill="#0f6b4f" font-weight="700" font-family="Hind Siliguri,sans-serif">মক্কা</text>
-          </g>
-          <!-- মিনা তাঁবু -->
-          <g transform="translate(150,140)">
-            <path d="M0 45 L20 8 L40 45 z" fill="#ffffff" stroke="#0f6b4f" stroke-width="2"/>
-            <path d="M34 45 L54 8 L74 45 z" fill="#ffffff" stroke="#0f6b4f" stroke-width="2"/>
-            <path d="M68 45 L88 8 L108 45 z" fill="#ffffff" stroke="#0f6b4f" stroke-width="2"/>
-            <text x="54" y="66" text-anchor="middle" font-size="14" fill="#0f6b4f" font-weight="700" font-family="Hind Siliguri,sans-serif">মিনা</text>
-          </g>
-          <!-- মুজদালিফা -->
-          <g transform="translate(238,196)">
-            <circle cx="18" cy="18" r="16" fill="none" stroke="#8a5a2b" stroke-width="2"/>
-            <circle cx="12" cy="20" r="3" fill="#8a5a2b"/><circle cx="22" cy="14" r="3" fill="#8a5a2b"/>
-            <circle cx="24" cy="24" r="3" fill="#8a5a2b"/>
-            <text x="18" y="52" text-anchor="middle" font-size="13" fill="#8a5a2b" font-weight="700" font-family="Hind Siliguri,sans-serif">মুজদালিফা</text>
-          </g>
-          <!-- আরাফাত -->
-          <g transform="translate(300,40)">
-            <path d="M0 62 L34 6 L68 62 z" fill="#0f6b4f" opacity=".85"/>
-            <circle cx="34" cy="0" r="11" fill="#b8860b"/>
-            <text x="34" y="82" text-anchor="middle" font-size="14" fill="#0f6b4f" font-weight="700" font-family="Hind Siliguri,sans-serif">আরাফাত</text>
-          </g>
-        </svg>
-        <p class="muted center" style="margin:10px 0 0">হজের যাত্রাপথ — মক্কা → মিনা → আরাফাত → মুজদালিফা → মিনা → মক্কা</p>
-      </div>
+<section class="banner">
+  <picture>
+    <source media="(max-width:640px)" srcset="/img/haram-700.webp" type="image/webp">
+    <source media="(max-width:1200px)" srcset="/img/haram-1100.webp" type="image/webp">
+    <img src="/img/haram-1800.webp" width="1800" height="863"
+         alt="সন্ধ্যায় মসজিদুল হারাম — কাবা শরিফ ঘিরে ইহরাম পরিহিত লক্ষ লক্ষ হাজীর তাওয়াফ" fetchpriority="high">
+  </picture>
+  <div class="wrap banner-in">
+    <span class="eyebrow">হজ্জে তামাত্তু · পূর্ণাঙ্গ বাংলা গাইড</span>
+    <h1>হজের প্রতিটি ধাপ, ঠিক যেভাবে করতে হয়</h1>
+    <p class="lead">
+      মীকাতে ইহরাম বাঁধা থেকে বিদায়ী তাওয়াফ ও মদিনা যিয়ারত পর্যন্ত — ধাপে ধাপে করণীয়,
+      সময়, স্থান এবং সে মুহূর্তের মাসনূন দোয়া শব্দে শব্দে অর্থসহ।
+    </p>
+    <p class="ar-hero">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/steps">ধাপে ধাপে শুরু করুন →</a>
+      <a class="btn btn-ghost" href="/map">মিনা জোন দেখুন</a>
     </div>
   </div>
+</section>
+
+<section class="wrap section" id="intro">
+  <div class="intro-head">
+    <span class="eyebrow">ভূমিকা</span>
+    <h2>হজ — এক জীবনের সবচেয়ে বড় সফর</h2>
+  </div>
+  <div class="intro-cols">
+    <p>হজ ইসলামের পঞ্চম স্তম্ভ। বছরের একটি নির্দিষ্ট সময়ে, পৃথিবীর নির্দিষ্ট একটি ভূখণ্ডে,
+    নির্দিষ্ট কিছু আমল পালনের মাধ্যমে আল্লাহর ডাকে সাড়া দেওয়ার নাম হজ। সারা দুনিয়া থেকে
+    ২০ লক্ষেরও বেশি মানুষ একই সময়ে, একই পোশাকে, একই কথা বলতে বলতে একই ঘরের দিকে ছুটে আসেন —
+    <em>লাব্বাইক আল্লাহুম্মা লাব্বাইক</em>।</p>
+    <p>এখানে রাজা আর ভিক্ষুকের পোশাকে কোনো পার্থক্য থাকে না, বর্ণ-ভাষা-দেশের কোনো দেয়াল থাকে না।
+    দুই টুকরা সাদা কাপড়ে মানুষ ঠিক সেই চেহারায় ফিরে যায়, যে চেহারায় একদিন তাকে কাফনে মুড়ে
+    কবরে নামানো হবে। এ কারণেই হজকে বলা হয় জীবিত অবস্থায় আখিরাতের মহড়া।</p>
+  </div>
+
+  <div class="grid g3" style="margin-top:34px">
+    <div class="card">
+      <div class="tile-ico">🏛️</div><h3>ইতিহাস — ইবরাহীম (আঃ)-এর ডাক</h3>
+      <p>কাবা নির্মাণের পর আল্লাহ ইবরাহীম (আঃ)-কে মানুষের মধ্যে হজের ঘোষণা দিতে বলেন।
+      সাফা-মারওয়ার দৌড় হাজেরা (আঃ)-এর সন্তানের জন্য পানির খোঁজ, কুরবানি ইসমাঈল (আঃ)-এর
+      আত্মসমর্পণ, আর জামরাতের কঙ্কর শয়তানকে প্রত্যাখ্যানের স্মৃতি। হজের প্রতিটি আমল
+      একটি পরিবারের আত্মত্যাগের জীবন্ত স্মারক।</p>
+    </div>
+    <div class="card">
+      <div class="tile-ico">🎁</div><h3>ফজিলত — যা পাওয়া যায়</h3>
+      <p>“হজে মাবরূরের প্রতিদান জান্নাত ছাড়া কিছু নয়।” (বুখারী ১৭৭৩)
+      “যে হজ করল, অশ্লীলতা ও পাপাচার করল না — সে সদ্যোজাত শিশুর মতো নিষ্পাপ হয়ে ফিরবে।” (বুখারী ১৫২১)
+      আরাফাতের দিনে আল্লাহ যত বান্দাকে জাহান্নাম থেকে মুক্তি দেন, বছরের আর কোনো দিনে তা দেন না।
+      (মুসলিম ১৩৪৮)</p>
+    </div>
+    <div class="card">
+      <div class="tile-ico">📅</div><h3>কখন — সময়টা বদলায়</h3>
+      <p>হজ হয় চান্দ্রবর্ষের শেষ মাস <strong>জিলহজে</strong>, ৮ থেকে ১৩ তারিখের মধ্যে।
+      চান্দ্রবর্ষ সৌরবর্ষের চেয়ে ১০–১১ দিন ছোট, তাই প্রতি বছর হজ ইংরেজি ক্যালেন্ডারে
+      কিছুটা এগিয়ে আসে এবং ৩৩ বছরে সব ঋতু ঘুরে আসে।
+      উমরাহ বছরের যেকোনো সময় করা যায়, হজ নয়।</p>
+    </div>
+  </div>
+
+  <div class="note tip" style="margin-top:26px"><p><strong>হজ কবুল হওয়ার আলামত কী?</strong>
+  আলেমগণ বলেন — হজের পর মানুষটির জীবনে পরিবর্তন আসা। আগে যে নামাজ ছাড়ত সে নিয়মিত হওয়া,
+  আগে যে রাগী ছিল সে নরম হওয়া, আগে যে হারাম আয়ে জড়িত ছিল সে তা ছেড়ে দেওয়া।
+  হজ শেষ নয় — নতুন জীবনের শুরু।</p></div>
 </section>
 
 <section class="wrap section">
@@ -167,7 +166,7 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js';
+  import { mount } from '/js/shell.js?v=3';
   mount();
 </script>
 </body>

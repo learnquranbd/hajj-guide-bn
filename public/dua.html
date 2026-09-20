@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=3">
 <style>
   .dua-card{margin-bottom:20px; scroll-margin-top:90px}
   .dua-top{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
@@ -46,8 +46,8 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js';
-import { DUAS, CATS } from '/js/data-dua.js';
+import { mount } from '/js/shell.js?v=3';
+import { DUAS, CATS } from '/js/data-dua.js?v=3';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
