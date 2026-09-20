@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>হজ ও উমরাহর দোয়া — শব্দে শব্দে অর্থ | হজ গাইড</title>
+<meta name="description" content="তালবিয়া, তাওয়াফ, সাঈ, আরাফাত, রমি ও কুরবানির মাসনূন দোয়া — আরবি, বাংলা উচ্চারণ, অনুবাদ এবং প্রতিটি শব্দের আলাদা অর্থ।">
+<meta name="theme-color" content="#0f6b4f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .dua-card{margin-bottom:20px; scroll-margin-top:90px}
+  .dua-top{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+  .dua-top h3{margin:0;flex:1 1 220px}
+  .when{color:var(--ink-soft);font-size:.93rem;margin:0 0 14px}
+  .ar-box{background:var(--gold-soft);border-inline-start:4px solid var(--gold);
+    border-radius:var(--radius-sm);padding:16px 20px}
+  .ar-box .ar{margin:0;text-align:right}
+  .row-tr{margin:14px 0 0}
+  .row-tr b{display:block;font-size:.8rem;color:var(--ink-mute);font-weight:700;letter-spacing:.03em;margin-bottom:2px}
+  .wbw-head{display:flex;align-items:center;gap:10px;margin:20px 0 0;font-size:.85rem;
+    color:var(--ink-mute);font-weight:700;letter-spacing:.03em}
+  .wbw-head::after{content:"";flex:1;height:1px;background:var(--line)}
+  .src{font-size:.85rem;color:var(--ink-mute);margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--line)}
+  .star{color:var(--gold);font-size:1.1rem}
+  .count{color:var(--ink-mute);font-size:.9rem;margin-bottom:18px}
+</style>
+</head>
+<body>
+
+<section class="wrap section-sm">
+  <span class="eyebrow">🤲 ১৯টি মাসনূন দোয়া</span>
+  <h1>হজ ও উমরাহর দোয়া — শব্দে শব্দে</h1>
+  <p class="lead">প্রতিটি দোয়ার আরবি, বাংলা উচ্চারণ ও পূর্ণ অনুবাদের সাথে প্রতিটি শব্দের আলাদা অর্থ —
+  যাতে মুখে যা বলছেন, মনেও তা বুঝতে পারেন।</p>
+
+  <div class="note"><p><strong>একটি জরুরি কথা:</strong> হজের প্রতিটি চক্কর বা ধাপের জন্য নির্দিষ্ট দোয়া মুখস্থ
+  করা বাধ্যতামূলক নয়। নবীজি (সাঃ) থেকে হাতেগোনা কয়েকটি দোয়াই প্রমাণিত। বাকি সময় নিজের ভাষায়,
+  নিজের প্রয়োজনে আল্লাহর কাছে চাওয়াই সবচেয়ে উত্তম — কাগজ দেখে পড়ার চেয়ে অন্তর দিয়ে বলাই কাম্য।</p></div>
+
+  <div class="tabs" id="cats"></div>
+  <p class="count" id="count"></p>
+  <div id="out"></div>
+</section>
+
+<script type="module">
+import { mount } from '/js/shell.js';
+import { DUAS, CATS } from '/js/data-dua.js';
+mount();
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
+const bn = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+
+const card = d => {
+  const cat = CATS.find(c => c.id === d.cat) || {};
+  const words = (d.w || []).map(([a, m]) =>
+    `<span class="w"><span class="wa">${a}</span><span class="wb">${esc(m)}</span></span>`).join('');
+  return `<article class="card dua-card" id="${d.id}">
+    <div class="dua-top">
+      ${d.star ? '<span class="star" title="বেশি গুরুত্বপূর্ণ">★</span>' : ''}
+      <h3>${esc(d.title)}</h3>
+      <span class="badge b-day">${cat.icon || ''} ${esc(cat.name || '')}</span>
+    </div>
+    <p class="when">${esc(d.when)}</p>
+    <div class="ar-box"><p class="ar">${d.ar}</p></div>
+    <div class="row-tr"><b>বাংলা উচ্চারণ</b><p class="translit" style="margin:0">${esc(d.tr)}</p></div>
+    <div class="row-tr"><b>অর্থ</b><p class="meaning" style="margin:0">${esc(d.bn)}</p></div>
+    ${words ? `<div class="wbw-head">শব্দে শব্দে অর্থ</div><div class="wbw">${words}</div>` : ''}
+    ${d.note ? `<div class="note tip"><p>${d.note}</p></div>` : ''}
+    <p class="src">📖 সূত্র: ${esc(d.src)}</p>
+  </article>`;
+};
+
+const out = document.getElementById('out');
+const cnt = document.getElementById('count');
+const bar = document.getElementById('cats');
+
+const tabsData = [{ id: 'all', name: 'সবগুলো', icon: '📿' }, ...CATS];
+bar.innerHTML = tabsData.map((c, i) =>
+  `<button class="tab" data-cat="${c.id}" aria-selected="${i === 0}">${c.icon} ${c.name}</button>`).join('');
+
+function render(cat) {
+  const list = cat === 'all' ? DUAS : DUAS.filter(d => d.cat === cat);
+  out.innerHTML = list.map(card).join('');
+  cnt.textContent = `${bn(list.length)}টি দোয়া দেখানো হচ্ছে`;
+  bar.querySelectorAll('.tab').forEach(b =>
+    b.setAttribute('aria-selected', String(b.dataset.cat === cat)));
+}
+
+bar.addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if (b) render(b.dataset.cat);
+});
+
+render('all');
+
+if (location.hash) {
+  const el = document.querySelector(location.hash);
+  if (el) { el.scrollIntoView(); el.style.borderColor = 'var(--gold)'; }
+}
+</script>
+</body>
+</html>

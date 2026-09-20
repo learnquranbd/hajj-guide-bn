@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ধাপে ধাপে হজ্জে তামাত্তু — হজ গাইড</title>
+<meta name="description" content="হজ্জে তামাত্তুর ১৭টি ধাপ ক্রমানুসারে — ইহরাম, তাওয়াফ, সাঈ, আরাফাত, মুজদালিফা, রমি, কুরবানি ও বিদায়ী তাওয়াফ। প্রতিটির করণীয় ও দোয়া।">
+<meta name="theme-color" content="#0f6b4f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .step-card{margin-bottom:0}
+  .step-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
+  .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
+  .do-list li{margin-bottom:8px;color:var(--ink-soft)}
+  .do-list li strong,.do-list li em{color:var(--ink)}
+  .dua-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .dua-chip{display:inline-flex;align-items:center;gap:6px;font-size:.87rem;font-weight:600;
+    background:var(--gold-soft);color:var(--gold);padding:5px 13px;border-radius:99px}
+  .dua-chip:hover{text-decoration:none;filter:brightness(.96)}
+  .mark{display:flex;align-items:center;gap:9px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);
+    font-size:.9rem;color:var(--ink-soft);cursor:pointer;user-select:none}
+  .mark input{width:19px;height:19px;accent-color:var(--brand);cursor:pointer}
+  .phase-head{display:flex;align-items:center;gap:14px;margin:38px 0 6px}
+  .phase-head .ico{width:46px;height:46px;border-radius:13px;background:var(--brand);color:#fff;
+    display:grid;place-items:center;font-size:22px;flex:0 0 auto}
+  .phase-head h2{margin:0}
+  .sticky-prog{position:sticky;top:72px;z-index:20;background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow);margin-bottom:8px}
+  .sticky-prog .row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;font-size:.92rem}
+</style>
+</head>
+<body>
+
+<section class="wrap section-sm">
+  <span class="eyebrow">🧭 পর্ব ১ → ৩ · মোট ১৭ ধাপ</span>
+  <h1>ধাপে ধাপে হজ্জে তামাত্তু</h1>
+  <p class="lead">নিচের ক্রমটি হুবহু অনুসরণ করুন। প্রতিটি ধাপ শেষ করে টিক দিন — আপনার অগ্রগতি
+  নিজে থেকেই সংরক্ষিত হবে, পরে ফিরে এলেও যেখানে ছিলেন সেখান থেকেই দেখতে পাবেন।</p>
+
+  <div class="sticky-prog">
+    <div class="row"><strong id="pText">০টি ধাপ সম্পন্ন</strong><span class="muted" id="pPct">০%</span></div>
+    <div class="prog"><i id="pBar"></i></div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="note tip" style="margin-top:30px">
+    <p><strong>মনে রাখুন:</strong> হজের আমলে ভুল হয়ে গেলে ঘাবড়াবেন না। বেশিরভাগ ভুলের প্রতিকার আছে —
+    কোনটিতে দম, কোনটিতে সদকা তা <a href="/rules#dam">বিধি-বিধান পৃষ্ঠায়</a> দেখুন। সন্দেহ হলে
+    সাথে সাথে আপনার মুয়াল্লিম বা দলের আলেমের সাথে কথা বলুন।</p>
+  </div>
+</section>
+
+<script type="module">
+import { mount } from '/js/shell.js';
+import { PHASES, KIND_CLASS } from '/js/data-steps.js';
+import { DUAS } from '/js/data-dua.js';
+import { get, set, onChange } from '/js/store.js';
+mount();
+
+const duaTitle = id => (DUAS.find(d => d.id === id) || {}).title || id;
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
+
+let n = 0;
+const html = PHASES.map(ph => {
+  const steps = ph.steps.map(s => {
+    n++;
+    const badge = s.kind ? `<span class="badge ${KIND_CLASS[s.kind] || 'b-day'}">${s.kind}</span>` : '';
+    const day = s.day ? `<span class="badge b-day">${s.day}</span>` : '';
+    const meta = [s.place && `📍 ${s.place}`, s.dayName && `🗓️ ${s.dayName}`].filter(Boolean)
+      .map(t => `<span>${esc(t)}</span>`).join('');
+    const duas = (s.dua || []).map(id =>
+      `<a class="dua-chip" href="/dua#${id}">🤲 ${esc(duaTitle(id))}</a>`).join('');
+    return `<li class="tl-item" id="${s.id}" data-step="${s.id}">
+      <div class="tl-dot">${s.icon || n}</div>
+      <div class="card step-card">
+        <div class="tl-head">${day}${badge}<h3>${esc(s.title)}</h3></div>
+        ${meta ? `<div class="step-meta">${meta}</div>` : ''}
+        <ol class="do-list">${s.do.map(d => `<li>${d}</li>`).join('')}</ol>
+        ${duas ? `<div class="dua-chips">${duas}</div>` : ''}
+        ${s.tip ? `<div class="note tip"><p><strong>টিপ:</strong> ${s.tip}</p></div>` : ''}
+        ${s.warn ? `<div class="note warn"><p><strong>সতর্কতা:</strong> ${s.warn}</p></div>` : ''}
+        <label class="mark"><input type="checkbox" data-id="${s.id}"> এই ধাপটি সম্পন্ন হয়েছে</label>
+      </div>
+    </li>`;
+  }).join('');
+  return `<div class="phase-head"><span class="ico">${ph.icon}</span><h2>${esc(ph.name)}</h2></div>
+    <p class="lead" style="margin-bottom:22px">${esc(ph.sub)}</p>
+    <ul class="tl">${steps}</ul>`;
+}).join('');
+
+const out = document.getElementById('out');
+out.innerHTML = html;
+
+const total = n;
+const bn = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+
+out.addEventListener('change', e => {
+  const box = e.target.closest('input[data-id]');
+  if (box) set(box.dataset.id, box.checked);
+});
+
+onChange(state => {
+  let done = 0;
+  out.querySelectorAll('input[data-id]').forEach(box => {
+    const on = !!state[box.dataset.id];
+    box.checked = on;
+    box.closest('.tl-item').classList.toggle('done', on);
+    if (on) done++;
+  });
+  const pct = Math.round(done / total * 100);
+  document.getElementById('pText').textContent = `${bn(done)}টি ধাপ সম্পন্ন — বাকি ${bn(total - done)}টি`;
+  document.getElementById('pPct').textContent = bn(pct) + '%';
+  document.getElementById('pBar').style.width = pct + '%';
+});
+
+if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+</script>
+</body>
+</html>

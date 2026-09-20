@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>হজ চেকলিস্ট — প্রস্তুতি ও প্রতিদিনের আমল | হজ গাইড</title>
+<meta name="description" content="হজের প্রস্তুতি থেকে বিদায়ী তাওয়াফ পর্যন্ত ইন্টারঅ্যাক্টিভ চেকলিস্ট — টিক দিন, অগ্রগতি নিজে থেকেই সংরক্ষিত হবে।">
+<meta name="theme-color" content="#0f6b4f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .grp{margin-bottom:30px}
+  .grp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .grp-head .ico{width:40px;height:40px;border-radius:11px;background:var(--brand-soft);color:var(--brand);
+    display:grid;place-items:center;font-size:19px;flex:0 0 auto}
+  .grp-head h2{margin:0;font-size:1.25rem}
+  .grp-head .cnt{margin-inline-start:auto;font-size:.88rem;color:var(--ink-mute);white-space:nowrap}
+  .sticky-prog{position:sticky;top:72px;z-index:20;background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow);margin-bottom:26px}
+  .sticky-prog .row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;font-size:.92rem}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .actions button{font-size:.85rem;padding:6px 14px;border-radius:99px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink-soft);cursor:pointer;font-family:inherit;font-weight:600}
+  .actions button:hover{border-color:var(--brand);color:var(--brand)}
+</style>
+</head>
+<body>
+
+<section class="wrap section-sm">
+  <span class="eyebrow">✅ ইন্টারঅ্যাক্টিভ চেকলিস্ট</span>
+  <h1>হজ চেকলিস্ট</h1>
+  <p class="lead">প্রস্তুতি থেকে বিদায়ী তাওয়াফ পর্যন্ত প্রতিটি করণীয় এক জায়গায়। যা শেষ করেছেন টিক দিন —
+  আপনার অগ্রগতি এই ব্রাউজারে সংরক্ষিত থাকবে, পরে ফিরে এলেও থাকবে।</p>
+
+  <div class="sticky-prog">
+    <div class="row"><strong id="pText">—</strong><span class="muted" id="pPct">০%</span></div>
+    <div class="prog"><i id="pBar"></i></div>
+    <div class="actions">
+      <button id="clr">সব টিক মুছে ফেলুন</button>
+      <button id="prn">🖨️ প্রিন্ট করুন</button>
+    </div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="note tip"><p><strong>অফলাইনেও চলবে:</strong> একবার পৃষ্ঠাটি খুললে ইন্টারনেট ছাড়াও
+  আপনার টিকগুলো সংরক্ষিত থাকে। ব্রাউজারের ডেটা মুছে ফেললে বা অন্য ফোনে খুললে তালিকা আবার খালি দেখাবে —
+  তাই যাত্রার আগে একবার প্রিন্ট করে নেওয়া বুদ্ধিমানের কাজ।</p></div>
+</section>
+
+<script type="module">
+import { mount } from '/js/shell.js';
+import { GROUPS } from '/js/data-checklist.js';
+import { set, onChange } from '/js/store.js';
+mount();
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
+const bn = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+
+const out = document.getElementById('out');
+out.innerHTML = GROUPS.map(g => `
+  <div class="grp" data-grp="${g.id}">
+    <div class="grp-head">
+      <span class="ico">${g.icon}</span><h2>${esc(g.name)}</h2>
+      <span class="cnt" data-cnt="${g.id}"></span>
+    </div>
+    ${g.items.map(([id, t, s]) => `
+      <label class="chk" data-row="${id}">
+        <input type="checkbox" data-id="${id}">
+        <span class="chk-t">${esc(t)}${s ? `<span class="chk-s">${esc(s)}</span>` : ''}</span>
+      </label>`).join('')}
+  </div>`).join('');
+
+const total = GROUPS.reduce((n, g) => n + g.items.length, 0);
+
+out.addEventListener('change', e => {
+  const box = e.target.closest('input[data-id]');
+  if (box) set(box.dataset.id, box.checked);
+});
+
+onChange(state => {
+  let done = 0;
+  out.querySelectorAll('input[data-id]').forEach(box => {
+    const on = !!state[box.dataset.id];
+    box.checked = on;
+    box.closest('.chk').classList.toggle('on', on);
+    if (on) done++;
+  });
+  GROUPS.forEach(g => {
+    const d = g.items.filter(([id]) => state[id]).length;
+    out.querySelector(`[data-cnt="${g.id}"]`).textContent = `${bn(d)} / ${bn(g.items.length)}`;
+  });
+  const pct = Math.round(done / total * 100);
+  document.getElementById('pText').textContent =
+    done === total ? '🎉 সবকিছু সম্পন্ন — আল্লাহ আপনার হজ কবুল করুন' : `${bn(done)} / ${bn(total)} সম্পন্ন`;
+  document.getElementById('pPct').textContent = bn(pct) + '%';
+  document.getElementById('pBar').style.width = pct + '%';
+});
+
+document.getElementById('clr').addEventListener('click', () => {
+  out.querySelectorAll('input[data-id]').forEach(b => set(b.dataset.id, false));
+});
+document.getElementById('prn').addEventListener('click', () => print());
+</script>
+</body>
+</html>
