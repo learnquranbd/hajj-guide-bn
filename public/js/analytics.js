@@ -6,7 +6,7 @@
    ৩) কোনো ব্যক্তিগত তথ্য পাঠানো হয় না — নাম, নম্বর, পাসপোর্ট কিছুই নয়;
       শুধু "কী ঘটল" সেটুকু।
    ------------------------------------------------------------------ */
-import { firebaseConfig } from './firebase-config.js?v=7';
+import { firebaseConfig } from './firebase-config.js?v=8';
 
 const SDK = 'https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js';
 const QUEUE_MAX = 40;

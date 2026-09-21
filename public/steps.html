@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=7">
+<link rel="stylesheet" href="/css/style.css?v=8">
 <style>
   .step-card{margin-bottom:0}
   .step-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
@@ -55,11 +55,11 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=7';
-import { PHASES, KIND_CLASS } from '/js/data-steps.js?v=7';
-import { DUAS } from '/js/data-dua.js?v=7';
-import { get, set, onChange } from '/js/store.js?v=7';
-import { track } from '/js/analytics.js?v=7';
+import { mount } from '/js/shell.js?v=8';
+import { PHASES, KIND_CLASS } from '/js/data-steps.js?v=8';
+import { DUAS } from '/js/data-dua.js?v=8';
+import { get, set, onChange } from '/js/store.js?v=8';
+import { track } from '/js/analytics.js?v=8';
 mount();
 
 const duaTitle = id => (DUAS.find(d => d.id === id) || {}).title || id;
