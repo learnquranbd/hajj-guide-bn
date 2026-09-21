@@ -1,6 +1,6 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=8';
-import { track } from './analytics.js?v=8';
+import { initFirebase } from './store.js?v=9';
+import { initAnalytics, track } from './analytics.js?v=9';
 
 const PAGES = [
   ['/',          'হোম',        '🕋'],
@@ -196,6 +196,9 @@ function footer() {
 
 /* ---------- মাউন্ট ---------- */
 export function mount() {
+  /* Firebase SDK-র জন্য অপেক্ষা না করে সাথে সাথেই — পেজভিউ যেন না হারায় */
+  initAnalytics();
+
   try {
     const saved = localStorage.getItem('hajj-theme');
     if (saved) document.documentElement.setAttribute('data-theme', saved);

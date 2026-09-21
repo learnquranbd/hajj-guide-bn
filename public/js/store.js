@@ -1,7 +1,6 @@
 /* অগ্রগতি সংরক্ষণ — localStorage সর্বদা, Firestore ঐচ্ছিকভাবে।
    CLOUD_SYNC বন্ধ বা ব্যর্থ হলে অ্যাপ নিঃশব্দে localStorage-এ চলতে থাকে। */
-import { firebaseConfig, CLOUD_SYNC } from './firebase-config.js?v=8';
-import { initAnalytics } from './analytics.js?v=8';
+import { firebaseConfig, CLOUD_SYNC } from './firebase-config.js?v=9';
 
 const KEY = 'hajj-guide-bn:v1';
 let cloud = null;            // { db, uid }
@@ -41,8 +40,6 @@ export async function initFirebase() {
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
     const app = initializeApp(firebaseConfig);
-
-    initAnalytics(app);
 
     if (!CLOUD_SYNC) return;
 
