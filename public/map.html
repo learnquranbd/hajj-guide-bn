@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=10">
+<link rel="stylesheet" href="/css/style.css?v=11">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
   integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
   crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -47,6 +47,22 @@
   .gmap-meta .coord{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.84rem;color:var(--ink-mute)}
   @media (max-width:620px){.gmap-frame{aspect-ratio:4/3}}
 </style>
+<!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
+<link rel="canonical" href="https://hajj-guide-bn.web.app/map">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="হজ গাইড">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:url" content="https://hajj-guide-bn.web.app/map">
+<meta property="og:title" content="মিনা জোন ও পবিত্র স্থানসমূহের মানচিত্র | হজ গাইড">
+<meta property="og:description" content="মিনা, আরাফাত, মুজদালিফা ও জামরাত ব্রিজের ইন্টারঅ্যাক্টিভ মানচিত্র — দূরত্ব, হাঁটার সময় ও প্রতিটি স্থানের বিবরণ বাংলায়।">
+<meta property="og:image" content="https://hajj-guide-bn.web.app/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="মসজিদুল হারাম ও কাবা শরিফ — হজ গাইড, হজ্জে তামাত্তুর পূর্ণাঙ্গ বাংলা নির্দেশিকা">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="মিনা জোন ও পবিত্র স্থানসমূহের মানচিত্র | হজ গাইড">
+<meta name="twitter:description" content="মিনা, আরাফাত, মুজদালিফা ও জামরাত ব্রিজের ইন্টারঅ্যাক্টিভ মানচিত্র — দূরত্ব, হাঁটার সময় ও প্রতিটি স্থানের বিবরণ বাংলায়।">
+<meta name="twitter:image" content="https://hajj-guide-bn.web.app/img/og-cover.jpg">
 <!-- Google Analytics (GA4) — স্ট্যাটিক ট্যাগ, যাতে Google-এর ট্যাগ-ডিটেকশনও দেখতে পায় -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5Q68K019R"></script>
 <script>
@@ -335,6 +351,17 @@
   এবং আপনার মুয়াল্লিমের নির্দেশনা অনুসরণ করুন।</p></div>
 </section>
 
+<!-- ========== ৫. মক্কার যিয়ারতের স্থান ========== -->
+<section class="wrap section-sm" id="map5">
+  <h2 class="map-title"><span class="secnum">৫</span> মক্কার যিয়ারতের স্থান</h2>
+  <p class="hintbar">উপরের ম্যাপে <strong style="color:var(--gold)">সোনালি বৃত্ত</strong> দিয়ে চিহ্নিত —
+  এগুলো হজ বা উমরাহর আমল নয়, ঐতিহাসিক স্থান</p>
+
+  <div class="note warn" id="ziyAdab" style="margin-bottom:22px"></div>
+
+  <div class="grid g3" id="ziyOut"></div>
+</section>
+
 <!-- ========== দূরত্ব সারণি ========== -->
 <section class="wrap section-sm">
   <h2>দূরত্ব ও আনুমানিক হাঁটার সময়</h2>
@@ -356,8 +383,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=10';
-import { track } from '/js/analytics.js?v=10';
+import { mount } from '/js/shell.js?v=11';
+import { track } from '/js/analytics.js?v=11';
+import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=11';
 mount();
 
 const ZONES = {
@@ -414,6 +442,7 @@ const PLACES = [
     d:'মদিনা মুনাওয়ারা — নবীজি (সাঃ)-এর মসজিদ ও রওজা শরিফ। এখানে এক নামাজ এক হাজার নামাজের সমান। মক্কা থেকে প্রায় ৪৫০ কিমি উত্তরে, সড়কপথে ৫–৬ ঘণ্টা বা হারামাইন ট্রেনে ২.৫ ঘণ্টা।' }
 ];
 
+const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
 const gInfo  = document.getElementById('gmapInfo');
 const gTabs  = document.getElementById('gmapTabs');
 const gCoord = document.getElementById('gmapCoord');
@@ -451,6 +480,13 @@ function initMap() {
     markers[p.id].on('click', () => select(p.id, false));
   });
 
+  /* যিয়ারতের স্থান — হজের আমলের স্থান থেকে আলাদা দেখাতে সোনালি বৃত্ত */
+  MAKKAH_ZIYARAT.filter(z => z.lat !== null).forEach(z => {
+    L.circleMarker([z.lat, z.lng], {
+      radius: 7, color: '#c8a951', weight: 2, fillColor: '#c8a951', fillOpacity: .55
+    }).addTo(map).bindPopup(`<b>${z.icon} ${z.name}</b>${z.d}`);
+  });
+
   gSrc.innerHTML = 'স্যাটেলাইট ছবি © Esri · রাস্তার ম্যাপ © OpenStreetMap অবদানকারীগণ · ' +
                    'দিকনির্দেশনার জন্য উপরের গুগল ম্যাপ বোতামগুলো ব্যবহার করুন';
   setTimeout(() => map.invalidateSize(), 200);
@@ -480,6 +516,31 @@ gTabs.addEventListener('click', e => {
 function boot() { if (initMap()) select(PLACES[0].id, false); else select(PLACES[0].id, false); }
 if (typeof L !== 'undefined') boot();
 else addEventListener('load', boot, { once: true });
+
+/* ---------- মক্কার যিয়ারতের স্থান ---------- */
+document.getElementById('ziyAdab').innerHTML =
+  `<p><strong>${esc(ZIYARAT_ADAB.title)}</strong></p>` +
+  `<ul class="ul-check ul-cross" style="margin-top:8px">` +
+  ZIYARAT_ADAB.body.map(t => `<li>${t}</li>`).join('') + `</ul>` +
+  (ZIYARAT_ADAB.note ? `<p style="margin-top:10px">${ZIYARAT_ADAB.note}</p>` : '');
+
+document.getElementById('ziyOut').innerHTML = MAKKAH_ZIYARAT.map(z => {
+  const q = z.lat !== null ? `${z.lat},${z.lng}` : null;
+  return `<article class="card" id="z-${z.id}">
+    <div class="tile-ico">${z.icon}</div>
+    <h3>${esc(z.name)}</h3>
+    <p>${z.d}</p>
+    ${z.visit ? `<p class="muted" style="margin-top:8px">🧭 ${z.visit}</p>` : ''}
+    ${z.warn ? `<div class="note warn"><p>${z.warn}</p></div>` : ''}
+    ${q ? `<p style="margin:12px 0 0"><a class="chip" target="_blank" rel="noopener noreferrer"
+       href="https://www.google.com/maps/search/?api=1&query=${q}" data-ziy="${z.id}">↗ ম্যাপে দেখুন</a></p>` : ''}
+  </article>`;
+}).join('');
+
+document.getElementById('ziyOut').addEventListener('click', e => {
+  const a = e.target.closest('[data-ziy]');
+  if (a) track('ziyarat_open', { place: a.dataset.ziy });
+});
 
 </script>
 </body>

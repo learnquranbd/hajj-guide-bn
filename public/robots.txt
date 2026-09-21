@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hajj-guide-bn.web.app/sitemap.xml

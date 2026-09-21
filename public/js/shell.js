@@ -1,18 +1,26 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=10';
-import { initAnalytics, track } from './analytics.js?v=10';
+import { initFirebase } from './store.js?v=11';
+import { initAnalytics, track } from './analytics.js?v=11';
 
+/* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
-  ['/',          'হোম',        '🕋'],
+  ['/',          'হোম',        '🏠'],
   ['/steps',     'ধাপে ধাপে',  '🧭'],
+  ['/umrah',     'উমরাহ',      '🕋'],
   ['/rules',     'বিধি-বিধান', '⚖️'],
   ['/dua',       'দোয়া',       '🤲'],
   ['/salat',     'নামাজ',      '🧎'],
-  ['/map',       'মানচিত্র',   '🗺️'],
-  ['/madinah',   'মদিনা',      '🕌'],
-  ['/tips',      'টিপস',       '💡'],
-  ['/checklist', 'চেকলিস্ট',   '✅']
+  ['/map',       'মানচিত্র',   '🗺️']
 ];
+/* "আরও" ড্রপডাউনে — নইলে ১২টি আইটেম নেভবারে আঁটে না */
+const MORE = [
+  ['/madinah',   'মদিনা',       '🕌'],
+  ['/faq',       'প্রশ্নোত্তর', '❓'],
+  ['/terms',     'পরিভাষা',     '📖'],
+  ['/tips',      'টিপস',        '💡'],
+  ['/checklist', 'চেকলিস্ট',    '✅']
+];
+const ALL_PAGES = [...PAGES, ...MORE];
 
 const here = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
 
@@ -93,7 +101,16 @@ function header() {
   return `<header class="topbar"><div class="wrap">
     <a class="brand" href="/"><span class="brand-mark">🕋</span>
       <span class="brand-txt">হজ গাইড<small>হজ্জে তামাত্তু · বাংলা</small></span></a>
-    <nav class="nav-desk">${PAGES.map(p => link(p, false)).join('')}</nav>
+    <nav class="nav-desk">${PAGES.map(p => link(p, false)).join('')}
+      <div class="more-wrap">
+        <button class="more-btn" id="moreBtn" aria-expanded="false" aria-haspopup="true"
+                ${MORE.some(([h]) => h === here) ? 'data-here="true"' : ''}>আরও<span class="caret">▼</span></button>
+        <div class="more-panel" id="morePanel" hidden role="menu" aria-label="আরও পৃষ্ঠা">
+          ${MORE.map(([h, l, i]) =>
+            `<a href="${h}"${h === here ? ' aria-current="page"' : ''}><span class="ico">${i}</span>${l}</a>`).join('')}
+        </div>
+      </div>
+    </nav>
     <div class="help-wrap">
       <button class="icon-btn" id="helpBtn" aria-label="সহায়তা ও জরুরি নম্বর"
               aria-expanded="false" aria-haspopup="true" title="সহায়তা ও জরুরি নম্বর">🆘</button>
@@ -108,7 +125,11 @@ function header() {
   <aside class="nav-drawer" id="navDrawer" hidden aria-label="মূল মেনু">
     <div class="drawer-head"><span class="brand-mark">🕋</span><b>হজ গাইড</b>
       <button class="icon-btn" id="navClose" aria-label="মেনু বন্ধ করুন">✕</button></div>
-    <nav class="nav-mob">${PAGES.map(p => link(p, true)).join('')}</nav>
+    <nav class="nav-mob">
+      ${PAGES.map(p => link(p, true)).join('')}
+      <p class="grp-lbl">আরও</p>
+      ${MORE.map(p => link(p, true)).join('')}
+    </nav>
     <p class="drawer-foot">লাব্বাইক আল্লাহুম্মা লাব্বাইক</p>
   </aside>`;
 }
@@ -182,8 +203,8 @@ function footer() {
       শব্দে শব্দে দোয়া ও নামাজের অর্থ, মিনা-আরাফাতের মানচিত্র এবং মদিনা যিয়ারত।</p>
       <p class="ar-mark">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
     </div>
-    <div><h4>পৃষ্ঠাসমূহ</h4>${links(PAGES.slice(0, 5))}</div>
-    <div><h4>আরও</h4>${links(PAGES.slice(5))}</div>
+    <div><h4>পৃষ্ঠাসমূহ</h4>${links(ALL_PAGES.slice(0, 6))}</div>
+    <div><h4>আরও</h4>${links(ALL_PAGES.slice(6))}</div>
   </div>
   <hr class="divider">
   <p class="muted" style="margin:0">
@@ -230,6 +251,20 @@ export function mount() {
   document.getElementById('navClose').addEventListener('click', () => open(false));
   drawer.addEventListener('click', e => { if (e.target.closest('a')) open(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !drawer.hidden) open(false); });
+
+  /* "আরও" ড্রপডাউন */
+  const mBtn = document.getElementById('moreBtn');
+  const mPan = document.getElementById('morePanel');
+  const mOpen = on => {
+    mPan.hidden = !on;
+    mBtn.setAttribute('aria-expanded', String(on));
+    mBtn.classList.toggle('is-open', on);
+  };
+  mBtn.addEventListener('click', e => { e.stopPropagation(); mOpen(mPan.hidden); });
+  document.addEventListener('click', e => {
+    if (!mPan.hidden && !e.target.closest('.more-wrap')) mOpen(false);
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !mPan.hidden) mOpen(false); });
 
   /* সহায়তা মেনু */
   const hBtn = document.getElementById('helpBtn');

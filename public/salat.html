@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=10">
+<link rel="stylesheet" href="/css/style.css?v=11">
 <style>
   .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
   .subtabs .tab{padding:7px 15px;font-size:.88rem}
@@ -19,6 +19,22 @@
   h2{scroll-margin-top:96px}
   #mainTabs{scroll-margin-top:84px}
 </style>
+<!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
+<link rel="canonical" href="https://hajj-guide-bn.web.app/salat">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="হজ গাইড">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:url" content="https://hajj-guide-bn.web.app/salat">
+<meta property="og:title" content="নামাজ শব্দে শব্দে — দোয়া, সূরা ও হজে নামাজ | হজ গাইড">
+<meta property="og:description" content="নামাজের ভেতরের প্রতিটি দোয়া ও সূরা — আরবি, বাংলা উচ্চারণ, অর্থ ও শব্দে শব্দে বিশ্লেষণ। ধাপে ধাপে নামাজের ক্রম, রাকাত সারণি এবং হারাম, মিনা-আরাফাতে কসর ও জমার বিধান।">
+<meta property="og:image" content="https://hajj-guide-bn.web.app/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="মসজিদুল হারাম ও কাবা শরিফ — হজ গাইড, হজ্জে তামাত্তুর পূর্ণাঙ্গ বাংলা নির্দেশিকা">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="নামাজ শব্দে শব্দে — দোয়া, সূরা ও হজে নামাজ | হজ গাইড">
+<meta name="twitter:description" content="নামাজের ভেতরের প্রতিটি দোয়া ও সূরা — আরবি, বাংলা উচ্চারণ, অর্থ ও শব্দে শব্দে বিশ্লেষণ। ধাপে ধাপে নামাজের ক্রম, রাকাত সারণি এবং হারাম, মিনা-আরাফাতে কসর ও জমার বিধান।">
+<meta name="twitter:image" content="https://hajj-guide-bn.web.app/img/og-cover.jpg">
 <!-- Google Analytics (GA4) — স্ট্যাটিক ট্যাগ, যাতে Google-এর ট্যাগ-ডিটেকশনও দেখতে পায় -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5Q68K019R"></script>
 <script>
@@ -116,10 +132,10 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=10';
+import { mount } from '/js/shell.js?v=11';
 import { SALAT_DUAS, SALAT_CATS, SALAT_FLOW, SURAHS, RAKAT_TABLE, HAJJ_SALAT, POSE, POSE_NAME }
-  from '/js/data-salat.js?v=10';
-import { track } from '/js/analytics.js?v=10';
+  from '/js/data-salat.js?v=11';
+import { track } from '/js/analytics.js?v=11';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
