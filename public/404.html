@@ -8,7 +8,15 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="stylesheet" href="/css/style.css?v=10">
+<!-- Google Analytics (GA4) — স্ট্যাটিক ট্যাগ, যাতে Google-এর ট্যাগ-ডিটেকশনও দেখতে পায় -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5Q68K019R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z5Q68K019R', { anonymize_ip: true });
+</script>
 </head>
 <body>
 <section class="wrap section" style="text-align:center">
@@ -22,7 +30,7 @@
   </div>
 </section>
 <script type="module">
-  import { mount } from '/js/shell.js?v=9';
+  import { mount } from '/js/shell.js?v=10';
   mount();
 </script>
 </body>

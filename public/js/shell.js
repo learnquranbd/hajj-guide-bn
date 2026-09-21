@@ -1,6 +1,6 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=9';
-import { initAnalytics, track } from './analytics.js?v=9';
+import { initFirebase } from './store.js?v=10';
+import { initAnalytics, track } from './analytics.js?v=10';
 
 const PAGES = [
   ['/',          'হোম',        '🕋'],

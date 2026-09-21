@@ -10,7 +10,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="stylesheet" href="/css/style.css?v=10">
+<!-- Google Analytics (GA4) — স্ট্যাটিক ট্যাগ, যাতে Google-এর ট্যাগ-ডিটেকশনও দেখতে পায় -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5Q68K019R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z5Q68K019R', { anonymize_ip: true });
+</script>
 </head>
 <body>
 
@@ -250,9 +258,9 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=9';
-  import { DUAS } from '/js/data-dua.js?v=9';
-  import { track } from '/js/analytics.js?v=9';
+  import { mount } from '/js/shell.js?v=10';
+  import { DUAS } from '/js/data-dua.js?v=10';
+  import { track } from '/js/analytics.js?v=10';
   mount();
 
   const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

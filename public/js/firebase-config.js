@@ -12,7 +12,9 @@ export const firebaseConfig = {
 
   /* Google Analytics — চালু আছে।
      কনসোল: https://console.firebase.google.com/project/hajj-guide-bn/analytics
-     এই মান খালি করে দিলে Analytics নিঃশব্দে নিষ্ক্রিয় হয়ে যাবে, পেজ ভাঙবে না। */
+     মনে রাখুন: প্রকৃত ট্যাগটি প্রতিটি HTML পেজের <head>-এ বসানো আছে।
+     আইডি বদলালে দুই জায়গাতেই বদলাতে হবে:
+       grep -rl G-Z5Q68K019R public/ */
   measurementId: "G-Z5Q68K019R"
 };
 

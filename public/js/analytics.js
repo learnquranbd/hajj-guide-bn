@@ -1,45 +1,33 @@
-/* Google Analytics (GA4) — নিরাপদ মোড়ক
+/* Google Analytics (GA4) — ইভেন্ট পাঠানোর মোড়ক
    ------------------------------------------------------------------
-   কেন Firebase Analytics SDK ব্যবহার করা হচ্ছে না:
+   ট্যাগটি প্রতিটি HTML পেজের <head>-এ স্ট্যাটিকভাবে বসানো আছে
+   (googletagmanager.com/gtag/js?id=G-…)। কারণ দুটি:
+     ১) তাড়াতাড়ি চালু হয় — মডিউল চেইনের জন্য অপেক্ষা করতে হয় না,
+        তাই পেজভিউ হারায় না।
+     ২) Google-এর ট্যাগ-ডিটেকশন ও Tag Assistant স্ট্যাটিক HTML পড়ে;
+        JS মডিউল থেকে ইনজেক্ট করা ট্যাগ তারা দেখতে পায় না।
+
+   কেন Firebase Analytics SDK নয়:
    ওই SDK রানটাইমে Firebase-এর webConfig এন্ডপয়েন্ট থেকে measurementId
-   আনে এবং লোকাল মানের চেয়ে সেটিকেই প্রাধান্য দেয়। GA যুক্ত করার পর ওই
-   এন্ডপয়েন্টে আইডিটি পৌঁছাতে অনেক সময় লাগে; ততক্ষণ SDK `id=undefined`
-   নিয়ে চালু হয় এবং একটি ইভেন্টও যায় না।
-   তাই measurementId দিয়ে সরাসরি gtag.js চালু করা হয় — ডেটা ঠিক একই
-   GA4 প্রপার্টিতেই যায়, Firebase Console-এর Analytics ট্যাবেও দেখা যায়।
+   আনে এবং লোকাল মানের চেয়ে সেটিকেই প্রাধান্য দেয়। GA যুক্ত করার পরেও
+   ওই এন্ডপয়েন্ট measurementId ছাড়াই 200 ফেরত দিচ্ছিল — ফলে SDK
+   `id=undefined` নিয়ে চালু হতো, একটি ইভেন্টও যেত না। ডেটা একই GA4
+   প্রপার্টিতেই যায়, Firebase Console-এর Analytics ট্যাবেও দেখা যাবে।
 
-   নীতি:
-   ১) measurementId না থাকলে সবকিছু নিঃশব্দে নিষ্ক্রিয় — কোনো পেজ ভাঙে না।
-   ২) স্ক্রিপ্ট আসার আগের কলগুলোও হারায় না — gtag নিজেই dataLayer-এ জমা রাখে।
-   ৩) কোনো ব্যক্তিগত তথ্য পাঠানো হয় না — নাম, নম্বর, পাসপোর্ট কিছুই নয়;
-      শুধু "কী ঘটল" সেটুকু।
+   নীতি: কোনো ব্যক্তিগত তথ্য পাঠানো হয় না — নাম, নম্বর, পাসপোর্ট কিছুই নয়;
+   শুধু "কী ঘটল" সেটুকু।
    ------------------------------------------------------------------ */
-import { firebaseConfig } from './firebase-config.js?v=9';
 
-const ID = firebaseConfig.measurementId || '';
-let on = false;
+/** পেজের ট্যাগ প্রস্তুত কিনা। ট্যাগ না থাকলে সবকিছু নিঃশব্দে নিষ্ক্রিয়। */
+function ready() {
+  return typeof window !== 'undefined' && typeof window.gtag === 'function';
+}
 
-/** Analytics চালু করে। store.js থেকে একবারই ডাকা হয়। */
+/** shell.js থেকে একবার ডাকা হয় — শুধু অবস্থা জানানোর জন্য। */
 export function initAnalytics() {
-  if (on) return;
-  if (!ID) {
-    console.info('[hajj] Analytics নিষ্ক্রিয় — firebase-config.js-এ measurementId বসানো হয়নি।');
-    return;
+  if (!ready()) {
+    console.info('[hajj] Analytics নিষ্ক্রিয় — পেজের <head>-এ gtag ট্যাগ পাওয়া যায়নি।');
   }
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-
-  /* gtag.js আসার আগেই কলগুলো dataLayer-এ জমা থাকে, স্ক্রিপ্ট এলে একসাথে প্রক্রিয়া হয় */
-  gtag('js', new Date());
-  gtag('config', ID, { anonymize_ip: true });
-  on = true;
-
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ID)}`;
-  s.onerror = () => console.warn('[hajj] gtag.js লোড হয়নি — অ্যাড-ব্লকার থাকতে পারে।');
-  document.head.appendChild(s);
 }
 
 /**
@@ -48,7 +36,7 @@ export function initAnalytics() {
  * @param {object} params অতিরিক্ত তথ্য — শুধু গণনাযোগ্য মান, ব্যক্তিগত কিছু নয়
  */
 export function track(name, params = {}) {
-  if (!on) return;
+  if (!ready()) return;
   try { window.gtag('event', name, params); }
   catch (e) { console.warn('[hajj] ইভেন্ট পাঠানো যায়নি:', name, e.message); }
 }

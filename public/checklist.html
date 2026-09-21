@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="stylesheet" href="/css/style.css?v=10">
 <style>
   .grp{margin-bottom:30px}
   .grp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -25,6 +25,14 @@
     background:var(--card);color:var(--ink-soft);cursor:pointer;font-family:inherit;font-weight:600}
   .actions button:hover{border-color:var(--brand);color:var(--brand)}
 </style>
+<!-- Google Analytics (GA4) — স্ট্যাটিক ট্যাগ, যাতে Google-এর ট্যাগ-ডিটেকশনও দেখতে পায় -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5Q68K019R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z5Q68K019R', { anonymize_ip: true });
+</script>
 </head>
 <body>
 
@@ -51,9 +59,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=9';
-import { GROUPS } from '/js/data-checklist.js?v=9';
-import { set, onChange } from '/js/store.js?v=9';
+import { mount } from '/js/shell.js?v=10';
+import { GROUPS } from '/js/data-checklist.js?v=10';
+import { set, onChange } from '/js/store.js?v=10';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
