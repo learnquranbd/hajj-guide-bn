@@ -1,11 +1,12 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=3';
+import { initFirebase } from './store.js?v=4';
 
 const PAGES = [
   ['/',          'হোম',        '🕋'],
   ['/steps',     'ধাপে ধাপে',  '🧭'],
   ['/rules',     'বিধি-বিধান', '⚖️'],
   ['/dua',       'দোয়া',       '🤲'],
+  ['/salat',     'নামাজ',      '🧎'],
   ['/map',       'মানচিত্র',   '🗺️'],
   ['/madinah',   'মদিনা',      '🕌'],
   ['/tips',      'টিপস',       '💡'],
@@ -33,9 +34,9 @@ function applyTheme(val) {
   const b = document.getElementById('themeBtn');
   if (b) { b.textContent = val === 'dark' ? '☀' : '☾'; b.setAttribute('aria-label', val === 'dark' ? 'লাইট থিম' : 'ডার্ক থিম'); }
 }
+/* ডিফল্ট থিম কিসওয়া (কালো) — ব্যবহারকারী চাইলে পার্চমেন্ট (হালকা) বেছে নিতে পারেন */
 function currentTheme() {
-  return document.documentElement.getAttribute('data-theme')
-    || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  return document.documentElement.getAttribute('data-theme') || 'dark';
 }
 
 /* ---------- হেডার ---------- */
@@ -122,11 +123,11 @@ function footer() {
     <div>
       <h4>🕋 হজ গাইড — বাংলা</h4>
       <p style="margin:0">হজ্জে তামাত্তুর পূর্ণাঙ্গ বাংলা নির্দেশিকা — ধাপে ধাপে করণীয়, ফরজ-ওয়াজিব,
-      শব্দে শব্দে দোয়ার অর্থ, মিনা-আরাফাতের মানচিত্র এবং মদিনা যিয়ারত।</p>
+      শব্দে শব্দে দোয়া ও নামাজের অর্থ, মিনা-আরাফাতের মানচিত্র এবং মদিনা যিয়ারত।</p>
       <p class="ar-mark">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
     </div>
-    <div><h4>পৃষ্ঠাসমূহ</h4>${links(PAGES.slice(0, 4))}</div>
-    <div><h4>আরও</h4>${links(PAGES.slice(4))}</div>
+    <div><h4>পৃষ্ঠাসমূহ</h4>${links(PAGES.slice(0, 5))}</div>
+    <div><h4>আরও</h4>${links(PAGES.slice(5))}</div>
   </div>
   <hr class="divider">
   <p class="muted" style="margin:0">

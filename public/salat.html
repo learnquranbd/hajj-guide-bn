@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>নামাজ শব্দে শব্দে — দোয়া, সূরা ও হজে নামাজ | হজ গাইড</title>
+<meta name="description" content="নামাজের ভেতরের প্রতিটি দোয়া ও সূরা — আরবি, বাংলা উচ্চারণ, অর্থ ও শব্দে শব্দে বিশ্লেষণ। ধাপে ধাপে নামাজের ক্রম, রাকাত সারণি এবং হারাম, মিনা-আরাফাতে কসর ও জমার বিধান।">
+<meta name="theme-color" content="#08090a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=4">
+<style>
+  .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
+  .subtabs .tab{padding:7px 15px;font-size:.88rem}
+  .legend-pose{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 24px}
+  .legend-pose figure{margin:0;text-align:center;flex:0 0 auto;width:92px}
+  .legend-pose figcaption{font-size:.78rem;color:var(--ink-mute);margin-top:4px;line-height:1.4}
+  h2{scroll-margin-top:96px}
+  #mainTabs{scroll-margin-top:84px}
+</style>
+</head>
+<body>
+
+<section class="wrap section-sm">
+  <span class="eyebrow">🧎 নামাজ — শব্দে শব্দে</span>
+  <h1>নামাজের প্রতিটি শব্দের অর্থ</h1>
+  <p class="lead">তাকবীরে তাহরীমা থেকে সালাম পর্যন্ত যা যা পড়েন — ছানা, ফাতিহা, রুকু-সিজদার তাসবীহ,
+  তাশাহহুদ, দরুদ, দোয়া মাসুরা, কুনূত — সবগুলোর আরবি, বাংলা উচ্চারণ, অনুবাদ ও প্রতিটি শব্দের আলাদা অর্থ।
+  সাথে হারাম, মিনা ও আরাফাতে নামাজের বিধান।</p>
+
+  <p class="ar-mark" style="margin-top:0">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا</p>
+  <p class="muted" style="margin-top:-8px">“নিশ্চয়ই নামাজ মুমিনদের উপর নির্দিষ্ট সময়ে ফরজ করা হয়েছে।” — সূরা নিসা ৪:১০৩</p>
+
+  <div class="note" style="margin-top:22px"><p><strong>কেন এই পৃষ্ঠাটি হজ গাইডে?</strong>
+  হারামে এক রাকাত নামাজ অন্য মসজিদের এক লক্ষ রাকাতের সমান — হজের সফরে আপনি জীবনের সবচেয়ে
+  মূল্যবান নামাজগুলো পড়তে যাচ্ছেন। মুখে যা বলছেন তার অর্থ জানা থাকলে সেই নামাজ আর অভ্যাস থাকে না,
+  কথাবার্তা হয়ে যায়।</p></div>
+
+  <div class="tabs" id="mainTabs" role="tablist">
+    <button class="tab" data-p="p-flow" aria-selected="true">🧭 ধাপে ধাপে নামাজ</button>
+    <button class="tab" data-p="p-dua" aria-selected="false">🤲 নামাজের দোয়া</button>
+    <button class="tab" data-p="p-surah" aria-selected="false">📖 সূরা শব্দে শব্দে</button>
+    <button class="tab" data-p="p-rakat" aria-selected="false">🔢 রাকাত সারণি</button>
+    <button class="tab" data-p="p-hajj" aria-selected="false">🕋 হজে ও সফরে নামাজ</button>
+  </div>
+
+  <!-- ১. ধাপে ধাপে -->
+  <div class="panel" id="p-flow">
+    <h2>চার রাকাত ফরজ নামাজের পূর্ণ ক্রম</h2>
+    <p class="lead">নিচের ১৬টি ধাপ একবার মিলিয়ে নিলে দুই, তিন ও চার রাকাত — সব নামাজের ক্রমই পরিষ্কার হয়ে যায়।</p>
+    <div class="legend-pose" id="poseLegend"></div>
+    <div id="flowOut"></div>
+    <div class="note warn"><p><strong>যে তিনটি ভুল সবচেয়ে বেশি হয়:</strong>
+    ১) রুকু থেকে উঠে পুরোপুরি সোজা না হয়েই সিজদায় চলে যাওয়া — এতে কওমার ওয়াজিব ছুটে যায়।
+    ২) দুই সিজদার মাঝে স্থির না হয়ে তাড়াহুড়া করা।
+    ৩) প্রথম বৈঠকে দরুদ পড়ে ফেলা — সেখানে শুধু তাশাহহুদ।</p></div>
+  </div>
+
+  <!-- ২. দোয়া -->
+  <div class="panel" id="p-dua" hidden>
+    <h2>নামাজের ভেতরের ও আশপাশের সব দোয়া</h2>
+    <div class="subtabs" id="duaCats"></div>
+    <p class="count" id="duaCount"></p>
+    <div id="duaOut"></div>
+  </div>
+
+  <!-- ৩. সূরা -->
+  <div class="panel" id="p-surah" hidden>
+    <h2>নামাজে বেশি পড়া হয় যে সূরাগুলো</h2>
+    <p class="lead">প্রতিটি আয়াত আলাদা — আরবি, উচ্চারণ, অর্থ এবং শব্দে শব্দে ভাঙা।
+    সূরা ফীল ও কুরাইশ সরাসরি কাবা ঘর নিয়ে; মক্কায় বসে এগুলো পড়ার অনুভূতি আলাদা।</p>
+    <div class="subtabs" id="surahTabs"></div>
+    <div id="surahOut"></div>
+  </div>
+
+  <!-- ৪. রাকাত সারণি -->
+  <div class="panel" id="p-rakat" hidden>
+    <h2>কোন নামাজে কত রাকাত</h2>
+    <div class="table-wrap" id="rakatOut"></div>
+    <p class="muted" id="rakatNote" style="margin-top:14px"></p>
+    <div class="note tip"><p><strong>সফরের হিসাব সহজ করে নিন:</strong> মুসাফির অবস্থায় জোহর, আসর ও এশার
+    ফরজ দুই রাকাত — অর্থাৎ পাঁচ ওয়াক্তে মোট ১১ রাকাত ফরজ (২+২+২+৩+২), সাথে বিতর ৩।
+    ফজর ও মাগরিব কখনো কমে না।</p></div>
+  </div>
+
+  <!-- ৫. হজে নামাজ -->
+  <div class="panel" id="p-hajj" hidden>
+    <h2>হারাম, মিনা-আরাফাত ও সফরে নামাজ</h2>
+    <p class="lead">হজের পাঁচ দিনে নামাজ নিয়ে সবচেয়ে বেশি প্রশ্ন ওঠে — কসর করব না পূর্ণ পড়ব,
+    দুই নামাজ একসাথে কখন, ইহরাম অবস্থায় মাথা ঢাকা যাবে কি না। সব একসাথে এখানে।</p>
+    <div id="hajjOut"></div>
+    <div class="note warn"><p><strong>মাযহাবি পার্থক্য আছে:</strong> মিনা ও আরাফাতে কসর নিয়ে হানাফি ও
+    অন্য মাযহাবের মধ্যে পার্থক্য রয়েছে। এই পৃষ্ঠায় হানাফি মত প্রাধান্য পেয়েছে এবং পার্থক্যটি
+    উল্লেখ করা হয়েছে। মাঠে নামার আগে আপনার দলের আলেম বা মুয়াল্লিমের সাথে একবার মিলিয়ে নিন —
+    দুই মতেই নামাজ শুদ্ধ, শুধু অনুসরণে স্থিরতা দরকার।</p></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="grid g3">
+    <a class="card" href="/dua"><div class="tile-ico">🤲</div><h3>হজের মাসনূন দোয়া</h3>
+      <p>তালবিয়া, তাওয়াফ, সাঈ, আরাফাত ও রমির দোয়া — একইভাবে শব্দে শব্দে।</p></a>
+    <a class="card" href="/steps"><div class="tile-ico">🧭</div><h3>ধাপে ধাপে হজ</h3>
+      <p>১৭টি ধাপ — কোন নামাজ কোথায় পড়বেন সেটিও প্রতিটি ধাপে লেখা আছে।</p></a>
+    <a class="card" href="/madinah"><div class="tile-ico">🕌</div><h3>মদিনা যিয়ারত</h3>
+      <p>মসজিদে নববী, রিয়াদুল জান্নাহ ও যিয়ারতের আদব।</p></a>
+  </div>
+</section>
+
+<script type="module">
+import { mount } from '/js/shell.js?v=4';
+import { SALAT_DUAS, SALAT_CATS, SALAT_FLOW, SURAHS, RAKAT_TABLE, HAJJ_SALAT, POSE, POSE_NAME }
+  from '/js/data-salat.js?v=4';
+mount();
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
+const bn  = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+const pose = (key, cls = 'pose') =>
+  `<svg class="${cls}" viewBox="0 0 64 64" role="img" aria-label="${esc(POSE_NAME[key] || '')}">${POSE[key] || ''}</svg>`;
+const duaById = id => SALAT_DUAS.find(d => d.id === id);
+
+/* ---------- শব্দে শব্দে ---------- */
+const words = w => (w || []).map(([a, m]) =>
+  `<span class="w"><span class="wa">${a}</span><span class="wb">${esc(m)}</span></span>`).join('');
+
+/* ---------- দোয়া কার্ড ---------- */
+function duaCard(d) {
+  const cat = SALAT_CATS.find(c => c.id === d.cat) || {};
+  const ww = words(d.w);
+  return `<article class="card dua-card" id="${d.id}">
+    <div class="dua-top">
+      ${d.star ? '<span class="star" title="সবচেয়ে বেশি প্রয়োজন">★</span>' : ''}
+      <h3>${esc(d.title)}</h3>
+      <span class="badge b-day">${cat.icon || ''} ${esc(cat.name || '')}</span>
+    </div>
+    <p class="when">${esc(d.when)}</p>
+    ${d.ar && d.ar !== '—' ? `<div class="ar-box"><p class="ar">${d.ar}</p></div>` : ''}
+    <div class="row-tr"><b>বাংলা উচ্চারণ</b><p class="translit" style="margin:0">${esc(d.tr)}</p></div>
+    <div class="row-tr"><b>অর্থ</b><p class="meaning" style="margin:0">${esc(d.bn)}</p></div>
+    ${ww ? `<div class="wbw-head">শব্দে শব্দে অর্থ</div><div class="wbw">${ww}</div>` : ''}
+    ${d.note ? `<div class="note tip"><p>${d.note}</p></div>` : ''}
+    <p class="src">📖 সূত্র: ${esc(d.src)}</p>
+  </article>`;
+}
+
+/* ---------- ১. ধাপে ধাপে ---------- */
+document.getElementById('poseLegend').innerHTML = Object.keys(POSE).map(k =>
+  `<figure>${pose(k)}<figcaption>${esc(POSE_NAME[k])}</figcaption></figure>`).join('');
+
+document.getElementById('flowOut').innerHTML = SALAT_FLOW.map(s => {
+  const chips = (s.recite || []).map(id => {
+    const d = duaById(id);
+    return d ? `<a class="chip" href="#${id}" data-goto="${id}">🤲 ${esc(d.title)}</a>` : '';
+  }).join('');
+  const sur = s.surah ? `<a class="chip" href="#s-${s.surah}" data-goto-surah="${s.surah}">📖 সূরা ফাতিহা</a>` : '';
+  return `<div class="card dua-card">
+    <div class="flow-item">
+      <div>
+        <div class="pose-badge">${pose(s.pose)}</div>
+        <div class="flow-pose-lbl">${esc((POSE_NAME[s.pose] || '').split(' — ')[0])}</div>
+      </div>
+      <div class="flow-body">
+        <div class="tl-head">
+          <span class="flow-no">${bn(s.no)}</span>
+          <h3>${esc(s.title)}</h3>
+          ${s.kind ? `<span class="badge ${s.kind === 'ফরজ' ? 'b-fard' : s.kind === 'ওয়াজিব' ? 'b-wajib' : 'b-sunnah'}">${s.kind}</span>` : ''}
+        </div>
+        <ul class="do-list">${s.what.map(t => `<li>${t}</li>`).join('')}</ul>
+        ${chips || sur ? `<div class="recite">${sur}${chips}</div>` : ''}
+        ${s.note ? `<div class="note tip"><p>${s.note}</p></div>` : ''}
+      </div>
+    </div>
+  </div>`;
+}).join('');
+
+/* ---------- ২. দোয়া ---------- */
+const duaBar = document.getElementById('duaCats');
+const duaOut = document.getElementById('duaOut');
+const duaCnt = document.getElementById('duaCount');
+duaBar.innerHTML = [{ id:'all', name:'সবগুলো', icon:'📿' }, ...SALAT_CATS].map((c, i) =>
+  `<button class="tab" data-cat="${c.id}" aria-selected="${i === 0}">${c.icon} ${c.name}</button>`).join('');
+
+function renderDuas(cat) {
+  const list = cat === 'all' ? SALAT_DUAS : SALAT_DUAS.filter(d => d.cat === cat);
+  duaOut.innerHTML = list.map(duaCard).join('');
+  duaCnt.textContent = `${bn(list.length)}টি দোয়া দেখানো হচ্ছে`;
+  duaBar.querySelectorAll('.tab').forEach(b =>
+    b.setAttribute('aria-selected', String(b.dataset.cat === cat)));
+}
+duaBar.addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if (b) renderDuas(b.dataset.cat);
+});
+renderDuas('all');
+
+/* ---------- ৩. সূরা ---------- */
+const surahBar = document.getElementById('surahTabs');
+const surahOut = document.getElementById('surahOut');
+surahBar.innerHTML = [{ id:'all', name:'সবগুলো' }, ...SURAHS].map((s, i) =>
+  `<button class="tab" data-s="${s.id}" aria-selected="${i === 0}">${esc(s.name || '')}</button>`).join('');
+
+function surahCard(s) {
+  return `<article class="card surah-card" id="s-${s.id}">
+    <div class="surah-top">
+      <span class="surah-ar">${s.nameAr}</span>
+      <h3>${esc(s.name)}</h3>
+      <span class="badge b-wajib">সূরা ${bn(s.no)} · ${bn(s.ayahs)} আয়াত</span>
+      <span class="badge b-day">${esc(s.place)}</span>
+    </div>
+    <p class="when">${esc(s.why)}</p>
+    ${s.v.map(a => `<div class="ayah">
+      <div class="ar-box"><p class="ar">${a.ar}</p></div>
+      <div class="row-tr"><b><span class="ayah-n">${bn(a.n)}</span>বাংলা উচ্চারণ</b>
+        <p class="translit" style="margin:0">${esc(a.tr)}</p></div>
+      <div class="row-tr"><b>অর্থ</b><p class="meaning" style="margin:0">${esc(a.bn)}</p></div>
+      <div class="wbw">${words(a.w)}</div>
+    </div>`).join('')}
+  </article>`;
+}
+function renderSurahs(id) {
+  const list = id === 'all' ? SURAHS : SURAHS.filter(s => s.id === id);
+  surahOut.innerHTML = list.map(surahCard).join('');
+  surahBar.querySelectorAll('.tab').forEach(b =>
+    b.setAttribute('aria-selected', String(b.dataset.s === id)));
+}
+surahBar.addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if (b) renderSurahs(b.dataset.s);
+});
+renderSurahs('all');
+
+/* ---------- ৪. রাকাত সারণি ---------- */
+document.getElementById('rakatOut').innerHTML =
+  `<table><thead><tr>${RAKAT_TABLE.head.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>
+   <tbody>${RAKAT_TABLE.rows.map(r =>
+     `<tr>${r.map((c, i) => i === 0 ? `<td><strong>${c}</strong></td>` : `<td>${c}</td>`).join('')}</tr>`).join('')}
+   </tbody></table>`;
+document.getElementById('rakatNote').innerHTML = RAKAT_TABLE.note;
+
+/* ---------- ৫. হজে নামাজ ---------- */
+document.getElementById('hajjOut').innerHTML = HAJJ_SALAT.map(s =>
+  `<article class="card hs-card" id="${s.id}">
+    <div class="hs-head"><span class="tile-ico" style="margin:0">${s.icon}</span><h3>${esc(s.title)}</h3></div>
+    <ul class="do-list">${s.body.map(t => `<li>${t}</li>`).join('')}</ul>
+    ${s.note ? `<div class="note tip"><p>${s.note}</p></div>` : ''}
+  </article>`).join('');
+
+/* ---------- ট্যাব ---------- */
+const bar = document.getElementById('mainTabs');
+const panels = [...document.querySelectorAll('.panel')];
+function showPanel(id, scroll) {
+  panels.forEach(p => { p.hidden = p.id !== id; });
+  bar.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.p === id)));
+  try { history.replaceState(null, '', '#' + id); } catch {}
+  if (scroll) bar.scrollIntoView({ block:'start' });
+}
+bar.addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if (b) showPanel(b.dataset.p, true);
+});
+
+/* ---------- ধাপ থেকে দোয়ায় লাফ ---------- */
+document.getElementById('flowOut').addEventListener('click', e => {
+  const a = e.target.closest('[data-goto], [data-goto-surah]');
+  if (!a) return;
+  e.preventDefault();
+  if (a.dataset.goto) {
+    showPanel('p-dua');
+    renderDuas('all');
+    const el = document.getElementById(a.dataset.goto);
+    el?.scrollIntoView({ block:'start' });
+    if (el) { el.style.borderColor = 'var(--gold)'; setTimeout(() => el.style.borderColor = '', 2400); }
+  } else {
+    showPanel('p-surah');
+    renderSurahs(a.dataset.gotoSurah);
+    document.getElementById('s-' + a.dataset.gotoSurah)?.scrollIntoView({ block:'start' });
+  }
+});
+
+/* ---------- হ্যাশ থেকে ওপেন ---------- */
+const hash = location.hash.replace('#', '');
+if (hash) {
+  if (panels.some(p => p.id === hash)) showPanel(hash, true);
+  else if (duaById(hash)) { showPanel('p-dua'); document.getElementById(hash)?.scrollIntoView(); }
+  else if (SURAHS.some(s => 's-' + s.id === hash)) { showPanel('p-surah'); document.getElementById(hash)?.scrollIntoView(); }
+  else if (HAJJ_SALAT.some(s => s.id === hash)) { showPanel('p-hajj'); document.getElementById(hash)?.scrollIntoView(); }
+}
+</script>
+</body>
+</html>
