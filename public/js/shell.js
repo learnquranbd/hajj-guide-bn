@@ -1,5 +1,6 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=6';
+import { initFirebase } from './store.js?v=7';
+import { track } from './analytics.js?v=7';
 
 const PAGES = [
   ['/',          'হোম',        '🕋'],
@@ -137,6 +138,11 @@ function wireShare() {
   set('.share-rail .tg', `https://t.me/share/url?url=${u}&text=${t}`);
   set('.share-rail .xx', `https://twitter.com/intent/tweet?url=${u}&text=${t}`);
 
+  document.getElementById('shareRail')?.addEventListener('click', e => {
+    const a = e.target.closest('.sh');
+    if (a) track('share_click', { method: a.classList[1] || 'unknown' });
+  });
+
   const copy = document.getElementById('copyLink');
   copy?.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(url); toast('লিংক কপি হয়েছে ✓'); }
@@ -230,8 +236,21 @@ export function mount() {
     hBtn.setAttribute('aria-expanded', String(on));
     hBtn.classList.toggle('is-open', on);
   };
-  hBtn.addEventListener('click', e => { e.stopPropagation(); hOpen(hPan.hidden); });
-  hPan.addEventListener('click', e => { if (e.target.closest('a')) hOpen(false); });
+  hBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const opening = hPan.hidden;
+    hOpen(opening);
+    if (opening) track('help_open');
+  });
+  hPan.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    track('help_link', {
+      label: (a.textContent || '').trim().slice(0, 40),
+      kind: a.getAttribute('href').startsWith('tel:') ? 'phone' : 'app'
+    });
+    hOpen(false);
+  });
   document.addEventListener('click', e => {
     if (!hPan.hidden && !e.target.closest('.help-wrap')) hOpen(false);
   });

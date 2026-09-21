@@ -8,7 +8,13 @@ export const firebaseConfig = {
   projectId: "hajj-guide-bn",
   storageBucket: "hajj-guide-bn.firebasestorage.app",
   messagingSenderId: "351232948145",
-  appId: "1:351232948145:web:aa3fd6e92542d1836f6f90"
+  appId: "1:351232948145:web:aa3fd6e92542d1836f6f90",
+
+  /* Google Analytics চালু করতে এখানে measurementId বসান — G-XXXXXXXXXX
+     পাবেন: Firebase Console → ⚙️ Project settings → Integrations →
+     Google Analytics → Enable; তারপর General → Your apps → Hajj Guide Web।
+     খালি থাকলে Analytics নিঃশব্দে নিষ্ক্রিয় থাকে, কোনো পেজ ভাঙে না। */
+  measurementId: ""
 };
 
 /* ক্লাউড সিঙ্ক চালু করতে হলে:

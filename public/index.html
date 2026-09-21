@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=6">
+<link rel="stylesheet" href="/css/style.css?v=7">
 </head>
 <body>
 
@@ -250,8 +250,9 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=6';
-  import { DUAS } from '/js/data-dua.js?v=6';
+  import { mount } from '/js/shell.js?v=7';
+  import { DUAS } from '/js/data-dua.js?v=7';
+  import { track } from '/js/analytics.js?v=7';
   mount();
 
   const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
@@ -286,6 +287,8 @@
     try { localStorage.setItem(KEY, no); } catch {}
     let copied = false;
     try { await navigator.clipboard.writeText(no); copied = true; } catch {}
+    /* নম্বরটি কখনোই পাঠানো হয় না — শুধু ঘটনাটি গোনা হয় */
+    track('reg_lookup', { copied });
     window.open(PORTAL, '_blank', 'noopener');
     say(copied
       ? `নম্বরটি কপি হয়েছে ✓ — hajj.gov.bd খুলেছে, সেখানে পেস্ট করে অনুসন্ধান করুন।`
