@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=4">
+<link rel="stylesheet" href="/css/style.css?v=6">
 </head>
 <body>
 
@@ -22,16 +22,22 @@
          alt="সন্ধ্যায় মসজিদুল হারাম — কাবা শরিফ ঘিরে ইহরাম পরিহিত লক্ষ লক্ষ হাজীর তাওয়াফ" fetchpriority="high">
   </picture>
   <div class="wrap banner-in">
-    <span class="eyebrow">হজ্জে তামাত্তু · পূর্ণাঙ্গ বাংলা গাইড</span>
-    <h1>হজের প্রতিটি ধাপ, ঠিক যেভাবে করতে হয়</h1>
-    <p class="lead">
-      মীকাতে ইহরাম বাঁধা থেকে বিদায়ী তাওয়াফ ও মদিনা যিয়ারত পর্যন্ত — ধাপে ধাপে করণীয়,
-      সময়, স্থান এবং সে মুহূর্তের মাসনূন দোয়া — নামাজের প্রতিটি শব্দসহ, বাংলা অর্থে।
-    </p>
-    <p class="ar-hero">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="/steps">ধাপে ধাপে শুরু করুন →</a>
-      <a class="btn btn-ghost" href="/map">মিনা জোন দেখুন</a>
+    <div class="banner-grid">
+      <div>
+        <span class="eyebrow">হজ্জে তামাত্তু · পূর্ণাঙ্গ বাংলা গাইড</span>
+        <h1>হজের প্রতিটি ধাপ, ঠিক যেভাবে করতে হয়</h1>
+        <p class="lead">
+          মীকাতে ইহরাম বাঁধা থেকে বিদায়ী তাওয়াফ ও মদিনা যিয়ারত পর্যন্ত — ধাপে ধাপে করণীয়,
+          সময়, স্থান এবং সে মুহূর্তের মাসনূন দোয়া — নামাজের প্রতিটি শব্দসহ, বাংলা অর্থে।
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/steps">ধাপে ধাপে শুরু করুন →</a>
+          <a class="btn btn-ghost" href="/map">মিনা জোন দেখুন</a>
+        </div>
+      </div>
+      <aside class="talbiyah" id="talbiyah">
+        <p class="tal-ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
+      </aside>
     </div>
   </div>
 </section>
@@ -209,9 +215,85 @@
   </div>
 </section>
 
+<div class="hizam" aria-hidden="true"></div>
+
+<section class="wrap section-sm" id="reg-status">
+  <div class="card">
+    <div class="tile-ico">🪪</div>
+    <h2 style="margin-top:0">হজ নিবন্ধনের অবস্থা দেখুন</h2>
+    <p>আপনার <strong>ট্র্যাকিং নম্বর</strong>, <strong>PID</strong> বা <strong>পাসপোর্ট নম্বর</strong> নিচে লিখুন।
+    নম্বরটি ক্লিপবোর্ডে কপি হয়ে যাবে এবং সরকারি হজ পোর্টাল নতুন ট্যাবে খুলবে — সেখানে
+    “প্রাক-নিবন্ধন” বা “নিবন্ধন” ঘরে পেস্ট করে অনুসন্ধান করুন।</p>
+
+    <div class="reg-row">
+      <input id="regNo" type="text" autocomplete="off" spellcheck="false"
+             placeholder="ট্র্যাকিং নম্বর / PID / পাসপোর্ট নম্বর"
+             aria-label="ট্র্যাকিং নম্বর, PID বা পাসপোর্ট নম্বর">
+      <button class="btn btn-primary" id="regGo" type="button">hajj.gov.bd-এ দেখুন →</button>
+    </div>
+    <p class="reg-msg muted" id="regMsg" role="status" aria-live="polite"></p>
+
+    <div class="reg-links">
+      <a href="https://hajj.gov.bd" target="_blank" rel="noopener noreferrer">🏛️ হজ পোর্টাল</a>
+      <a href="https://pilgrim.hajj.gov.bd/pilgrim-reg-request/create" target="_blank" rel="noopener noreferrer">📝 নিবন্ধনের আবেদন</a>
+      <a href="https://hajj.gov.bd/pre-reg-refund" target="_blank" rel="noopener noreferrer">💵 প্রাক-নিবন্ধন রিফান্ড</a>
+      <a href="https://hajj.gov.bd/hajjguide" target="_blank" rel="noopener noreferrer">📘 সরকারি হজ গাইড</a>
+      <a href="tel:16136">☎️ হেল্পলাইন ১৬১৩৬</a>
+    </div>
+
+    <div class="note warn" style="margin-bottom:0"><p><strong>স্পষ্ট করে বলা দরকার:</strong>
+    এটি একটি বেসরকারি শিক্ষামূলক সাইট — ধর্ম মন্ত্রণালয় বা হজ অফিসের সাথে এর কোনো সম্পর্ক নেই।
+    এখানে আপনার নম্বর দিয়ে কোনো অনুসন্ধান করা হয় না এবং কোথাও পাঠানো হয় না; নম্বরটি কেবল
+    আপনার ব্রাউজারে থাকে যাতে পরেরবার আবার টাইপ করতে না হয়। প্রকৃত তথ্য কেবল
+    <strong>hajj.gov.bd</strong>-তেই পাবেন।</p></div>
+  </div>
+</section>
+
 <script type="module">
-  import { mount } from '/js/shell.js?v=4';
+  import { mount } from '/js/shell.js?v=6';
+  import { DUAS } from '/js/data-dua.js?v=6';
   mount();
+
+  const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
+
+  /* ---------- ব্যানারে পূর্ণ তালবিয়া, শব্দে শব্দে ---------- */
+  const tal = DUAS.find(d => d.id === 'talbiyah');
+  const box = document.getElementById('talbiyah');
+  if (tal && box) {
+    box.innerHTML =
+      `<div class="talbiyah-lbl">তালবিয়া — হজের ধ্বনি</div>
+       <p class="tal-ar">${tal.ar}</p>
+       <p class="tal-tr">${esc(tal.tr)}</p>
+       <p class="tal-bn">${esc(tal.bn)}</p>
+       <div class="tal-w">${(tal.w || []).map(([a, m]) =>
+         `<span class="w"><span class="wa">${a}</span><span class="wb">${esc(m)}</span></span>`).join('')}</div>
+       <p class="tal-src">📖 ${esc(tal.src)} · <a href="/dua#talbiyah">সব দোয়া শব্দে শব্দে →</a></p>`;
+  }
+
+  /* ---------- নিবন্ধন অনুসন্ধান — সরকারি পোর্টালে হস্তান্তর ---------- */
+  const PORTAL = 'https://hajj.gov.bd';
+  const KEY = 'hajj-reg-no';
+  const inp = document.getElementById('regNo');
+  const msg = document.getElementById('regMsg');
+
+  try { const v = localStorage.getItem(KEY); if (v) inp.value = v; } catch {}
+
+  const say = (text, cls) => { msg.textContent = text; msg.className = 'reg-msg ' + (cls || 'muted'); };
+
+  async function go() {
+    const no = inp.value.trim();
+    if (!no) { say('আগে আপনার ট্র্যাকিং বা পাসপোর্ট নম্বরটি লিখুন।', 'err'); inp.focus(); return; }
+    try { localStorage.setItem(KEY, no); } catch {}
+    let copied = false;
+    try { await navigator.clipboard.writeText(no); copied = true; } catch {}
+    window.open(PORTAL, '_blank', 'noopener');
+    say(copied
+      ? `নম্বরটি কপি হয়েছে ✓ — hajj.gov.bd খুলেছে, সেখানে পেস্ট করে অনুসন্ধান করুন।`
+      : `hajj.gov.bd খুলেছে — সেখানে নম্বরটি লিখে অনুসন্ধান করুন।`, 'ok');
+  }
+
+  document.getElementById('regGo').addEventListener('click', go);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
 </script>
 </body>
 </html>

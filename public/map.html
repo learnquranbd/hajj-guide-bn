@@ -9,7 +9,13 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=4">
+<link rel="stylesheet" href="/css/style.css?v=6">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+  integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
+  integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 <style>
   .svg-t{font-family:"Hind Siliguri",sans-serif;font-weight:600}
   .hot .hit{transition:filter .15s ease}
@@ -23,6 +29,23 @@
   .secnum{width:34px;height:34px;border-radius:9px;background:linear-gradient(160deg,var(--gold-2),var(--gold));color:var(--on-brand);
     display:inline-grid;place-items:center;font-size:1rem;flex:0 0 auto}
   .hintbar{font-size:.87rem;color:var(--ink-mute);margin:0 0 16px}
+  .gmap-frame{position:relative;width:100%;aspect-ratio:16/9;min-height:320px;
+    border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--card-2)}
+  .gmap-frame #gmapCanvas{position:absolute;inset:0;width:100%;height:100%}
+  .leaflet-container{background:var(--card-2);font-family:inherit}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--ink);
+    box-shadow:var(--shadow-lg);border:1px solid var(--gold-line)}
+  .leaflet-popup-content{margin:12px 14px;font-size:.92rem;line-height:1.7}
+  .leaflet-popup-content b{display:block;color:var(--gold-2);margin-bottom:3px;font-size:1rem}
+  .leaflet-control-layers,.leaflet-bar a,.leaflet-bar a:hover{background:var(--card);color:var(--ink);
+    border-color:var(--line)}
+  .leaflet-control-layers-expanded{color:var(--ink);padding:10px 14px 10px 10px;font-size:.9rem}
+  .leaflet-control-attribution{background:rgba(0,0,0,.6)!important;color:#c9c2b2!important;font-size:.72rem}
+  .leaflet-attribution-flag{width:1em!important;height:.65em!important;vertical-align:baseline}
+  .leaflet-control-attribution a{color:var(--gold-2)!important}
+  .gmap-meta{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:center;margin-top:14px;font-size:.9rem}
+  .gmap-meta .coord{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.84rem;color:var(--ink-mute)}
+  @media (max-width:620px){.gmap-frame{aspect-ratio:4/3}}
 </style>
 </head>
 <body>
@@ -275,6 +298,35 @@
   </div>
 </section>
 
+<!-- ========== ৪. গুগল ম্যাপ ========== -->
+<section class="wrap section-sm" id="map4">
+  <h2 class="map-title"><span class="secnum">৪</span> ম্যাপে পবিত্র স্থানসমূহ</h2>
+  <p class="hintbar">নিচের নামগুলোতে ক্লিক করে প্রতিটি স্থান ম্যাপে দেখুন — সাথের বোতাম দিয়ে গুগল ম্যাপে স্যাটেলাইট ভিউ ও দিকনির্দেশনা খুলুন</p>
+
+  <div class="tabs" id="gmapTabs"></div>
+
+  <div class="map-shell">
+    <div class="gmap-frame"><div id="gmapCanvas" role="application" aria-label="পবিত্র স্থানসমূহের মানচিত্র"></div></div>
+    <div class="map-info"><div class="info" id="gmapInfo"></div></div>
+    <div class="gmap-meta">
+      <span class="coord" id="gmapCoord"></span>
+      <a class="btn btn-ghost" id="gmapOpen" target="_blank" rel="noopener noreferrer"
+         style="padding:7px 16px;font-size:.88rem">↗ গুগল ম্যাপে খুলুন</a>
+      <a class="btn btn-ghost" id="gmapSat" target="_blank" rel="noopener noreferrer"
+         style="padding:7px 16px;font-size:.88rem">🛰️ স্যাটেলাইট ভিউ</a>
+      <a class="btn btn-ghost" id="gmapDir" target="_blank" rel="noopener noreferrer"
+         style="padding:7px 16px;font-size:.88rem">🧭 দিকনির্দেশনা</a>
+    </div>
+    <p class="muted" id="gmapSrc" style="margin:10px 0 0"></p>
+  </div>
+
+  <div class="note warn" style="margin-top:18px"><p><strong>মাঠে চলার জন্য নয়:</strong>
+  স্থানাঙ্কগুলো প্রতিটি এলাকার কেন্দ্রের আনুমানিক অবস্থান — বোঝার সুবিধার্থে দেওয়া।
+  হজের দিনগুলোতে রাস্তা, গেট ও হাঁটার পথ কর্তৃপক্ষ বদলে দেয় এবং অনেক রাস্তা একমুখী করা হয়।
+  মাঠে অবশ্যই <strong>Nusuk</strong> ও <strong>Labbaik</strong> অ্যাপ, দিকনির্দেশক সাইনবোর্ড
+  এবং আপনার মুয়াল্লিমের নির্দেশনা অনুসরণ করুন।</p></div>
+</section>
+
 <!-- ========== দূরত্ব সারণি ========== -->
 <section class="wrap section-sm">
   <h2>দূরত্ব ও আনুমানিক হাঁটার সময়</h2>
@@ -296,7 +348,7 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=4';
+import { mount } from '/js/shell.js?v=6';
 mount();
 
 const ZONES = {
@@ -328,6 +380,98 @@ function bind(sel, panel) {
 }
 bind('#map1', 'info1');
 bind('#map2', 'info2');
+
+/* ---------- গুগল ম্যাপ — পবিত্র স্থানসমূহ ---------- */
+const PLACES = [
+  { id:'haram',   name:'মসজিদুল হারাম', icon:'🕋', lat:21.4225, lng:39.8262, z:16,
+    d:'কাবা শরিফ, হাজরে আসওয়াদ, মাকামে ইবরাহীম, যমযম কূপ ও সাফা-মারওয়া — সব এখানেই। তাওয়াফ ও সাঈ এখানে হয়। মক্কার কেন্দ্রে, মিনা থেকে প্রায় ৮ কিমি পশ্চিমে।' },
+  { id:'mina',    name:'মিনা', icon:'⛺', lat:21.4133, lng:39.8880, z:14,
+    d:'তাঁবুর শহর — প্রায় ৭.৮ বর্গকিমি, হারামের সীমানার ভেতরে। ৮ জিলহজ এবং ১০ থেকে ১২/১৩ জিলহজ পর্যন্ত রাত্রিযাপন এখানেই। স্যাটেলাইট ভিউতে সাদা তাঁবুর সারি স্পষ্ট দেখা যায়।' },
+  { id:'jamarat', name:'জামরাত ব্রিজ', icon:'🎯', lat:21.4220, lng:39.8729, z:17,
+    d:'পাঁচ তলার জামরাত কমপ্লেক্স — মিনার পশ্চিম প্রান্তে, মক্কার দিকে। তিনটি জামরা: উলা, উসতা ও আকাবা। ম্যাপে লম্বা ডিম্বাকৃতি স্থাপনাটিই জামরাত ব্রিজ।' },
+  { id:'khaif',   name:'মসজিদে খাইফ', icon:'🕌', lat:21.4131, lng:39.8724, z:17,
+    d:'মিনার ঐতিহাসিক মসজিদ, জামরাতের কাছেই দক্ষিণে। বর্ণিত আছে এখানে সত্তরজন নবী নামাজ পড়েছেন। মিনায় থাকাকালীন এখানে জামাতে নামাজ পড়া ফজিলতপূর্ণ।' },
+  { id:'muz',     name:'মুজদালিফা', icon:'🌙', lat:21.3894, lng:39.9376, z:14,
+    d:'মিনা ও আরাফাতের মাঝখানে, হারামের ভেতরে। ৯ জিলহজ সূর্যাস্তের পর এখানে এসে মাগরিব ও এশা একসাথে পড়া, খোলা আকাশের নিচে রাত কাটানো ও কঙ্কর সংগ্রহ — অবস্থান ওয়াজিব।' },
+  { id:'arafat',  name:'আরাফাতের ময়দান', icon:'☀️', lat:21.3550, lng:39.9840, z:14,
+    d:'হারামের সীমানার বাইরে একমাত্র স্থান। ৯ জিলহজ সূর্য ঢলার পর থেকে সূর্যাস্ত পর্যন্ত এখানে উকুফ না করলে হজই হবে না। ম্যাপে বিশাল খোলা সমতল ও চারপাশের সীমানা-চিহ্ন দেখা যায়।' },
+  { id:'rahmah',  name:'জাবালে রহমত', icon:'⛰️', lat:21.3549, lng:39.9842, z:17,
+    d:'আরাফাতের ময়দানের ছোট পাহাড়, যেখানে নবীজি (সাঃ) বিদায় হজের ভাষণ দিয়েছিলেন। পাহাড়ে ওঠা বাধ্যতামূলক নয় — পুরো ময়দানই উকুফের জায়গা, আর ভিড়ে ওঠা ঝুঁকিপূর্ণ।' },
+  { id:'namirah', name:'মসজিদে নামিরাহ', icon:'🕌', lat:21.3547, lng:39.9539, z:16,
+    d:'আরাফাতের পশ্চিম প্রান্তে। ৯ জিলহজ এখান থেকেই হজের খুতবা দেওয়া হয় এবং জোহর ও আসর একসাথে পড়া হয়। মসজিদের সামনের অংশ আসলে বাতনে উরানায় পড়ে — সেখানে উকুফ হয় না।' },
+  { id:'taneem',  name:'মসজিদে আয়েশা (তানঈম)', icon:'🤍', lat:21.4463, lng:39.7717, z:16,
+    d:'মক্কার বাসিন্দা ও মক্কায় অবস্থানরতদের জন্য উমরাহর মীকাত। মসজিদুল হারাম থেকে প্রায় ৭ কিমি উত্তরে। অতিরিক্ত উমরাহ করতে চাইলে এখান থেকে ইহরাম বাঁধতে হয়।' },
+  { id:'nabawi',  name:'মসজিদে নববী (মদিনা)', icon:'🟢', lat:24.4672, lng:39.6112, z:16,
+    d:'মদিনা মুনাওয়ারা — নবীজি (সাঃ)-এর মসজিদ ও রওজা শরিফ। এখানে এক নামাজ এক হাজার নামাজের সমান। মক্কা থেকে প্রায় ৪৫০ কিমি উত্তরে, সড়কপথে ৫–৬ ঘণ্টা বা হারামাইন ট্রেনে ২.৫ ঘণ্টা।' }
+];
+
+const gInfo  = document.getElementById('gmapInfo');
+const gTabs  = document.getElementById('gmapTabs');
+const gCoord = document.getElementById('gmapCoord');
+const gOpen  = document.getElementById('gmapOpen');
+const gSat   = document.getElementById('gmapSat');
+const gDir   = document.getElementById('gmapDir');
+const gSrc   = document.getElementById('gmapSrc');
+
+gTabs.innerHTML = PLACES.map((p, i) =>
+  `<button class="tab" data-p="${p.id}" aria-selected="${i === 0}">${p.icon} ${p.name}</button>`).join('');
+
+let map = null;
+const markers = {};
+
+function initMap() {
+  if (typeof L === 'undefined') {
+    gSrc.innerHTML = 'ম্যাপ লাইব্রেরি লোড করা যায়নি — উপরের <strong>গুগল ম্যাপ</strong> বোতামগুলো ব্যবহার করুন।';
+    return false;
+  }
+  const sat = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { maxZoom: 19, attribution: 'ছবি © Esri, Maxar, Earthstar Geographics' });
+  const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> অবদানকারীগণ' });
+
+  map = L.map('gmapCanvas', { layers: [sat], scrollWheelZoom: false, zoomControl: true })
+         .setView([PLACES[0].lat, PLACES[0].lng], PLACES[0].z);
+  L.control.layers({ '🛰️ স্যাটেলাইট': sat, '🗺️ রাস্তা': street }, null,
+    { position: 'topright', collapsed: false }).addTo(map);
+  map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
+
+  PLACES.forEach(p => {
+    markers[p.id] = L.marker([p.lat, p.lng]).addTo(map)
+      .bindPopup(`<b>${p.icon} ${p.name}</b>${p.d}`);
+    markers[p.id].on('click', () => select(p.id, false));
+  });
+
+  gSrc.innerHTML = 'স্যাটেলাইট ছবি © Esri · রাস্তার ম্যাপ © OpenStreetMap অবদানকারীগণ · ' +
+                   'দিকনির্দেশনার জন্য উপরের গুগল ম্যাপ বোতামগুলো ব্যবহার করুন';
+  setTimeout(() => map.invalidateSize(), 200);
+  return true;
+}
+
+function select(id, move) {
+  const p = PLACES.find(x => x.id === id) || PLACES[0];
+  const q = `${p.lat},${p.lng}`;
+  gInfo.innerHTML = `<h3>${p.icon} ${p.name}</h3><p>${p.d}</p>`;
+  gCoord.textContent = `📍 ${p.lat}° N, ${p.lng}° E`;
+  gOpen.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  gSat.href  = `https://www.google.com/maps/@${q},${p.z}z/data=!3m1!1e3`;
+  gDir.href  = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
+  gTabs.querySelectorAll('.tab').forEach(b =>
+    b.setAttribute('aria-selected', String(b.dataset.p === id)));
+  if (map && move !== false) map.flyTo([p.lat, p.lng], p.z, { duration: .8 });
+  if (markers[p.id]) markers[p.id].openPopup();
+}
+
+gTabs.addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if (b) select(b.dataset.p, true);
+});
+
+/* Leaflet defer করে লোড হয় — প্রস্তুত হলে ম্যাপ বসে */
+function boot() { if (initMap()) select(PLACES[0].id, false); else select(PLACES[0].id, false); }
+if (typeof L !== 'undefined') boot();
+else addEventListener('load', boot, { once: true });
+
 </script>
 </body>
 </html>

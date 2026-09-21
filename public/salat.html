@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=4">
+<link rel="stylesheet" href="/css/style.css?v=6">
 <style>
   .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
   .subtabs .tab{padding:7px 15px;font-size:.88rem}
@@ -108,9 +108,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=4';
+import { mount } from '/js/shell.js?v=6';
 import { SALAT_DUAS, SALAT_CATS, SALAT_FLOW, SURAHS, RAKAT_TABLE, HAJJ_SALAT, POSE, POSE_NAME }
-  from '/js/data-salat.js?v=4';
+  from '/js/data-salat.js?v=6';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

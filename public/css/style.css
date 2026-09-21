@@ -766,3 +766,120 @@ figure.photo figcaption b{color:var(--ink)}
 .hs-card{margin-bottom:18px}
 .hs-head{display:flex; align-items:center; gap:14px; margin-bottom:10px}
 .hs-head h3{margin:0}
+
+/* =====================================================================
+   ব্যানারে পূর্ণ তালবিয়া — কাচের ফলকে, শব্দে শব্দে
+   ===================================================================== */
+.banner-grid{
+  display:grid; grid-template-columns:1.08fr .92fr;
+  gap:clamp(22px,3vw,48px); align-items:center;
+}
+@media (max-width:980px){.banner-grid{grid-template-columns:1fr; gap:24px}}
+
+.talbiyah{
+  background:rgba(6,8,9,.58);
+  backdrop-filter:blur(14px) saturate(130%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border:1px solid rgba(231,212,148,.34);
+  border-radius:var(--radius-lg);
+  padding:clamp(18px,2vw,26px);
+  box-shadow:0 28px 70px -30px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.talbiyah-lbl{
+  display:flex; align-items:center; gap:10px; margin-bottom:12px;
+  font-size:.74rem; font-weight:700; letter-spacing:.08em; color:#e7d494;
+}
+.talbiyah-lbl::after{
+  content:""; flex:1; height:1px;
+  background:linear-gradient(90deg,rgba(231,212,148,.45),transparent);
+}
+.tal-ar{
+  font-family:"Amiri","Scheherazade New",serif; direction:rtl; text-align:right;
+  color:#f2e7c4; font-size:clamp(1.2rem,1.75vw,1.7rem); line-height:2.15;
+  margin:0 0 14px; text-shadow:0 2px 18px rgba(0,0,0,.85);
+}
+.tal-tr{color:#ded7c7; font-size:.9rem; line-height:1.75; margin:0 0 8px}
+.tal-bn{color:#c6bfae; font-size:.9rem; line-height:1.75; margin:0}
+.tal-src{color:#968e80; font-size:.78rem; margin:12px 0 0}
+.tal-src a{color:#e7d494}
+.tal-w{display:flex; flex-wrap:wrap; gap:6px; direction:rtl; margin:14px 0 0}
+.tal-w .w{
+  background:rgba(255,255,255,.06); border-color:rgba(231,212,148,.24);
+  min-width:0; padding:6px 10px 8px; box-shadow:none; border-radius:9px;
+}
+.tal-w .w:hover{
+  background:rgba(231,212,148,.15); border-color:rgba(231,212,148,.55);
+  transform:none; box-shadow:none;
+}
+.tal-w .w .wa{font-size:1.1rem; line-height:1.5; color:#f4ecd8}
+.tal-w .w .wb{font-size:.71rem; color:#e0c98a; margin-top:0}
+
+/* =====================================================================
+   কার্ডের আইকন বাঁ পাশে — লেখা আইকনকে ঘিরে বসবে
+   ===================================================================== */
+.card > .tile-ico{float:left; margin:2px 16px 8px 0}
+.card::after{content:""; display:block; clear:both}
+@media (max-width:420px){
+  .card > .tile-ico{margin-inline-end:13px}
+}
+
+/* =====================================================================
+   নিবন্ধন অনুসন্ধান ফর্ম
+   ===================================================================== */
+.reg-row{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 6px}
+.reg-row input{
+  flex:1 1 280px; min-width:0; font-family:inherit; font-size:1rem;
+  padding:11px 18px; border-radius:99px; border:1px solid var(--line);
+  background:var(--card-2); color:var(--ink); transition:border-color .16s ease, box-shadow .16s ease;
+}
+.reg-row input::placeholder{color:var(--ink-mute)}
+.reg-row input:focus{outline:none; border-color:var(--gold); box-shadow:var(--glow)}
+.reg-msg{min-height:1.4em; margin:2px 0 0; font-size:.88rem}
+.reg-msg.ok{color:var(--ok)}
+.reg-msg.err{color:var(--danger)}
+.reg-links{display:flex; flex-wrap:wrap; gap:9px; margin-top:6px}
+.reg-links a{
+  display:inline-flex; align-items:center; gap:7px; font-size:.87rem; font-weight:600;
+  padding:7px 15px; border-radius:99px; border:1px solid var(--line);
+  color:var(--ink-soft); background:var(--card-2);
+}
+.reg-links a:hover{border-color:var(--gold-line); color:var(--gold-2); text-decoration:none}
+:root[data-theme="light"] .reg-links a:hover{color:var(--gold)}
+
+/* =====================================================================
+   সহায়তা মেনু — অ্যাপ, জরুরি নম্বর ও হজ মিশন
+   ===================================================================== */
+.help-wrap{position:relative; flex:0 0 auto}
+#helpBtn.is-open{border-color:var(--gold-line); color:var(--gold); background:var(--gold-soft)}
+.help-panel{
+  position:absolute; inset-inline-end:0; top:calc(100% + 12px); z-index:75;
+  width:min(94vw,368px); padding:14px;
+  background:var(--bg-soft); border:1px solid var(--gold-line);
+  border-radius:var(--radius); box-shadow:var(--shadow-lg);
+  max-height:min(72vh,580px); overflow-y:auto; overscroll-behavior:contain;
+}
+.help-panel[hidden]{display:none}
+.help-grp{margin-bottom:13px}
+.help-grp:last-of-type{margin-bottom:6px}
+.help-grp h5{
+  margin:0 0 6px; font-size:.72rem; font-weight:700; letter-spacing:.08em;
+  color:var(--gold); text-transform:uppercase;
+}
+.help-panel a{
+  display:flex; align-items:center; gap:10px; padding:9px 11px;
+  border-radius:var(--radius-sm); color:var(--ink-soft); font-size:.9rem; font-weight:600;
+}
+.help-panel a:hover{background:var(--gold-soft); color:var(--ink); text-decoration:none}
+.help-panel a .ico{width:22px; text-align:center; flex:0 0 auto; font-size:1.02rem}
+.help-panel a small{
+  margin-inline-start:auto; flex:0 0 auto; color:var(--gold-2); font-weight:700;
+  font-size:.78rem; letter-spacing:.02em;
+}
+:root[data-theme="light"] .help-panel a small{color:var(--gold)}
+.help-note{
+  margin:10px 0 0; padding-top:10px; border-top:1px dashed var(--line);
+  font-size:.79rem; line-height:1.65; color:var(--ink-mute);
+}
+@media (max-width:520px){
+  .help-panel{position:fixed; inset-inline:12px 12px; width:auto; top:66px}
+}

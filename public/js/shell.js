@@ -1,5 +1,5 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=4';
+import { initFirebase } from './store.js?v=6';
 
 const PAGES = [
   ['/',          'হোম',        '🕋'],
@@ -27,6 +27,51 @@ const ICON = {
 const svg = (d, s = 18) =>
   `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor" aria-hidden="true">${d}</svg>`;
 
+
+/* ---------- সহায়তা: অ্যাপ, জরুরি নম্বর ও হজ মিশন ----------
+   বাংলাদেশের নম্বরগুলো hajj.gov.bd/contact থেকে নেওয়া। */
+const HELP = [
+  { h: 'অ্যাপ ও পোর্টাল', items: [
+    ['🕋','Nusuk — সৌদি সরকারি অ্যাপ','https://www.nusuk.sa','পারমিট'],
+    ['📱','Labbaik — বাংলাদেশ হজ অ্যাপ','https://hajj.gov.bd/hajj-initiatives/labbayk-app',''],
+    ['🏛️','hajj.gov.bd — হজ পোর্টাল','https://hajj.gov.bd',''],
+    ['📲','ই-হজ বিডি অ্যাপস','https://hajj.gov.bd/ehaj-apps',''],
+    ['🛡️','Tawakkalna — সৌদি সেবা অ্যাপ','https://ta.sdaia.gov.sa','']
+  ]},
+  { h: 'জরুরি নম্বর — সৌদি আরব', items: [
+    ['🚨','সমন্বিত জরুরি সেবা','tel:911','৯১১'],
+    ['🚑','অ্যাম্বুলেন্স — রেড ক্রিসেন্ট','tel:997','৯৯৭'],
+    ['🏥','স্বাস্থ্য মন্ত্রণালয়','tel:937','৯৩৭'],
+    ['🔥','সিভিল ডিফেন্স','tel:998','৯৯৮']
+  ]},
+  { h: 'বাংলাদেশ হজ মিশন', items: [
+    ['🕋','হজ মিশন — মক্কা','tel:+966544255633','মক্কা'],
+    ['🕌','হজ মিশন — মদিনা','tel:+966537209810','মদিনা'],
+    ['✈️','হজ মিশন — জেদ্দা','tel:+966503570580','জেদ্দা'],
+    ['💻','আইটি হেল্প ডেস্ক — মক্কা','tel:+966564270251','']
+  ]},
+  { h: 'বাংলাদেশ থেকে', items: [
+    ['☎️','হজ কল সেন্টার','tel:16136','১৬১৩৬'],
+    ['🌍','বিদেশ থেকে কল','tel:+8809602666707',''],
+    ['🏢','হজ অফিস, ঢাকা','tel:+880248958462',''],
+    ['🩺','স্বাস্থ্য বিভাগ, হজ অফিস','tel:+88027912132','']
+  ]}
+];
+
+function helpMenu() {
+  const grp = g => `<div class="help-grp"><h5>${g.h}</h5>` +
+    g.items.map(([i, t, href, tag]) => {
+      const ext = href.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+      return `<a href="${href}"${ext}><span class="ico">${i}</span>${t}` +
+             (tag ? `<small>${tag}</small>` : '') + `</a>`;
+    }).join('') + `</div>`;
+  return `<div class="help-panel" id="helpPanel" hidden role="menu" aria-label="সহায়তা">
+    ${HELP.map(grp).join('')}
+    <p class="help-note">জরুরি অবস্থায় আগে <strong>৯১১</strong>-এ কল করুন, তারপর মুয়াল্লিম ও হজ মিশনকে জানান।
+    নম্বরগুলো hajj.gov.bd অনুযায়ী; যাত্রার আগে একবার মিলিয়ে নিন।</p>
+  </div>`;
+}
+
 /* ---------- থিম ---------- */
 function applyTheme(val) {
   document.documentElement.setAttribute('data-theme', val);
@@ -48,6 +93,11 @@ function header() {
     <a class="brand" href="/"><span class="brand-mark">🕋</span>
       <span class="brand-txt">হজ গাইড<small>হজ্জে তামাত্তু · বাংলা</small></span></a>
     <nav class="nav-desk">${PAGES.map(p => link(p, false)).join('')}</nav>
+    <div class="help-wrap">
+      <button class="icon-btn" id="helpBtn" aria-label="সহায়তা ও জরুরি নম্বর"
+              aria-expanded="false" aria-haspopup="true" title="সহায়তা ও জরুরি নম্বর">🆘</button>
+      ${helpMenu()}
+    </div>
     <button class="icon-btn" id="themeBtn" aria-label="থিম পরিবর্তন">☾</button>
     <button class="icon-btn nav-toggle" id="navBtn" aria-label="মেনু খুলুন" aria-expanded="false" aria-controls="navDrawer">
       <span class="bars"><i></i><i></i><i></i></span>
@@ -171,6 +221,21 @@ export function mount() {
   document.getElementById('navClose').addEventListener('click', () => open(false));
   drawer.addEventListener('click', e => { if (e.target.closest('a')) open(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !drawer.hidden) open(false); });
+
+  /* সহায়তা মেনু */
+  const hBtn = document.getElementById('helpBtn');
+  const hPan = document.getElementById('helpPanel');
+  const hOpen = on => {
+    hPan.hidden = !on;
+    hBtn.setAttribute('aria-expanded', String(on));
+    hBtn.classList.toggle('is-open', on);
+  };
+  hBtn.addEventListener('click', e => { e.stopPropagation(); hOpen(hPan.hidden); });
+  hPan.addEventListener('click', e => { if (e.target.closest('a')) hOpen(false); });
+  document.addEventListener('click', e => {
+    if (!hPan.hidden && !e.target.closest('.help-wrap')) hOpen(false);
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !hPan.hidden) hOpen(false); });
 
   wireShare();
   initFirebase();
