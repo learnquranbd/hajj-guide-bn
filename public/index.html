@@ -7,10 +7,15 @@
 <meta name="description" content="হজ্জে তামাত্তুর ধাপে ধাপে বাংলা গাইড — ফরজ, ওয়াজিব ও সুন্নত, শব্দে শব্দে দোয়া ও নামাজের অর্থ, মিনা-আরাফাত-মুজদালিফার মানচিত্র এবং ব্যবহারিক টিপস।">
 <meta name="theme-color" content="#08090a">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=13">
+<link rel="stylesheet" href="/css/style.css?v=15">
 <!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
 <link rel="canonical" href="https://hajj-guide-bn.web.app/">
 <meta property="og:type" content="website">
@@ -290,9 +295,9 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=13';
-  import { DUAS } from '/js/data-dua.js?v=13';
-  import { track } from '/js/analytics.js?v=13';
+  import { mount } from '/js/shell.js?v=15';
+  import { DUAS } from '/js/data-dua.js?v=15';
+  import { track } from '/js/analytics.js?v=15';
   mount();
 
   const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

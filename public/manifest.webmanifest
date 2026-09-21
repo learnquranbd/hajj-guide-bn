@@ -1,0 +1,25 @@
+{
+  "name": "হজ গাইড — হজ্জে তামাত্তুর বাংলা নির্দেশিকা",
+  "short_name": "হজ গাইড",
+  "description": "ধাপে ধাপে হজ ও উমরাহ, শব্দে শব্দে দোয়া ও নামাজ, মানচিত্র ও চেকলিস্ট — ইন্টারনেট ছাড়াও পড়া যায়।",
+  "lang": "bn",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#08090a",
+  "theme_color": "#08090a",
+  "categories": ["education", "books", "travel"],
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "ধাপে ধাপে হজ", "url": "/steps" },
+    { "name": "দোয়া", "url": "/dua" },
+    { "name": "চেকলিস্ট", "url": "/checklist" },
+    { "name": "সময়সূচি", "url": "/timeline" }
+  ]
+}

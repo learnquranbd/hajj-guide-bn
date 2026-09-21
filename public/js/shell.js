@@ -1,6 +1,7 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=13';
-import { initAnalytics, track } from './analytics.js?v=13';
+import { initFirebase } from './store.js?v=15';
+import { OFFLINE_MODE } from './firebase-config.js?v=15';
+import { initAnalytics, track } from './analytics.js?v=15';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
@@ -17,6 +18,7 @@ const MORE = [
   ['/timeline',  'সময়সূচি',     '🕐'],
   ['/qiran',     'কিরান হজ',    '🔗'],
   ['/ifrad',     'ইফরাদ হজ',    '1️⃣'],
+  ['/sources',   'কুরআন-হাদীস', '📜'],
   ['/madinah',   'মদিনা',       '🕌'],
   ['/faq',       'প্রশ্নোত্তর', '❓'],
   ['/terms',     'পরিভাষা',     '📖'],
@@ -299,6 +301,19 @@ export function mount() {
 
   wireShare();
   initFirebase();
+  registerSW();
+}
+
+/* ---------- অফলাইনে পড়ার ব্যবস্থা ----------
+   মিনা-আরাফাতে নেটওয়ার্ক থাকে না; একবার খোলা পৃষ্ঠা ফোনেই থেকে যায়। */
+function registerSW() {
+  if (!OFFLINE_MODE) return;                       /* firebase-config.js দেখুন */
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+  addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .catch(e => console.warn('[hajj] অফলাইন ব্যবস্থা চালু হয়নি:', e.message));
+  });
 }
 
 /* ট্যাব হেল্পার — .tabs > .tab[data-panel] এবং .panel[id] */

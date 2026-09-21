@@ -9,5 +9,8 @@ cd "$(dirname "$0")/public"
 find . -name '*.html' -o -name '*.js' | while read -r f; do
   perl -0pi -e "s{(/js/[A-Za-z0-9._-]+\.js|\./[A-Za-z0-9._-]+\.js|/css/[A-Za-z0-9._-]+\.css)(\?v=\d+)?}{\$1?v=$V}g" "$f"
 done
+# সার্ভিস ওয়ার্কারের ক্যাশ-নামও একই সংস্করণে রাখা হয়, নইলে পুরোনো ফাইল রয়ে যাবে
+perl -pi -e "s{hajj-guide-v\\d+}{hajj-guide-v$V}g" sw.js
+
 echo "সব অ্যাসেট রেফারেন্স ?v=$V-এ আপডেট হয়েছে"
 grep -ho '\(css\|js\)/[A-Za-z0-9._-]*\.\(css\|js\)?v=[0-9]*' *.html | sort -u | head

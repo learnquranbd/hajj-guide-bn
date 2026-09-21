@@ -7,9 +7,14 @@
 <meta name="description" content="বছরের যেকোনো সময়ের উমরাহ — মীকাতে ইহরাম থেকে হলক পর্যন্ত ধাপে ধাপে করণীয়, ফরজ-ওয়াজিব-সুন্নত, মাসনূন দোয়া, নারীদের মাসআলা ও তানঈম থেকে বারবার উমরাহর নিয়ম।">
 <meta name="theme-color" content="#08090a">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=13">
+<link rel="stylesheet" href="/css/style.css?v=15">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -97,10 +102,10 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=13';
-import { UMRAH_INTRO, UMRAH_STEPS, UMRAH_NOTES } from '/js/data-umrah.js?v=13';
-import { DUAS } from '/js/data-dua.js?v=13';
-import { track } from '/js/analytics.js?v=13';
+import { mount } from '/js/shell.js?v=15';
+import { UMRAH_INTRO, UMRAH_STEPS, UMRAH_NOTES } from '/js/data-umrah.js?v=15';
+import { DUAS } from '/js/data-dua.js?v=15';
+import { track } from '/js/analytics.js?v=15';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

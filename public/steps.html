@@ -7,9 +7,14 @@
 <meta name="description" content="হজ্জে তামাত্তুর ১৭টি ধাপ ক্রমানুসারে — ইহরাম, তাওয়াফ, সাঈ, আরাফাত, মুজদালিফা, রমি, কুরবানি ও বিদায়ী তাওয়াফ। প্রতিটির করণীয় ও দোয়া।">
 <meta name="theme-color" content="#08090a">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=13">
+<link rel="stylesheet" href="/css/style.css?v=15">
 <style>
   .step-card{margin-bottom:0}
   .step-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
@@ -79,11 +84,11 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=13';
-import { PHASES, KIND_CLASS } from '/js/data-steps.js?v=13';
-import { DUAS } from '/js/data-dua.js?v=13';
-import { get, set, onChange } from '/js/store.js?v=13';
-import { track } from '/js/analytics.js?v=13';
+import { mount } from '/js/shell.js?v=15';
+import { PHASES, KIND_CLASS } from '/js/data-steps.js?v=15';
+import { DUAS } from '/js/data-dua.js?v=15';
+import { get, set, onChange } from '/js/store.js?v=15';
+import { track } from '/js/analytics.js?v=15';
 mount();
 
 const duaTitle = id => (DUAS.find(d => d.id === id) || {}).title || id;
