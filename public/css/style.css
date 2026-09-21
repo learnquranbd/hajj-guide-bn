@@ -998,3 +998,49 @@ figure.photo figcaption b{color:var(--ink)}
 }
 :root[data-theme="light"] .term-see a{color:var(--gold)}
 .term-see a:hover{background:var(--gold); color:var(--on-brand); text-decoration:none}
+
+/* =====================================================================
+   দিনভিত্তিক টাইমলাইন — /timeline
+   ===================================================================== */
+.day-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.day-head h2{margin:0}
+.day-where{font-size:.88rem;color:var(--ink-mute)}
+.slot{
+  display:flex; gap:16px; align-items:flex-start;
+  padding:13px 0; border-bottom:1px dashed var(--line);
+}
+.slot:last-child{border-bottom:0}
+.slot-time{
+  flex:0 0 152px; font-weight:700; font-size:.9rem; color:var(--gold-2);
+  padding-top:2px;
+}
+:root[data-theme="light"] .slot-time{color:var(--gold)}
+.slot-body{flex:1 1 auto; min-width:0}
+.slot-what{margin:0; color:var(--ink-soft)}
+.slot-what strong{color:var(--ink)}
+.slot-tip{margin:6px 0 0; font-size:.87rem; color:var(--ink-mute)}
+.slot-kind{
+  flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+  display:grid; place-items:center; font-size:.9rem; margin-top:1px;
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.k-amal{background:var(--gold-soft)}
+.k-move{background:var(--green-soft)}
+.k-rest{background:var(--ok-soft)}
+.k-care{background:var(--danger-soft)}
+.kind-key{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 22px;font-size:.87rem;color:var(--ink-soft)}
+.kind-key span{display:inline-flex;align-items:center;gap:8px}
+.pack-row{
+  display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;
+  padding-top:13px; border-top:1px dashed var(--line);
+}
+.pack-row b{font-size:.83rem;color:var(--ink-mute);font-weight:700;letter-spacing:.04em;align-self:center}
+.pack-row span{
+  font-size:.84rem; padding:4px 12px; border-radius:99px;
+  background:var(--card-2); color:var(--ink-soft); box-shadow:inset 0 0 0 1px var(--line);
+}
+@media (max-width:620px){
+  .slot{flex-wrap:wrap; gap:10px}
+  .slot-time{flex:1 1 100%; padding-top:0}
+  .slot-kind{order:-1}
+}

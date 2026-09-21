@@ -1,6 +1,6 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=11';
-import { initAnalytics, track } from './analytics.js?v=11';
+import { initFirebase } from './store.js?v=13';
+import { initAnalytics, track } from './analytics.js?v=13';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
@@ -14,6 +14,9 @@ const PAGES = [
 ];
 /* "আরও" ড্রপডাউনে — নইলে ১২টি আইটেম নেভবারে আঁটে না */
 const MORE = [
+  ['/timeline',  'সময়সূচি',     '🕐'],
+  ['/qiran',     'কিরান হজ',    '🔗'],
+  ['/ifrad',     'ইফরাদ হজ',    '1️⃣'],
   ['/madinah',   'মদিনা',       '🕌'],
   ['/faq',       'প্রশ্নোত্তর', '❓'],
   ['/terms',     'পরিভাষা',     '📖'],

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=11">
+<link rel="stylesheet" href="/css/style.css?v=13">
 <!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
 <link rel="canonical" href="https://hajj-guide-bn.web.app/">
 <meta property="og:type" content="website">
@@ -192,9 +192,12 @@
       <div>
         <h3>হজের তিন প্রকার</h3>
         <ul class="ul-check">
-          <li><strong>তামাত্তু</strong> — আগে উমরাহ, হালাল হয়ে পরে হজ। কুরবানি ওয়াজিব। <em>বাংলাদেশিদের প্রায় সবাই এটিই করেন।</em></li>
-          <li><strong>কিরান</strong> — এক ইহরামে উমরাহ ও হজ একসাথে। কুরবানি ওয়াজিব।</li>
-          <li><strong>ইফরাদ</strong> — শুধু হজ, উমরাহ ছাড়া। কুরবানি ওয়াজিব নয়।</li>
+          <li><strong>তামাত্তু</strong> — আগে উমরাহ, হালাল হয়ে পরে হজ। কুরবানি ওয়াজিব।
+            <em>বাংলাদেশিদের প্রায় সবাই এটিই করেন।</em> <a href="/steps">ধাপে ধাপে দেখুন →</a></li>
+          <li><strong>কিরান</strong> — এক ইহরামে উমরাহ ও হজ একসাথে, মাঝে হালাল হওয়া নেই।
+            কুরবানি ওয়াজিব। <a href="/qiran">কিরানের ক্রম →</a></li>
+          <li><strong>ইফরাদ</strong> — শুধু হজ, উমরাহ ছাড়া। কুরবানি ওয়াজিব নয়।
+            <a href="/ifrad">ইফরাদের ক্রম →</a></li>
         </ul>
       </div>
     </div>
@@ -217,6 +220,7 @@
   </div>
   <div class="btn-row" style="justify-content:center">
     <a class="btn btn-primary" href="/steps">বিস্তারিত ধাপগুলো দেখুন →</a>
+    <a class="btn btn-ghost" href="/timeline">🕐 ঘণ্টা ধরে সময়সূচি</a>
   </div>
 </section>
 
@@ -286,9 +290,9 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=11';
-  import { DUAS } from '/js/data-dua.js?v=11';
-  import { track } from '/js/analytics.js?v=11';
+  import { mount } from '/js/shell.js?v=13';
+  import { DUAS } from '/js/data-dua.js?v=13';
+  import { track } from '/js/analytics.js?v=13';
   mount();
 
   const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
