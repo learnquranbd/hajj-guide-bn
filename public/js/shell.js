@@ -1,7 +1,7 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=15';
-import { OFFLINE_MODE } from './firebase-config.js?v=15';
-import { initAnalytics, track } from './analytics.js?v=15';
+import { initFirebase } from './store.js?v=16';
+import { OFFLINE_MODE } from './firebase-config.js?v=16';
+import { initAnalytics, track } from './analytics.js?v=16';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
@@ -307,9 +307,22 @@ export function mount() {
 /* ---------- অফলাইনে পড়ার ব্যবস্থা ----------
    মিনা-আরাফাতে নেটওয়ার্ক থাকে না; একবার খোলা পৃষ্ঠা ফোনেই থেকে যায়। */
 function registerSW() {
-  if (!OFFLINE_MODE) return;                       /* firebase-config.js দেখুন */
   if (!('serviceWorker' in navigator)) return;
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+
+  /* কিল সুইচ — OFFLINE_MODE বন্ধ করে ডিপ্লয় করলেই ব্যবহারকারীর ব্রাউজার নিজে
+     পরিষ্কার হয়ে যায়। এটি না থাকলে একবার বসে যাওয়া সার্ভিস ওয়ার্কার আর
+     সরানো যেত না — ফ্ল্যাগটি তখন কেবল নতুন ব্যবহারকারীর জন্য কাজ করত। */
+  if (!OFFLINE_MODE) {
+    navigator.serviceWorker.getRegistrations?.()
+      .then(rs => rs.forEach(r => r.unregister()))
+      .catch(() => {});
+    globalThis.caches?.keys?.()
+      .then(ks => ks.filter(k => k.startsWith('hajj-guide-')).forEach(k => caches.delete(k)))
+      .catch(() => {});
+    return;
+  }
+
   addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .catch(e => console.warn('[hajj] অফলাইন ব্যবস্থা চালু হয়নি:', e.message));

@@ -33,4 +33,4 @@ export const CLOUD_SYNC = false;
    চালু করতে: নিচের মানটি true করুন, তারপর একটি ফোনে খুলে
    (১) পেজ কয়েকটি ঘুরে দেখুন, (২) ফ্লাইট মোড চালু করুন,
    (৩) পেজগুলো এখনো খোলে কিনা দেখুন। ঠিক থাকলেই deploy করুন। */
-export const OFFLINE_MODE = false;
+export const OFFLINE_MODE = true;
