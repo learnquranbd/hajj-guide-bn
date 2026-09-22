@@ -9,11 +9,27 @@
    ctrl/cmd-ক্লিক করলে, বা দোয়াটি খুঁজে না পেলে — ব্রাউজার আগের মতোই
    /dua পৃষ্ঠায় নিয়ে যাবে। কিছুই ভাঙে না।
    ------------------------------------------------------------------ */
-import { DUAS } from './data-dua.js?v=18';
+import { DUAS } from './data-dua.js?v=19';
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
 
 let box = null, panel = null, lastFocus = null;
+
+/* /dua-এর বাইরের দোয়া (নামাজ, জানাজা) — পেজ নিজে রেজিস্টার করে নেয়।
+   base হলো "সব দোয়া দেখুন" লিংকের ভিত্তি, যেমন '/salat#'। */
+const EXTRA = [];
+export function registerDuas(list, base = '#') {
+  EXTRA.push({ list, base });
+}
+function findDua(id) {
+  const core = DUAS.find(x => x.id === id);
+  if (core) return { d: core, base: '/dua#' };
+  for (const g of EXTRA) {
+    const hit = g.list.find(x => x.id === id);
+    if (hit) return { d: hit, base: g.base };
+  }
+  return null;
+}
 
 function build() {
   if (box) return;
@@ -70,13 +86,14 @@ function render(d) {
 }
 
 export function openDua(id) {
-  const d = DUAS.find(x => x.id === id);
-  if (!d) return false;
+  const found = findDua(id);
+  if (!found) return false;
+  const { d, base } = found;
   build();
   lastFocus = document.activeElement;
   box.querySelector('#dmTitle').textContent = (d.star ? '★ ' : '') + d.title;
   box.querySelector('#dmBody').innerHTML = render(d);
-  box.querySelector('.dm-full').href = '/dua#' + d.id;
+  box.querySelector('.dm-full').href = base + d.id;
   box.hidden = false;
   document.body.style.overflow = 'hidden';
   requestAnimationFrame(() => { box.classList.add('open'); panel.focus(); });

@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=18">
+<link rel="stylesheet" href="/css/style.css?v=19">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
   integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
   crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -90,9 +90,38 @@
   Google Maps এবং আপনার মুয়াল্লিমের দেওয়া তাঁবু নম্বরই অনুসরণ করুন।</p></div>
 </section>
 
-<!-- ========== ১. সামগ্রিক অবস্থান ========== -->
+<!-- ========== ১. স্যাটেলাইট ম্যাপ ========== -->
+<section class="wrap section-sm" id="map4">
+  <h2 class="map-title"><span class="secnum">১</span> ম্যাপে পবিত্র স্থানসমূহ</h2>
+  <p class="hintbar">নিচের নামগুলোতে ক্লিক করে প্রতিটি স্থান ম্যাপে দেখুন — সাথের বোতাম দিয়ে গুগল ম্যাপে স্যাটেলাইট ভিউ ও দিকনির্দেশনা খুলুন</p>
+
+  <div class="tabs" id="gmapTabs"></div>
+
+  <div class="map-shell">
+    <div class="gmap-frame"><div id="gmapCanvas" role="application" aria-label="পবিত্র স্থানসমূহের মানচিত্র"></div></div>
+    <div class="map-info"><div class="info" id="gmapInfo"></div></div>
+    <div class="gmap-meta">
+      <span class="coord" id="gmapCoord"></span>
+      <a class="btn btn-ghost" id="gmapOpen" target="_blank" rel="noopener noreferrer"
+         style="padding:7px 16px;font-size:.88rem">↗ গুগল ম্যাপে খুলুন</a>
+      <a class="btn btn-ghost" id="gmapSat" target="_blank" rel="noopener noreferrer"
+         style="padding:7px 16px;font-size:.88rem">🛰️ স্যাটেলাইট ভিউ</a>
+      <a class="btn btn-ghost" id="gmapDir" target="_blank" rel="noopener noreferrer"
+         style="padding:7px 16px;font-size:.88rem">🧭 দিকনির্দেশনা</a>
+    </div>
+    <p class="muted" id="gmapSrc" style="margin:10px 0 0"></p>
+  </div>
+
+  <div class="note warn" style="margin-top:18px"><p><strong>মাঠে চলার জন্য নয়:</strong>
+  স্থানাঙ্কগুলো প্রতিটি এলাকার কেন্দ্রের আনুমানিক অবস্থান — বোঝার সুবিধার্থে দেওয়া।
+  হজের দিনগুলোতে রাস্তা, গেট ও হাঁটার পথ কর্তৃপক্ষ বদলে দেয় এবং অনেক রাস্তা একমুখী করা হয়।
+  মাঠে অবশ্যই <strong>Nusuk</strong> ও <strong>Labbaik</strong> অ্যাপ, দিকনির্দেশক সাইনবোর্ড
+  এবং আপনার মুয়াল্লিমের নির্দেশনা অনুসরণ করুন।</p></div>
+</section>
+
+<!-- ========== ২. সামগ্রিক অবস্থান ========== -->
 <section class="wrap section-sm" id="map1">
-  <h2 class="map-title"><span class="secnum">১</span> চার পবিত্র স্থান — কোনটি কোথায়</h2>
+  <h2 class="map-title"><span class="secnum">২</span> চার পবিত্র স্থান — কোনটি কোথায়</h2>
   <p class="hintbar">মক্কা থেকে পূর্ব দিকে সরলরেখায়: মিনা → মুজদালিফা → আরাফাত</p>
   <div class="map-shell">
     <svg viewBox="0 0 900 340" role="img" aria-label="মক্কা, মিনা, মুজদালিফা ও আরাফাতের অবস্থান">
@@ -155,9 +184,9 @@
   </div>
 </section>
 
-<!-- ========== ২. মিনা জোন ========== -->
+<!-- ========== ৩. মিনা জোন ========== -->
 <section class="wrap section-sm" id="map2">
-  <h2 class="map-title"><span class="secnum">২</span> মিনা জোন — ভেতরে কী কোথায়</h2>
+  <h2 class="map-title"><span class="secnum">৩</span> মিনা জোন — ভেতরে কী কোথায়</h2>
   <p class="hintbar">মিনা প্রায় ৭.৮ বর্গকিমি এলাকা — পশ্চিম প্রান্তে (মক্কার দিকে) জামরাত, পূর্ব দিকে সারি সারি তাঁবু</p>
   <div class="map-shell">
     <svg viewBox="0 0 900 540" role="img" aria-label="মিনা এলাকার পরিকল্পনামূলক মানচিত্র">
@@ -276,9 +305,9 @@
   </div>
 </section>
 
-<!-- ========== ৩. জামরাত ব্রিজ ========== -->
+<!-- ========== ৪. জামরাত ব্রিজ ========== -->
 <section class="wrap section-sm">
-  <h2 class="map-title"><span class="secnum">৩</span> জামরাত ব্রিজ — ৫ তলার গঠন</h2>
+  <h2 class="map-title"><span class="secnum">৪</span> জামরাত ব্রিজ — ৫ তলার গঠন</h2>
   <p class="hintbar">প্রতিটি তলা থেকেই কঙ্কর নিক্ষেপ করা যায়, প্রতি তলায় আলাদা প্রবেশ ও বহির্গমন পথ</p>
   <div class="map-shell">
     <svg viewBox="0 0 900 380" role="img" aria-label="জামরাত ব্রিজের পাঁচ তলার প্রস্থচ্ছেদ">
@@ -327,35 +356,6 @@
   </div>
 </section>
 
-<!-- ========== ৪. গুগল ম্যাপ ========== -->
-<section class="wrap section-sm" id="map4">
-  <h2 class="map-title"><span class="secnum">৪</span> ম্যাপে পবিত্র স্থানসমূহ</h2>
-  <p class="hintbar">নিচের নামগুলোতে ক্লিক করে প্রতিটি স্থান ম্যাপে দেখুন — সাথের বোতাম দিয়ে গুগল ম্যাপে স্যাটেলাইট ভিউ ও দিকনির্দেশনা খুলুন</p>
-
-  <div class="tabs" id="gmapTabs"></div>
-
-  <div class="map-shell">
-    <div class="gmap-frame"><div id="gmapCanvas" role="application" aria-label="পবিত্র স্থানসমূহের মানচিত্র"></div></div>
-    <div class="map-info"><div class="info" id="gmapInfo"></div></div>
-    <div class="gmap-meta">
-      <span class="coord" id="gmapCoord"></span>
-      <a class="btn btn-ghost" id="gmapOpen" target="_blank" rel="noopener noreferrer"
-         style="padding:7px 16px;font-size:.88rem">↗ গুগল ম্যাপে খুলুন</a>
-      <a class="btn btn-ghost" id="gmapSat" target="_blank" rel="noopener noreferrer"
-         style="padding:7px 16px;font-size:.88rem">🛰️ স্যাটেলাইট ভিউ</a>
-      <a class="btn btn-ghost" id="gmapDir" target="_blank" rel="noopener noreferrer"
-         style="padding:7px 16px;font-size:.88rem">🧭 দিকনির্দেশনা</a>
-    </div>
-    <p class="muted" id="gmapSrc" style="margin:10px 0 0"></p>
-  </div>
-
-  <div class="note warn" style="margin-top:18px"><p><strong>মাঠে চলার জন্য নয়:</strong>
-  স্থানাঙ্কগুলো প্রতিটি এলাকার কেন্দ্রের আনুমানিক অবস্থান — বোঝার সুবিধার্থে দেওয়া।
-  হজের দিনগুলোতে রাস্তা, গেট ও হাঁটার পথ কর্তৃপক্ষ বদলে দেয় এবং অনেক রাস্তা একমুখী করা হয়।
-  মাঠে অবশ্যই <strong>Nusuk</strong> ও <strong>Labbaik</strong> অ্যাপ, দিকনির্দেশক সাইনবোর্ড
-  এবং আপনার মুয়াল্লিমের নির্দেশনা অনুসরণ করুন।</p></div>
-</section>
-
 <!-- ========== ৫. মক্কার যিয়ারতের স্থান ========== -->
 <section class="wrap section-sm" id="map5">
   <h2 class="map-title"><span class="secnum">৫</span> মক্কার যিয়ারতের স্থান</h2>
@@ -388,9 +388,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=18';
-import { track } from '/js/analytics.js?v=18';
-import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=18';
+import { mount } from '/js/shell.js?v=19';
+import { track } from '/js/analytics.js?v=19';
+import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=19';
 mount();
 
 const ZONES = {

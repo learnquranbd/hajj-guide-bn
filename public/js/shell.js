@@ -1,7 +1,7 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=18';
-import { OFFLINE_MODE } from './firebase-config.js?v=18';
-import { initAnalytics, track } from './analytics.js?v=18';
+import { initFirebase } from './store.js?v=19';
+import { OFFLINE_MODE } from './firebase-config.js?v=19';
+import { initAnalytics, track } from './analytics.js?v=19';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
