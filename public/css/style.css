@@ -1044,3 +1044,45 @@ figure.photo figcaption b{color:var(--ink)}
   .slot-time{flex:1 1 100%; padding-top:0}
   .slot-kind{order:-1}
 }
+
+/* =====================================================================
+   দোয়া মডাল — ধাপ ছেড়ে না গিয়েই দোয়া দেখা
+   ===================================================================== */
+.dm-scrim{
+  position:fixed; inset:0; z-index:95; display:grid; place-items:center;
+  padding:clamp(12px,3vw,32px);
+  background:rgba(4,6,6,.72); backdrop-filter:blur(4px);
+  opacity:0; transition:opacity .18s ease;
+}
+.dm-scrim.open{opacity:1}
+.dm-scrim[hidden]{display:none}
+.dm{
+  width:min(100%,760px); max-height:min(88vh,900px); display:flex; flex-direction:column;
+  background:var(--bg-soft); border:1px solid var(--gold-line);
+  border-radius:var(--radius-lg); box-shadow:var(--shadow-lg);
+  transform:translateY(10px) scale(.99); transition:transform .2s cubic-bezier(.32,.72,0,1);
+  outline:none;
+}
+.dm-scrim.open .dm{transform:none}
+.dm-head{
+  display:flex; align-items:center; gap:12px; flex:0 0 auto;
+  padding:16px 18px; border-bottom:1px solid var(--line);
+}
+.dm-head h3{margin:0; flex:1 1 auto; font-size:1.12rem; color:var(--gold-2)}
+:root[data-theme="light"] .dm-head h3{color:var(--gold)}
+.dm-body{flex:1 1 auto; overflow-y:auto; overscroll-behavior:contain; padding:18px}
+.dm-body .when{margin-bottom:14px}
+.dm-body .wbw{margin-bottom:0}
+.dm-foot{
+  display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; flex:0 0 auto;
+  padding:14px 18px; border-top:1px solid var(--line);
+}
+.dm-foot .btn{padding:9px 18px; font-size:.92rem}
+@media (max-width:620px){
+  .dm-scrim{padding:0; place-items:end stretch}
+  .dm{max-height:92vh; border-radius:var(--radius-lg) var(--radius-lg) 0 0; border-bottom:0}
+  .dm-foot{justify-content:stretch}
+  .dm-foot .btn{flex:1 1 auto; justify-content:center}
+}
+/* চিপে ইঙ্গিত যে এটি মডালে খুলবে */
+.dua-chip::after{content:"⤢"; font-size:.78em; opacity:.6; margin-inline-start:2px}

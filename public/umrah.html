@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=16">
+<link rel="stylesheet" href="/css/style.css?v=17">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -65,6 +65,8 @@
       <p class="ar" id="uAr"></p>
       <p class="translit" id="uTr"></p>
       <p class="meaning"><span id="uBn"></span> — <span class="muted" id="uSrc"></span></p>
+      <div class="wbw-head">শব্দে শব্দে অর্থ</div>
+      <div class="wbw" id="uW"></div>
     </div>
   </div>
 
@@ -102,11 +104,15 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=16';
-import { UMRAH_INTRO, UMRAH_STEPS, UMRAH_NOTES } from '/js/data-umrah.js?v=16';
-import { DUAS } from '/js/data-dua.js?v=16';
-import { track } from '/js/analytics.js?v=16';
+import { mount } from '/js/shell.js?v=17';
+import { UMRAH_INTRO, UMRAH_STEPS, UMRAH_NOTES } from '/js/data-umrah.js?v=17';
+import { DUAS } from '/js/data-dua.js?v=17';
+import { track } from '/js/analytics.js?v=17';
+import { initDuaModal } from '/js/dua-modal.js?v=17';
 mount();
+/* দোয়ার চিপ এখন মডালে খোলে — ব্যবহারকারী ধাপের পাতাতেই থাকেন */
+initDuaModal(id => track('umrah_dua', { dua: id }));
+
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
 const bn  = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
@@ -119,6 +125,8 @@ document.getElementById('uAr').innerHTML     = UMRAH_INTRO.ar;
 document.getElementById('uTr').textContent   = UMRAH_INTRO.tr;
 document.getElementById('uBn').textContent   = UMRAH_INTRO.bn;
 document.getElementById('uSrc').textContent  = UMRAH_INTRO.src;
+document.getElementById('uW').innerHTML = (UMRAH_INTRO.w || []).map(([a, m]) =>
+  `<span class="w"><span class="wa">${a}</span><span class="wb">${esc(m)}</span></span>`).join('');
 document.getElementById('uFacts').innerHTML  = UMRAH_INTRO.facts
   .map(f => `<div><b>${esc(f.value)}</b><span>${esc(f.label)}</span></div>`).join('');
 
@@ -151,12 +159,6 @@ document.getElementById('uNotes').innerHTML = UMRAH_NOTES.map(n =>
     <ul class="do-list" style="list-style-type:disc">${n.body.map(b => `<li>${b}</li>`).join('')}</ul>
     ${n.note ? `<div class="note tip"><p>${n.note}</p></div>` : ''}
   </article>`).join('');
-
-/* ---------- দোয়ার চিপে ক্লিক ---------- */
-document.addEventListener('click', e => {
-  const a = e.target.closest('.dua-chip');
-  if (a) track('umrah_dua', { dua: a.getAttribute('href').split('#')[1] || '' });
-});
 
 if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
 </script>

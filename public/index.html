@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=16">
+<link rel="stylesheet" href="/css/style.css?v=17">
 <!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
 <link rel="canonical" href="https://hajj-guide-bn.web.app/">
 <meta property="og:type" content="website">
@@ -163,7 +163,15 @@
     </a>
     <a class="card" href="/faq" style="color:inherit">
       <div class="tile-ico">❓</div><h3>প্রশ্নোত্তর</h3>
-      <p>৫৫টি বাস্তব প্রশ্নের সরাসরি উত্তর — মীকাত, হায়েজ, কঙ্কর, দম, খরচ। খুঁজে দেখার সুবিধাসহ।</p>
+      <p>৯০টি বাস্তব প্রশ্নের সরাসরি উত্তর — মীকাত, হায়েজ, কঙ্কর, দম, সহযাত্রীর সাথে মন কষাকষি। খুঁজে দেখার সুবিধাসহ।</p>
+    </a>
+    <a class="card" href="/inspire" style="color:inherit">
+      <div class="tile-ico">🌱</div><h3>হজের প্রেরণা</h3>
+      <p>অন্তরের প্রস্তুতি — স্থানে স্থানে কী অনুভব করবেন, ক্লান্তি ও ভিড়ে কী ধরে রাখবেন।</p>
+    </a>
+    <a class="card" href="/sources" style="color:inherit">
+      <div class="tile-ico">📜</div><h3>কুরআন ও হাদীস</h3>
+      <p>১৬টি আয়াত ও ১৮টি হাদীস — শব্দে শব্দে অর্থ ও মাঠে প্রয়োগের ব্যাখ্যাসহ।</p>
     </a>
     <a class="card" href="/terms" style="color:inherit">
       <div class="tile-ico">📖</div><h3>পরিভাষা</h3>
@@ -182,6 +190,8 @@
       <p class="translit">ওয়া লিল্লাহি ‘আলান্‌না-সি হিজ্জুল বাইতি মানিস্‌তাত্বা-‘আ ইলাইহি সাবীলা।</p>
       <p class="meaning">“মানুষের মধ্যে যার সেখানে যাওয়ার সামর্থ্য আছে, আল্লাহর উদ্দেশে ঐ ঘরের হজ করা তার কর্তব্য।”
         — সূরা আলে ইমরান ৩:৯৭</p>
+      <div class="wbw-head">শব্দে শব্দে অর্থ</div>
+      <div class="wbw"><span class="w"><span class="wa">وَلِلَّهِ</span><span class="wb">আল্লাহরই জন্য</span></span><span class="w"><span class="wa">عَلَى النَّاسِ</span><span class="wb">মানুষের উপর</span></span><span class="w"><span class="wa">حِجُّ الْبَيْتِ</span><span class="wb">ঐ ঘরের হজ</span></span><span class="w"><span class="wa">مَنِ</span><span class="wb">যে</span></span><span class="w"><span class="wa">اسْتَطَاعَ</span><span class="wb">সামর্থ্য রাখে</span></span><span class="w"><span class="wa">إِلَيْهِ</span><span class="wb">সেখানে পৌঁছানোর</span></span><span class="w"><span class="wa">سَبِيلًا</span><span class="wb">পথ</span></span></div>
     </div>
     <div class="grid g2" style="margin-top:20px">
       <div>
@@ -295,9 +305,9 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=16';
-  import { DUAS } from '/js/data-dua.js?v=16';
-  import { track } from '/js/analytics.js?v=16';
+  import { mount } from '/js/shell.js?v=17';
+  import { DUAS } from '/js/data-dua.js?v=17';
+  import { track } from '/js/analytics.js?v=17';
   mount();
 
   const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

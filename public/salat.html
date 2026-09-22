@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=16">
+<link rel="stylesheet" href="/css/style.css?v=17">
 <style>
   .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
   .subtabs .tab{padding:7px 15px;font-size:.88rem}
@@ -71,6 +71,7 @@
     <button class="tab" data-p="p-dua" aria-selected="false">🤲 নামাজের দোয়া</button>
     <button class="tab" data-p="p-surah" aria-selected="false">📖 সূরা শব্দে শব্দে</button>
     <button class="tab" data-p="p-rakat" aria-selected="false">🔢 রাকাত সারণি</button>
+    <button class="tab" data-p="p-janazah" aria-selected="false">⚰️ জানাজার নামাজ</button>
     <button class="tab" data-p="p-hajj" aria-selected="false">🕋 হজে ও সফরে নামাজ</button>
   </div>
 
@@ -113,6 +114,27 @@
     ফজর ও মাগরিব কখনো কমে না।</p></div>
   </div>
 
+  <!-- জানাজার নামাজ -->
+  <div class="panel" id="p-janazah" hidden>
+    <h2>জানাজার নামাজ — ধাপে ধাপে</h2>
+    <p class="lead" id="jLead"></p>
+    <div class="stats" style="margin:20px 0 22px" id="jFacts"></div>
+
+    <div class="note tip"><p><strong>হাজীর জন্য বিশেষ সুযোগ:</strong>
+    মসজিদুল হারাম ও মসজিদে নববীতে প্রায় প্রতিটি ফরজ নামাজের পরেই জানাজা হয়।
+    মৃত ব্যক্তিকে চেনার দরকার নেই — নিয়ত করে কাতারে দাঁড়িয়ে গেলেই আপনি শরিক।
+    দেশে যে সুযোগ বছরে কয়েকবার আসে, এখানে তা দিনে পাঁচবার।</p></div>
+
+    <h3 style="margin-top:26px">ক্রম</h3>
+    <div id="jFlow"></div>
+
+    <h3 style="margin-top:30px">দোয়াগুলো — শব্দে শব্দে</h3>
+    <div id="jDuas"></div>
+
+    <h3 style="margin-top:30px">মাসআলা ও আদব</h3>
+    <div id="jNotes"></div>
+  </div>
+
   <!-- ৫. হজে নামাজ -->
   <div class="panel" id="p-hajj" hidden>
     <h2>হারাম, মিনা-আরাফাত ও সফরে নামাজ</h2>
@@ -137,10 +159,11 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=16';
+import { mount } from '/js/shell.js?v=17';
 import { SALAT_DUAS, SALAT_CATS, SALAT_FLOW, SURAHS, RAKAT_TABLE, HAJJ_SALAT, POSE, POSE_NAME }
-  from '/js/data-salat.js?v=16';
-import { track } from '/js/analytics.js?v=16';
+  from '/js/data-salat.js?v=17';
+import { track } from '/js/analytics.js?v=17';
+import { JANAZAH_INTRO, JANAZAH_FLOW, JANAZAH_DUAS, JANAZAH_NOTES } from '/js/data-janazah.js?v=17';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
@@ -274,6 +297,66 @@ document.getElementById('hajjOut').innerHTML = HAJJ_SALAT.map(s =>
     <ul class="do-list">${s.body.map(t => `<li>${t}</li>`).join('')}</ul>
     ${s.note ? `<div class="note tip"><p>${s.note}</p></div>` : ''}
   </article>`).join('');
+
+/* ---------- জানাজার নামাজ ---------- */
+const jDua = id => JANAZAH_DUAS.find(d => d.id === id);
+
+document.getElementById('jLead').textContent = JANAZAH_INTRO.lead;
+document.getElementById('jFacts').innerHTML = JANAZAH_INTRO.facts
+  .map(f => `<div><b>${esc(f.value)}</b><span>${esc(f.label)}</span></div>`).join('');
+
+document.getElementById('jFlow').innerHTML = JANAZAH_FLOW.map(f => {
+  const chips = (f.recite || []).map(id => {
+    const d = jDua(id);
+    return d ? `<a class="chip" href="#${id}" data-jgoto="${id}">🤲 ${esc(d.title)}</a>` : '';
+  }).join('');
+  return `<div class="card dua-card">
+    <div class="tl-head">
+      <span class="flow-no">${bn(f.no)}</span>
+      <h3>${esc(f.title)}</h3>
+      ${f.kind ? `<span class="badge ${f.kind === 'ফরজ' ? 'b-fard' : f.kind === 'ওয়াজিব' ? 'b-wajib' : 'b-sunnah'}">${esc(f.kind)}</span>` : ''}
+    </div>
+    <ul class="do-list">${f.what.map(t => `<li>${t}</li>`).join('')}</ul>
+    ${chips ? `<div class="recite">${chips}</div>` : ''}
+    ${f.note ? `<div class="note tip"><p>${f.note}</p></div>` : ''}
+  </div>`;
+}).join('');
+
+document.getElementById('jDuas').innerHTML = JANAZAH_DUAS.map(d =>
+  `<article class="card dua-card" id="${d.id}">
+    <div class="dua-top">
+      ${d.star ? '<span class="star">★</span>' : ''}
+      <h3>${esc(d.title)}</h3>
+    </div>
+    <p class="when">${esc(d.when)}</p>
+    ${d.ar ? `<div class="ar-box"><p class="ar">${d.ar}</p></div>` : ''}
+    <div class="row-tr"><b>বাংলা উচ্চারণ</b><p class="translit" style="margin:0">${esc(d.tr)}</p></div>
+    <div class="row-tr"><b>অর্থ</b><p class="meaning" style="margin:0">${esc(d.bn)}</p></div>
+    ${(d.w || []).length ? `<div class="wbw-head">শব্দে শব্দে অর্থ</div><div class="wbw">${words(d.w)}</div>` : ''}
+    ${d.note ? `<div class="note tip"><p>${d.note}</p></div>` : ''}
+    <p class="src">📖 সূত্র: ${esc(d.src)}</p>
+  </article>`).join('');
+
+document.getElementById('jNotes').innerHTML = JANAZAH_NOTES.map(n =>
+  `<article class="card hs-card" id="${n.id}">
+    <div class="hs-head"><span class="tile-ico" style="margin:0">${n.icon}</span><h3>${esc(n.title)}</h3></div>
+    <ul class="do-list">${n.body.map(b => `<li>${b}</li>`).join('')}</ul>
+    ${n.note ? `<div class="note tip"><p>${n.note}</p></div>` : ''}
+  </article>`).join('');
+
+/* ক্রম থেকে দোয়ায় লাফ */
+document.getElementById('jFlow').addEventListener('click', e => {
+  const a = e.target.closest('[data-jgoto]');
+  if (!a) return;
+  e.preventDefault();
+  const el = document.getElementById(a.dataset.jgoto);
+  if (el) {
+    el.scrollIntoView({ block: 'start' });
+    el.style.borderColor = 'var(--gold)';
+    setTimeout(() => el.style.borderColor = '', 2400);
+  }
+  track('janazah_dua', { dua: a.dataset.jgoto });
+});
 
 /* ---------- ট্যাব ---------- */
 const bar = document.getElementById('mainTabs');
