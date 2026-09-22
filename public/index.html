@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=21">
+<link rel="stylesheet" href="/css/style.css?v=22">
 <!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
 <link rel="canonical" href="https://hajj-guide-bn.web.app/">
 <meta property="og:type" content="website">
@@ -165,6 +165,10 @@
       <div class="tile-ico">❓</div><h3>প্রশ্নোত্তর</h3>
       <p>৯০টি বাস্তব প্রশ্নের সরাসরি উত্তর — মীকাত, হায়েজ, কঙ্কর, দম, সহযাত্রীর সাথে মন কষাকষি। খুঁজে দেখার সুবিধাসহ।</p>
     </a>
+    <a class="card" href="/arabic" style="color:inherit">
+      <div class="tile-ico">🗣️</div><h3>কাজ চালানোর আরবি</h3>
+      <p>ইমাম কী বলেন, আর ৬৮টি দরকারি বাক্য — টয়লেট কোথায়, সাহায্য দরকার, ভাইকে হারিয়েছি।</p>
+    </a>
     <a class="card" href="/inspire" style="color:inherit">
       <div class="tile-ico">🌱</div><h3>হজের প্রেরণা</h3>
       <p>অন্তরের প্রস্তুতি — স্থানে স্থানে কী অনুভব করবেন, ক্লান্তি ও ভিড়ে কী ধরে রাখবেন।</p>
@@ -305,9 +309,9 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=21';
-  import { DUAS } from '/js/data-dua.js?v=21';
-  import { track } from '/js/analytics.js?v=21';
+  import { mount } from '/js/shell.js?v=22';
+  import { DUAS } from '/js/data-dua.js?v=22';
+  import { track } from '/js/analytics.js?v=22';
   mount();
 
   const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

@@ -1,7 +1,7 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=21';
-import { OFFLINE_MODE } from './firebase-config.js?v=21';
-import { initAnalytics, track } from './analytics.js?v=21';
+import { initFirebase } from './store.js?v=22';
+import { OFFLINE_MODE } from './firebase-config.js?v=22';
+import { initAnalytics, track } from './analytics.js?v=22';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
@@ -18,6 +18,7 @@ const MORE = [
   ['/timeline',  'সময়সূচি',     '🕐'],
   ['/qiran',     'কিরান হজ',    '🔗'],
   ['/ifrad',     'ইফরাদ হজ',    '1️⃣'],
+  ['/arabic',    'আরবি',        '🗣️'],
   ['/inspire',   'প্রেরণা',      '🌱'],
   ['/sources',   'কুরআন-হাদীস', '📜'],
   ['/madinah',   'মদিনা',       '🕌'],
