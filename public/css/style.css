@@ -745,6 +745,10 @@ figure.photo figcaption b{color:var(--ink)}
 }
 :root[data-theme="light"] .chip{color:var(--gold)}
 .chip:hover{text-decoration:none; background:var(--gold); color:var(--on-brand)}
+/* হালকা থিমে :root[data-theme="light"] .chip-এর স্পেসিফিসিটি বেশি হওয়ায় hover-এ
+   লেখা সোনালিই থেকে যেত আর পটভূমিও সোনালি হতো — লেখা অদৃশ্য। তাই সমান
+   স্পেসিফিসিটির নিয়ম দরকার। */
+:root[data-theme="light"] .chip:hover{color:var(--on-brand)}
 
 /* সূরার আয়াত */
 .surah-card{margin-bottom:22px; scroll-margin-top:96px}
@@ -998,6 +1002,7 @@ figure.photo figcaption b{color:var(--ink)}
 }
 :root[data-theme="light"] .term-see a{color:var(--gold)}
 .term-see a:hover{background:var(--gold); color:var(--on-brand); text-decoration:none}
+:root[data-theme="light"] .term-see a:hover{color:var(--on-brand)}
 
 /* =====================================================================
    দিনভিত্তিক টাইমলাইন — /timeline
@@ -1086,3 +1091,40 @@ figure.photo figcaption b{color:var(--ink)}
 }
 /* চিপে ইঙ্গিত যে এটি মডালে খুলবে */
 .dua-chip::after{content:"⤢"; font-size:.78em; opacity:.6; margin-inline-start:2px}
+
+/* =====================================================================
+   ব্যবহারিক আরবি — /arabic
+   ===================================================================== */
+.ph{
+  border:1px solid var(--line); border-radius:var(--radius-sm); background:var(--card);
+  padding:16px 18px; margin-bottom:12px; scroll-margin-top:96px;
+}
+.ph-bn{font-weight:700; color:var(--ink); margin:0 0 10px; font-size:1.02rem}
+.ph-bn .badge{margin-inline-start:8px; vertical-align:middle}
+.ph-ar{
+  font-family:"Amiri","Scheherazade New",serif; direction:rtl; text-align:right;
+  font-size:1.6rem; line-height:2.1; color:var(--gold-2); margin:0;
+}
+:root[data-theme="light"] .ph-ar{color:var(--gold)}
+.ph-tr{
+  display:inline-block; margin:8px 0 0; padding:5px 14px; border-radius:99px;
+  background:var(--gold-soft); box-shadow:inset 0 0 0 1px var(--gold-line);
+  font-weight:700; color:var(--ink); font-size:.97rem;
+}
+.ph-reply{
+  margin:12px 0 0; padding:10px 14px; border-radius:var(--radius-sm);
+  background:var(--green-soft); color:var(--ink-soft); font-size:.9rem;
+}
+.ph-reply b{color:var(--ink); font-weight:700}
+.ph-tip{margin:9px 0 0; font-size:.87rem; color:var(--ink-mute)}
+.ph .wbw{margin:12px 0 0}
+.ph .w{padding:7px 11px 9px; min-width:64px}
+.ph .w .wa{font-size:1.28rem}
+.ph .w .wb{font-size:.78rem}
+/* ইমামের ঘোষণা */
+.call{border-inline-start:3px solid var(--gold)}
+.call .when{
+  display:inline-block; margin:0 0 10px; font-size:.83rem; color:var(--gold-2);
+  font-weight:600;
+}
+:root[data-theme="light"] .call .when{color:var(--gold)}
