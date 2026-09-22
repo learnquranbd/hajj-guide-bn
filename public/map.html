@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=19">
+<link rel="stylesheet" href="/css/style.css?v=20">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
   integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
   crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -388,9 +388,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=19';
-import { track } from '/js/analytics.js?v=19';
-import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=19';
+import { mount } from '/js/shell.js?v=20';
+import { track } from '/js/analytics.js?v=20';
+import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=20';
 mount();
 
 const ZONES = {
@@ -431,7 +431,7 @@ const PLACES = [
     d:'তাঁবুর শহর — প্রায় ৭.৮ বর্গকিমি, হারামের সীমানার ভেতরে। ৮ জিলহজ এবং ১০ থেকে ১২/১৩ জিলহজ পর্যন্ত রাত্রিযাপন এখানেই। স্যাটেলাইট ভিউতে সাদা তাঁবুর সারি স্পষ্ট দেখা যায়।' },
   { id:'jamarat', name:'জামরাত ব্রিজ', icon:'🎯', lat:21.4220, lng:39.8729, z:17,
     d:'পাঁচ তলার জামরাত কমপ্লেক্স — মিনার পশ্চিম প্রান্তে, মক্কার দিকে। তিনটি জামরা: উলা, উসতা ও আকাবা। ম্যাপে লম্বা ডিম্বাকৃতি স্থাপনাটিই জামরাত ব্রিজ।' },
-  { id:'khaif',   name:'মসজিদে খাইফ', icon:'🕌', lat:21.4131, lng:39.8724, z:17,
+  { id:'khaif',   name:'মসজিদে খাইফ', icon:'🕌', lat:21.4152, lng:39.8780, z:17,
     d:'মিনার ঐতিহাসিক মসজিদ, জামরাতের কাছেই দক্ষিণে। বর্ণিত আছে এখানে সত্তরজন নবী নামাজ পড়েছেন। মিনায় থাকাকালীন এখানে জামাতে নামাজ পড়া ফজিলতপূর্ণ।' },
   { id:'muz',     name:'মুজদালিফা', icon:'🌙', lat:21.3894, lng:39.9376, z:14,
     d:'মিনা ও আরাফাতের মাঝখানে, হারামের ভেতরে। ৯ জিলহজ সূর্যাস্তের পর এখানে এসে মাগরিব ও এশা একসাথে পড়া, খোলা আকাশের নিচে রাত কাটানো ও কঙ্কর সংগ্রহ — অবস্থান ওয়াজিব।' },
@@ -439,9 +439,9 @@ const PLACES = [
     d:'হারামের সীমানার বাইরে একমাত্র স্থান। ৯ জিলহজ সূর্য ঢলার পর থেকে সূর্যাস্ত পর্যন্ত এখানে উকুফ না করলে হজই হবে না। ম্যাপে বিশাল খোলা সমতল ও চারপাশের সীমানা-চিহ্ন দেখা যায়।' },
   { id:'rahmah',  name:'জাবালে রহমত', icon:'⛰️', lat:21.3549, lng:39.9842, z:17,
     d:'আরাফাতের ময়দানের ছোট পাহাড়, যেখানে নবীজি (সাঃ) বিদায় হজের ভাষণ দিয়েছিলেন। পাহাড়ে ওঠা বাধ্যতামূলক নয় — পুরো ময়দানই উকুফের জায়গা, আর ভিড়ে ওঠা ঝুঁকিপূর্ণ।' },
-  { id:'namirah', name:'মসজিদে নামিরাহ', icon:'🕌', lat:21.3547, lng:39.9539, z:16,
+  { id:'namirah', name:'মসজিদে নামিরাহ', icon:'🕌', lat:21.3530, lng:39.9663, z:16,
     d:'আরাফাতের পশ্চিম প্রান্তে। ৯ জিলহজ এখান থেকেই হজের খুতবা দেওয়া হয় এবং জোহর ও আসর একসাথে পড়া হয়। মসজিদের সামনের অংশ আসলে বাতনে উরানায় পড়ে — সেখানে উকুফ হয় না।' },
-  { id:'taneem',  name:'মসজিদে আয়েশা (তানঈম)', icon:'🤍', lat:21.4463, lng:39.7717, z:16,
+  { id:'taneem',  name:'মসজিদে আয়েশা (তানঈম)', icon:'🤍', lat:21.4677, lng:39.8014, z:16,
     d:'মক্কার বাসিন্দা ও মক্কায় অবস্থানরতদের জন্য উমরাহর মীকাত। মসজিদুল হারাম থেকে প্রায় ৭ কিমি উত্তরে। অতিরিক্ত উমরাহ করতে চাইলে এখান থেকে ইহরাম বাঁধতে হয়।' },
   { id:'nabawi',  name:'মসজিদে নববী (মদিনা)', icon:'🟢', lat:24.4672, lng:39.6112, z:16,
     d:'মদিনা মুনাওয়ারা — নবীজি (সাঃ)-এর মসজিদ ও রওজা শরিফ। এখানে এক নামাজ এক হাজার নামাজের সমান। মক্কা থেকে প্রায় ৪৫০ কিমি উত্তরে, সড়কপথে ৫–৬ ঘণ্টা বা হারামাইন ট্রেনে ২.৫ ঘণ্টা।' }
@@ -473,7 +473,7 @@ function initMap() {
   const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> অবদানকারীগণ' });
 
-  map = L.map('gmapCanvas', { layers: [sat], scrollWheelZoom: false, zoomControl: true })
+  map = L.map('gmapCanvas', { layers: [sat], scrollWheelZoom: true, zoomControl: true })
          .setView([PLACES[0].lat, PLACES[0].lng], PLACES[0].z);
   L.control.layers({ '🛰️ স্যাটেলাইট': sat, '🗺️ রাস্তা': street }, null,
     { position: 'topright', collapsed: false }).addTo(map);
