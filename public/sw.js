@@ -10,7 +10,7 @@
    - GA, ম্যাপ টাইল      → কখনো ক্যাশ নয় (অগণিত ও অর্থহীন)
    ------------------------------------------------------------------ */
 
-const CACHE = 'hajj-guide-v17';   /* bump-version.sh এটি হালনাগাদ করে */
+const CACHE = 'hajj-guide-v18';   /* bump-version.sh এটি হালনাগাদ করে */
 /* Firebase-এ cleanUrls চালু — /offline.html রিডাইরেক্ট হয়; দুটোই রাখা হয়,
    কারণ লোকাল সার্ভারে clean URL কাজ করে না */
 const OFFLINE = '/offline';
@@ -22,13 +22,13 @@ const CORE = [
   '/map', '/madinah', '/timeline', '/faq', '/terms',
   '/tips', '/checklist', '/qiran', '/ifrad', '/sources', '/inspire',
   OFFLINE, OFFLINE_ALT,
-  '/css/style.css?v=17',
-  '/js/shell.js?v=17', '/js/store.js?v=17', '/js/analytics.js?v=17', '/js/firebase-config.js?v=17',
-  '/js/data-steps.js?v=17', '/js/data-dua.js?v=17', '/js/data-salat.js?v=17',
-  '/js/data-checklist.js?v=17', '/js/data-umrah.js?v=17', '/js/data-faq.js?v=17',
-  '/js/data-terms.js?v=17', '/js/data-ziyarat.js?v=17', '/js/data-hajj-types.js?v=17',
-  '/js/data-timeline.js?v=17', '/js/data-quran-hadith.js?v=17',
-  '/js/data-inspiration.js?v=17', '/js/data-janazah.js?v=17', '/js/dua-modal.js?v=17',
+  '/css/style.css?v=18',
+  '/js/shell.js?v=18', '/js/store.js?v=18', '/js/analytics.js?v=18', '/js/firebase-config.js?v=18',
+  '/js/data-steps.js?v=18', '/js/data-dua.js?v=18', '/js/data-salat.js?v=18',
+  '/js/data-checklist.js?v=18', '/js/data-umrah.js?v=18', '/js/data-faq.js?v=18',
+  '/js/data-terms.js?v=18', '/js/data-ziyarat.js?v=18', '/js/data-hajj-types.js?v=18',
+  '/js/data-timeline.js?v=18', '/js/data-quran-hadith.js?v=18',
+  '/js/data-inspiration.js?v=18', '/js/data-janazah.js?v=18', '/js/dua-modal.js?v=18',
   '/img/icon-192.png', '/img/icon-512.png'
 ];
 
@@ -95,7 +95,10 @@ self.addEventListener('fetch', e => {
 
   /* বাকি সব — আগে ক্যাশ, পেছনে চুপচাপ হালনাগাদ */
   e.respondWith((async () => {
-    const cached = await caches.match(req, { ignoreSearch: sameOrigin });
+    /* ignoreSearch ব্যবহার করা হয় না — করলে ?v=17-এর অনুরোধ পুরোনো ?v=16
+       ক্যাশ থেকে মিটে যেত এবং সংস্করণ বদলের সময় বাসি ফাইল পরিবেশিত হতো।
+       হুবহু URL না মিললে নেটওয়ার্কে যাক, সেটাই ঠিক। */
+    const cached = await caches.match(req);
     const network = fetch(req).then(res => {
       if (res && (res.ok || res.type === 'opaque')) {
         caches.open(CACHE).then(c => c.put(req, res.clone())).catch(() => {});
