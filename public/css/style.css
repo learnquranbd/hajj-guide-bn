@@ -1121,6 +1121,26 @@ figure.photo figcaption b{color:var(--ink)}
 .ph .w{padding:7px 11px 9px; min-width:64px}
 .ph .w .wa{font-size:1.28rem}
 .ph .w .wb{font-size:.78rem}
+/* ---------- যিয়ারতের স্থান — ফজিলতের হাদীস কার্ড (/map, /madinah) ---------- */
+.place-meta{display:flex; gap:14px; flex-wrap:wrap; margin:0 0 10px;
+  color:var(--ink-mute); font-size:.85rem}
+.fadl-wrap{margin:14px 0 4px}
+.ph.fadl{border-inline-start:3px solid var(--green); background:var(--card-2)}
+.ph-src{margin:12px 0 0; font-size:.84rem; color:var(--ink-mute)}
+.ziy-flag{margin:12px 0 0; padding:9px 13px; border-radius:var(--radius-sm);
+  background:var(--bg-soft); box-shadow:inset 0 0 0 1px var(--line-soft);
+  font-size:.86rem; color:var(--ink-mute)}
+.ziy-flag strong{color:var(--ink-soft); font-weight:700}
+/* চিপগুলো মডালে দোয়া খোলে — /steps ও /umrah-এর মতোই */
+.dua-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.dua-chip{display:inline-flex; align-items:center; gap:6px; font-size:.87rem; font-weight:600;
+  background:var(--gold-soft); color:var(--gold-2); padding:5px 13px; border-radius:99px;
+  box-shadow:inset 0 0 0 1px var(--gold-line)}
+:root[data-theme="light"] .dua-chip{color:var(--gold)}
+.dua-chip:hover{background:var(--gold); color:var(--on-brand); text-decoration:none}
+/* হালকা থিমে উপরের নিয়মটির স্পেসিফিসিটি বেশি হতো বলে হোভারে লেখা অদৃশ্য হয়ে যেত */
+:root[data-theme="light"] .dua-chip:hover{color:var(--on-brand)}
+
 /* ইমামের ঘোষণা */
 .call{border-inline-start:3px solid var(--gold)}
 .call .when{

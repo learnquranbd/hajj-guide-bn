@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=23">
+<link rel="stylesheet" href="/css/style.css?v=24">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
   integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
   crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -388,10 +388,16 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=23';
-import { track } from '/js/analytics.js?v=23';
-import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=23';
+import { mount } from '/js/shell.js?v=24';
+import { track } from '/js/analytics.js?v=24';
+import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=24';
+import { DUAS } from '/js/data-dua.js?v=24';
+import { placeCard, adabBlock } from '/js/ziyarat-render.js?v=24';
+import { initDuaModal } from '/js/dua-modal.js?v=24';
 mount();
+/* দোয়ার চিপ মডালে খোলে — ব্যবহারকারী ম্যাপের পাতাতেই থাকেন */
+initDuaModal(id => track('ziyarat_dua', { dua: id }));
+const duaTitle = id => (DUAS.find(d => d.id === id) || {}).title || id;
 
 const ZONES = {
   makkah:{t:'মক্কা মুকাররমা — মসজিদুল হারাম',d:'কাবা শরিফ, হাজরে আসওয়াদ, মাকামে ইবরাহীম, যমযম কূপ ও সাফা-মারওয়া এখানেই। তাওয়াফ ও সাঈর সব আমল এখানে হয়। তামাত্তুকারী এখানে উমরাহ সেরে ৮ জিলহজ পর্যন্ত থাকেন, তারপর ১০–১২ তারিখে তাওয়াফুল ইফাদার জন্য ফিরে আসেন।'},
@@ -523,24 +529,10 @@ if (typeof L !== 'undefined') boot();
 else addEventListener('load', boot, { once: true });
 
 /* ---------- মক্কার যিয়ারতের স্থান ---------- */
-document.getElementById('ziyAdab').innerHTML =
-  `<p><strong>${esc(ZIYARAT_ADAB.title)}</strong></p>` +
-  `<ul class="ul-check ul-cross" style="margin-top:8px">` +
-  ZIYARAT_ADAB.body.map(t => `<li>${t}</li>`).join('') + `</ul>` +
-  (ZIYARAT_ADAB.note ? `<p style="margin-top:10px">${ZIYARAT_ADAB.note}</p>` : '');
+document.getElementById('ziyAdab').innerHTML = adabBlock(ZIYARAT_ADAB);
 
-document.getElementById('ziyOut').innerHTML = MAKKAH_ZIYARAT.map(z => {
-  const q = z.lat !== null ? `${z.lat},${z.lng}` : null;
-  return `<article class="card" id="z-${z.id}">
-    <div class="tile-ico">${z.icon}</div>
-    <h3>${esc(z.name)}</h3>
-    <p>${z.d}</p>
-    ${z.visit ? `<p class="muted" style="margin-top:8px">🧭 ${z.visit}</p>` : ''}
-    ${z.warn ? `<div class="note warn"><p>${z.warn}</p></div>` : ''}
-    ${q ? `<p style="margin:12px 0 0"><a class="chip" target="_blank" rel="noopener noreferrer"
-       href="https://www.google.com/maps/search/?api=1&query=${q}" data-ziy="${z.id}">↗ ম্যাপে দেখুন</a></p>` : ''}
-  </article>`;
-}).join('');
+document.getElementById('ziyOut').innerHTML =
+  MAKKAH_ZIYARAT.map(z => placeCard(z, { duaTitle })).join('');
 
 document.getElementById('ziyOut').addEventListener('click', e => {
   const a = e.target.closest('[data-ziy]');

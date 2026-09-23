@@ -14,15 +14,8 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=23">
+<link rel="stylesheet" href="/css/style.css?v=24">
 <style>
-  .place{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
-  .place:last-child{border-bottom:0}
-  .place .pico{width:46px;height:46px;border-radius:13px;background:var(--brand-soft);color:var(--brand);
-    display:grid;place-items:center;font-size:21px;flex:0 0 auto}
-  .place h3{margin:0 0 3px;font-size:1.06rem}
-  .place p{margin:0 0 4px;color:var(--ink-soft);font-size:.95rem}
-  .place .dist{font-size:.82rem;color:var(--ink-mute)}
   h2{scroll-margin-top:90px}
 </style>
 <!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
@@ -117,68 +110,14 @@
 </section>
 
 <section class="wrap section-sm">
-  <div class="card">
-    <h2 id="places">📍 যিয়ারতের স্থানসমূহ</h2>
-    <p class="muted">এগুলোতে যাওয়া সুন্নত বা ঐচ্ছিক — কোনোটিই ওয়াজিব নয়। বেশিরভাগ হজ দল
-    একটি নির্দিষ্ট দিনে বাসে করে ঘুরিয়ে আনে।</p>
+  <h2 id="places">📍 যিয়ারতের স্থানসমূহ — ফজিলত ও দলিলসহ</h2>
+  <p class="lead">প্রতিটি স্থান সম্পর্কে যা প্রমাণিত, ঠিক ততটুকুই লেখা হয়েছে। হাদীস বা আয়াত থাকলে
+  আরবি, বাংলা উচ্চারণ, অর্থ ও <strong>শব্দে শব্দে বিশ্লেষণসহ</strong> দেওয়া আছে; আর যে জায়গার
+  আলাদা কোনো ফজিলত প্রমাণিত নেই, সেটিও স্পষ্ট করে বলা হয়েছে — কারণ না-জানা কথার চেয়ে
+  ভিত্তিহীন ফজিলত ছড়ানো অনেক বেশি ক্ষতিকর।</p>
 
-    <div class="place"><span class="pico">🕌</span><div>
-      <h3>মসজিদে কুবা</h3>
-      <p>ইসলামের ইতিহাসের <strong>প্রথম মসজিদ</strong>, নবীজি (সাঃ) নিজ হাতে এর ভিত্তি স্থাপন করেন।
-      তিনি প্রতি শনিবার এখানে আসতেন। হাদীসে এসেছে — “যে ব্যক্তি নিজ ঘরে ভালোভাবে অজু করে
-      মসজিদে কুবায় এসে দুই রাকাত নামাজ পড়ে, সে একটি উমরাহর সওয়াব পায়।” (ইবনে মাজাহ ১৪১২)</p>
-      <p class="dist">📍 মসজিদে নববী থেকে ≈ ৪ কিমি · <b>টিপ:</b> হোটেল থেকে অজু করে যান, তাহলেই হাদীসের শর্ত পূর্ণ হয়</p>
-    </div></div>
-
-    <div class="place"><span class="pico">⛰️</span><div>
-      <h3>জাবালে উহুদ ও শহীদদের কবরস্থান</h3>
-      <p>উহুদ যুদ্ধের ময়দান। এখানে নবীজির চাচা <strong>হামযা (রাঃ)</strong>সহ ৭০ জন সাহাবি শহীদ হন।
-      নবীজি (সাঃ) উহুদ সম্পর্কে বলেছেন — “উহুদ এমন এক পাহাড়, যে আমাদের ভালোবাসে এবং আমরাও তাকে
-      ভালোবাসি।” (বুখারী ৪০৮৪)</p>
-      <p class="dist">📍 ≈ ৫ কিমি · <b>সতর্কতা:</b> পাহাড়ে ওঠা, পাথর সংগ্রহ বা কবরের কাছে দোয়া চাওয়া — কোনোটিই জায়েজ নয়</p>
-    </div></div>
-
-    <div class="place"><span class="pico">🌿</span><div>
-      <h3>জান্নাতুল বাকী</h3>
-      <p>মদিনার প্রধান কবরস্থান। এখানে শায়িত আছেন উসমান (রাঃ), নবীজির কন্যাগণ,
-      স্ত্রীগণ (উম্মাহাতুল মুʼমিনীন), পুত্র ইবরাহীম এবং প্রায় দশ হাজার সাহাবি।</p>
-      <p class="dist">📍 মসজিদে নববীর পূর্ব পাশেই · ফজর ও আসরের পর পুরুষদের জন্য খোলা থাকে ·
-      <b>নারীদের কবরস্থানে যাওয়া নিষেধ</b></p>
-      <div class="dua-chips" style="margin-top:8px">
-        <a class="badge b-day" href="/dua#ziyarat-qabr" style="padding:5px 12px">🤲 কবর যিয়ারতের দোয়া →</a>
-      </div>
-    </div></div>
-
-    <div class="place"><span class="pico">🧭</span><div>
-      <h3>মসজিদে কিবলাতাইন</h3>
-      <p>“দুই কিবলার মসজিদ”। এখানেই নামাজরত অবস্থায় কিবলা বাইতুল মুকাদ্দাস থেকে
-      কাবার দিকে ঘুরিয়ে দেওয়ার আয়াত নাজিল হয় (সূরা বাকারা ২:১৪৪), এবং সাহাবিরা নামাজের
-      মধ্যেই ঘুরে যান।</p>
-      <p class="dist">📍 ≈ ৭ কিমি</p>
-    </div></div>
-
-    <div class="place"><span class="pico">🛡️</span><div>
-      <h3>খন্দকের ময়দান ও সাতটি মসজিদ</h3>
-      <p>খন্দক (পরিখা) যুদ্ধের স্থান, যেখানে সাহাবিরা সালমান ফারসি (রাঃ)-এর পরামর্শে পরিখা খনন
-      করেছিলেন। পাশে ছোট ছোট কয়েকটি ঐতিহাসিক মসজিদ রয়েছে।</p>
-      <p class="dist">📍 ≈ ৫ কিমি · <b>নোট:</b> এখানে নির্দিষ্ট কোনো নামাজ বা আমলের ফজিলত প্রমাণিত নেই —
-      শুধু ইতিহাস দেখার জায়গা</p>
-    </div></div>
-
-    <div class="place"><span class="pico">☁️</span><div>
-      <h3>মসজিদে গামামা ও পুরোনো বাজার</h3>
-      <p>যেখানে নবীজি (সাঃ) ঈদের নামাজ ও ইস্তিসকার (বৃষ্টির) নামাজ পড়েছেন বলে বর্ণিত।
-      মসজিদে নববীর পশ্চিম পাশে, হেঁটেই যাওয়া যায়।</p>
-      <p class="dist">📍 ≈ ৫০০ মিটার</p>
-    </div></div>
-
-    <div class="place"><span class="pico">🌴</span><div>
-      <h3>খেজুর বাগান ও খেজুর বাজার</h3>
-      <p>মদিনার আজওয়া খেজুর সবচেয়ে বিখ্যাত। হাদীসে এসেছে — “যে ব্যক্তি সকালে সাতটি আজওয়া খেজুর
-      খায়, সেদিন বিষ ও জাদু তার ক্ষতি করতে পারবে না।” (বুখারী ৫৪৪৫)</p>
-      <p class="dist">📍 ≈ ৩ কিমি · <b>টিপ:</b> সরাসরি বাগান থেকে কিনলে দাম কম ও আসল পাওয়ার সম্ভাবনা বেশি</p>
-    </div></div>
-  </div>
+  <div class="note warn" id="mzAdab" style="margin:18px 0 24px"></div>
+  <div id="mzOut"></div>
 </section>
 
 <section class="wrap section-sm">
@@ -281,8 +220,26 @@
 </section>
 
 <script type="module">
-  import { mount } from '/js/shell.js?v=23';
+  import { mount } from '/js/shell.js?v=24';
+  import { track } from '/js/analytics.js?v=24';
+  import { MADINAH_ZIYARAT, MADINAH_ADAB } from '/js/data-madinah-ziyarat.js?v=24';
+  import { DUAS } from '/js/data-dua.js?v=24';
+  import { placeCard, adabBlock } from '/js/ziyarat-render.js?v=24';
+  import { initDuaModal } from '/js/dua-modal.js?v=24';
   mount();
+
+  /* দোয়ার চিপে ক্লিক করলে মডালে খোলে — ব্যবহারকারী মদিনার পাতাতেই থাকেন */
+  initDuaModal(id => track('madinah_dua', { dua: id }));
+  const duaTitle = id => (DUAS.find(d => d.id === id) || {}).title || id;
+
+  document.getElementById('mzAdab').innerHTML = adabBlock(MADINAH_ADAB);
+  document.getElementById('mzOut').innerHTML =
+    MADINAH_ZIYARAT.map(z => placeCard(z, { duaTitle })).join('');
+
+  document.getElementById('mzOut').addEventListener('click', e => {
+    const a = e.target.closest('[data-ziy]');
+    if (a) track('madinah_place', { place: a.dataset.ziy });
+  });
 </script>
 </body>
 </html>
