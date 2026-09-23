@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=22">
+<link rel="stylesheet" href="/css/style.css?v=23">
 <style>
   .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
   .subtabs .tab{padding:7px 15px;font-size:.88rem}
@@ -159,23 +159,33 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=22';
+import { mount } from '/js/shell.js?v=23';
 import { SALAT_DUAS, SALAT_CATS, SALAT_FLOW, SURAHS, RAKAT_TABLE, HAJJ_SALAT, POSE, POSE_NAME }
-  from '/js/data-salat.js?v=22';
-import { track } from '/js/analytics.js?v=22';
-import { JANAZAH_INTRO, JANAZAH_FLOW, JANAZAH_DUAS, JANAZAH_NOTES } from '/js/data-janazah.js?v=22';
-import { openDua, registerDuas } from '/js/dua-modal.js?v=22';
+  from '/js/data-salat.js?v=23';
+import { track } from '/js/analytics.js?v=23';
+import { JANAZAH_INTRO, JANAZAH_FLOW, JANAZAH_DUAS, JANAZAH_NOTES } from '/js/data-janazah.js?v=23';
+import { openDua, registerDuas } from '/js/dua-modal.js?v=23';
+import { DUAS } from '/js/data-dua.js?v=23';
 mount();
 
 /* নামাজ ও জানাজার দোয়াও মডালে দেখানো হবে — /dua-এর বাইরের সংগ্রহ */
 registerDuas(SALAT_DUAS, '/salat#');
+
+/* কিছু দোয়া নামাজের পরেও পড়া হয়, কিন্তু মূল লেখা data-dua.js-এ আছে।
+   দুই ফাইলে একই লেখা না রেখে এখানে টেনে এনে "সালামের পরের যিকির"
+   শ্রেণিতে দেখানো হয় — উৎস একটিই থাকে, তাই কখনো দুই রকম হবে না। */
+const BORROWED = ['sayyidul-istighfar'];
+const EXTRA_DUAS = DUAS
+  .filter(d => BORROWED.includes(d.id))
+  .map(d => ({ ...d, cat: 'after' }));
+const ALL_DUAS = [...SALAT_DUAS, ...EXTRA_DUAS];
 registerDuas(JANAZAH_DUAS, '/salat#');
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
 const bn  = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
 const pose = (key, cls = 'pose') =>
   `<svg class="${cls}" viewBox="0 0 64 64" role="img" aria-label="${esc(POSE_NAME[key] || '')}">${POSE[key] || ''}</svg>`;
-const duaById = id => SALAT_DUAS.find(d => d.id === id);
+const duaById = id => ALL_DUAS.find(d => d.id === id);
 
 /* ---------- শব্দে শব্দে ---------- */
 const words = w => (w || []).map(([a, m]) =>
@@ -239,7 +249,7 @@ duaBar.innerHTML = [{ id:'all', name:'সবগুলো', icon:'📿' }, ...SAL
   `<button class="tab" data-cat="${c.id}" aria-selected="${i === 0}">${c.icon} ${c.name}</button>`).join('');
 
 function renderDuas(cat) {
-  const list = cat === 'all' ? SALAT_DUAS : SALAT_DUAS.filter(d => d.cat === cat);
+  const list = cat === 'all' ? ALL_DUAS : ALL_DUAS.filter(d => d.cat === cat);
   duaOut.innerHTML = list.map(duaCard).join('');
   duaCnt.textContent = `${bn(list.length)}টি দোয়া দেখানো হচ্ছে`;
   duaBar.querySelectorAll('.tab').forEach(b =>
