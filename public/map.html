@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=24">
+<link rel="stylesheet" href="/css/style.css?v=25">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
   integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
   crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -388,12 +388,12 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=24';
-import { track } from '/js/analytics.js?v=24';
-import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=24';
-import { DUAS } from '/js/data-dua.js?v=24';
-import { placeCard, adabBlock } from '/js/ziyarat-render.js?v=24';
-import { initDuaModal } from '/js/dua-modal.js?v=24';
+import { mount } from '/js/shell.js?v=25';
+import { track } from '/js/analytics.js?v=25';
+import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=25';
+import { DUAS } from '/js/data-dua.js?v=25';
+import { placeCard, adabBlock, initPlaceMaps } from '/js/ziyarat-render.js?v=25';
+import { initDuaModal } from '/js/dua-modal.js?v=25';
 mount();
 /* দোয়ার চিপ মডালে খোলে — ব্যবহারকারী ম্যাপের পাতাতেই থাকেন */
 initDuaModal(id => track('ziyarat_dua', { dua: id }));
@@ -539,6 +539,8 @@ document.getElementById('ziyOut').addEventListener('click', e => {
   if (a) track('ziyarat_open', { place: a.dataset.ziy });
 });
 
+
+initPlaceMaps();
 </script>
 </body>
 </html>

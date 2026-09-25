@@ -1148,3 +1148,14 @@ figure.photo figcaption b{color:var(--ink)}
   font-weight:600;
 }
 :root[data-theme="light"] .call .when{color:var(--gold)}
+
+/* ---------- Place photograph and mini-map on the ziyarah cards ---------- */
+.place-photo{margin:14px 0 4px;padding:0}
+.place-photo img{width:100%;height:auto;display:block;border-radius:var(--radius-sm);
+  border:1px solid var(--gold-line);background:var(--card-2)}
+.place-photo figcaption{font-size:.78rem;color:var(--ink-soft);margin-top:6px;line-height:1.5}
+.place-photo figcaption a{color:var(--gold-2)}
+/* Reserve the height before Leaflet arrives so the card does not jump */
+.place-map{height:230px;margin:12px 0 0;border-radius:var(--radius-sm);overflow:hidden;
+  border:1px solid var(--gold-line);background:var(--card-2)}
+@media (max-width:560px){ .place-map{height:190px} }

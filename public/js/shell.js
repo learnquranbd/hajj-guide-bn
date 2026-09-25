@@ -1,7 +1,7 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=24';
-import { OFFLINE_MODE } from './firebase-config.js?v=24';
-import { initAnalytics, track } from './analytics.js?v=24';
+import { initFirebase } from './store.js?v=25';
+import { OFFLINE_MODE } from './firebase-config.js?v=25';
+import { initAnalytics, track } from './analytics.js?v=25';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
@@ -25,9 +25,16 @@ const MORE = [
   ['/faq',       'প্রশ্নোত্তর', '❓'],
   ['/terms',     'পরিভাষা',     '📖'],
   ['/tips',      'টিপস',        '💡'],
-  ['/checklist', 'চেকলিস্ট',    '✅']
+    ['/checklist', 'চেকলিস্ট',    '✅'],
+  /* ইংরেজি সংস্করণ — সহোদর সাইট। ইংরেজি রিপোর ‍shell.js-এর
+     সংশ্লিষ্ট এন্ট্রির সাথে মিলিয়ে রাখুন। */
+  ['https://hajj-guide.web.app', 'English version', '🇬🇧']
 ];
 const ALL_PAGES = [...PAGES, ...MORE];
+
+/* A nav entry may point at the sister site, so links get target=_blank */
+const extAttr = h => h.startsWith('http')
+  ? ' target="_blank" rel="noopener noreferrer"' : '';
 
 const here = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
 
@@ -103,7 +110,7 @@ function currentTheme() {
 /* ---------- হেডার ---------- */
 function header() {
   const link = ([href, label, ico], mobile) =>
-    `<a href="${href}"${href === here ? ' aria-current="page"' : ''}>` +
+    `<a href="${href}"${extAttr(href)}${href === here ? ' aria-current="page"' : ''}>` +
     (mobile ? `<span class="nav-ico">${ico}</span>` : '') + label + `</a>`;
   return `<header class="topbar"><div class="wrap">
     <a class="brand" href="/"><span class="brand-mark">🕋</span>
@@ -114,7 +121,7 @@ function header() {
                 ${MORE.some(([h]) => h === here) ? 'data-here="true"' : ''}>আরও<span class="caret">▼</span></button>
         <div class="more-panel" id="morePanel" hidden role="menu" aria-label="আরও পৃষ্ঠা">
           ${MORE.map(([h, l, i]) =>
-            `<a href="${h}"${h === here ? ' aria-current="page"' : ''}><span class="ico">${i}</span>${l}</a>`).join('')}
+            `<a href="${h}"${extAttr(h)}${h === here ? ' aria-current="page"' : ''}><span class="ico">${i}</span>${l}</a>`).join('')}
         </div>
       </div>
     </nav>
@@ -201,7 +208,7 @@ function toast(msg) {
 
 /* ---------- ফুটার ---------- */
 function footer() {
-  const links = a => a.map(([h, l, i]) => `<a href="${h}">${i} ${l}</a>`).join('');
+  const links = a => a.map(([h, l, i]) => `<a href="${h}"${extAttr(h)}>${i} ${l}</a>`).join('');
   return `<footer class="foot"><div class="wrap">
   <div class="foot-grid">
     <div>
