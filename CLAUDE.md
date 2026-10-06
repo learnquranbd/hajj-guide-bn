@@ -81,12 +81,34 @@ Also: `/404`, `/offline`. `sitemap.xml` lists 19 URLs.
 - **Feature flags** (firebase-config.js): `CLOUD_SYNC=false` (localStorage only), `OFFLINE_MODE=true` (SW on). Same in both repos.
 - BN: Hind Siliguri font, Bengali digits ০১২৩. EN: Inter font, Western digits.
 
-## Current BN↔EN sync status (2026-09-29)
-In sync: identical file set, matching data exports/lengths/id sets, matching
-feature flags, matching sw.js strategy, both sister-links present, no Bengali
-leaked into the EN repo.
-**One deliberate gap:** GA4 is installed in all 19 BN pages' `<head>` (tag
-`G-Z5Q68K019R`) but in 0 EN pages — the EN `analytics.js` is a silent no-op
-until a *separate* GA4 property is created for the English site (documented in
-`hajj-en/public/js/firebase-config.js`; sharing one property would mix
+## /arabic "Talk with fellow pilgrims" + /tools (added 2026-10-06)
+- `GREETINGS` (58) in `data-arabic.js`, filtered by `GREET_CATS`: greet 22 · chat 12 ·
+  ibadah 12 · help 12. Each entry: `ar` + `tr` + `w` (word-by-word rule applies) and one
+  `[text, pronunciation]` pair per `GREET_LANGS` key — `ms` `idn` `tur` `ur` `fa` `hau`.
+  `GREET_LANGS` carries `code` (BCP-47, used for `lang=` and TTS) and `rtl` (Urdu, Persian).
+  Pronunciation is Bangla script in BN and English respelling in EN; the phrase text
+  itself is byte-identical across both repos.
+- Fonts on /arabic only: Noto Nastaliq Urdu (ur), Vazirmatn (fa); Latin languages use a
+  system sans (`.gl-t`) for ü ş ı ğ / ɓ ɗ ƙ coverage.
+- 🔊 `.say` buttons (greetings: Arabic + all 6 languages; survival phrases: Arabic)
+  use the Web Speech API with the device's own voices — no audio files. No matching
+  voice → button greyed (`.no-voice`) and a toast explains. Analytics: `speak`,
+  `speak_novoice`, `greet_filter`.
+- **Not yet reviewed by native speakers** (ms/idn/tur/ur/fa/hau) — Hausa is the
+  weakest. Treat corrections from native speakers as high priority; fix the text in
+  both repos.
+- `/tools` (`data-tools.js`): `TOOLS` (12, by `TOOL_CATS`) — translation, official
+  Hajj apps (Nusuk; BN "Labbaik"/hajj.gov.bd, EN "your country's app"), getting
+  around, emergency (Asefni) — and `PLACES` (11, by `PLACE_CITIES`) — museums and
+  sights beyond the ziyarat, each with a Google Maps search link. App facts drift:
+  re-check before each Hajj season. Links only to URLs verified reachable.
+
+## Current BN↔EN sync status (2026-10-06)
+Both deployed and pushed: BN v28 (`b5124a3`), EN v5 (`94e702e`). In sync: identical
+file set, matching data exports/lengths/id sets, matching feature flags, matching
+sw.js strategy, both sister-links present, no Bengali leaked into the EN repo.
+**One deliberate gap:** GA4 is installed in all 20 BN pages' `<head>` (tag
+`G-Z5Q68K019R`; offline.html excluded) but in 0 EN pages — the EN `analytics.js` is a
+silent no-op until a *separate* GA4 property is created for the English site
+(documented in `hajj-en/public/js/firebase-config.js`; sharing one property would mix
 audiences). This is the only missing feature; everything else mirrors.
