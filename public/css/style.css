@@ -1159,3 +1159,35 @@ figure.photo figcaption b{color:var(--ink)}
 .place-map{height:230px;margin:12px 0 0;border-radius:var(--radius-sm);overflow:hidden;
   border:1px solid var(--gold-line);background:var(--card-2)}
 @media (max-width:560px){ .place-map{height:190px} }
+
+/* সবার সাথে আলাপ — /arabic: আরবির নিচে মালয় / ইন্দোনেশীয় / তুর্কি */
+.greet{border-inline-start:3px solid var(--green)}
+.gl-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:12px 0 0}
+.gl{display:flex; flex-direction:column; gap:3px; padding:9px 12px; border-radius:var(--radius-sm);
+  background:var(--card-2); box-shadow:inset 0 0 0 1px var(--line-soft)}
+.gl-h{font-size:.76rem; font-weight:600; color:var(--ink-mute)}
+.gl-t{font-size:1rem; color:var(--ink)}
+.gl-p{font-size:.85rem; color:var(--gold-2)}
+:root[data-theme="light"] .gl-p{color:var(--gold)}
+/* each language in its own typeface: Latin-script languages in a sans with full diacritics
+   (ü ş ı ğ, Hausa ɓ ɗ ƙ); Urdu in Nastaliq; Persian in Vazirmatn */
+.gl-t{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif; font-size:1.06rem; font-weight:700; letter-spacing:.005em}
+.gl-t[dir="rtl"]{text-align:right}
+.gl-t[lang="ur"]{font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq",serif; font-size:1.12rem; font-weight:700; line-height:2.3}
+.gl-t[lang="fa"]{font-family:"Vazirmatn","Tahoma",sans-serif; font-size:1.12rem; font-weight:700; line-height:1.8}
+/* 🔊 speak button — /arabic (the phone reads the phrase aloud) */
+.say{display:inline-grid; place-items:center; width:34px; height:34px; margin-inline-start:8px; padding:0;
+  border:0; border-radius:99px; cursor:pointer; vertical-align:middle; font-size:1rem; line-height:1;
+  background:var(--gold-soft); box-shadow:inset 0 0 0 1px var(--gold-line); transition:transform .15s, opacity .15s}
+.say:hover{transform:scale(1.08)}
+.say:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.say.playing{animation:sayPulse 1s ease-in-out infinite}
+.say.no-voice{opacity:.38; filter:grayscale(1)}
+@keyframes sayPulse{50%{box-shadow:inset 0 0 0 1px var(--gold-line), 0 0 0 7px var(--gold-soft)}}
+.gl-top{display:flex; align-items:center; justify-content:space-between; gap:6px}
+.gl-top .say{width:30px; height:30px; margin:0; font-size:.9rem; flex:0 0 auto}
+.say-toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:80;
+  width:max-content; max-width:min(92vw,470px); padding:11px 15px; border-radius:var(--radius-sm);
+  background:var(--card); color:var(--ink); font-size:.9rem; line-height:1.55;
+  box-shadow:0 10px 30px rgba(0,0,0,.4), inset 0 0 0 1px var(--gold-line)}
+.say-toast[hidden]{display:none}

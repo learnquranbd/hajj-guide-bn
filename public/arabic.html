@@ -13,8 +13,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=25">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=28">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -73,6 +73,7 @@
   <div class="tabs" id="aTabs" role="tablist">
     <button class="tab" data-p="p-imam" aria-selected="true">🕌 ইমাম যা বলেন</button>
     <button class="tab" data-p="p-phrase" aria-selected="false">🗣️ দরকারি বাক্য</button>
+    <button class="tab" data-p="p-greet" aria-selected="false">🤝 সবার সাথে আলাপ</button>
   </div>
 
   <!-- ইমামের ঘোষণা -->
@@ -99,6 +100,25 @@
     <div class="empty-note" id="phEmpty" hidden>এই শব্দে কিছু পাওয়া যায়নি। অন্য শব্দে চেষ্টা করুন।</div>
   </div>
 
+  <!-- সবার সাথে আলাপ -->
+  <div class="panel" id="p-greet" hidden>
+    <h2>পাশের হাজীর সাথে দুটো কথা</h2>
+    <p class="lead">তাওয়াফে, মিনার তাঁবুতে বা বাসের সিটে পাশের মানুষটি হয়তো ইন্দোনেশিয়া, মালয়েশিয়া,
+    তুরস্ক, পাকিস্তান-ভারত, ইরান বা নাইজেরিয়ার — হজে সবচেয়ে বড় দলগুলো এসব দেশ থেকেই আসে।
+    মিসর, আলজেরিয়া, মরক্কো, ইরাক বা সুদানের হাজীদের জন্য আরবিই যথেষ্ট।
+    সালাম, কুশল, নাম-দেশ জানা আর একটি দোয়া — এটুকুতেই অচেনা মানুষ আপন হয়ে যায়।
+    প্রতিটি কার্ডে আরবি (শব্দে শব্দে), তারপর ওঁদের নিজের ভাষায় একই কথা — বাংলা উচ্চারণসহ।</p>
+    <div class="note tip"><p><strong>🔊 চাপলে ফোন বাক্যটি জোরে বলে দেবে</strong> — ভলিউম বাড়িয়ে ফোনটা অপরজনের দিকে ধরুন,
+    তিনি শুনে উত্তর দেবেন। ধূসর 🔊 মানে আপনার ফোনে সেই ভাষার কণ্ঠ নেই (হাউসা প্রায় কোনো ফোনেই থাকে না) —
+    তখন লেখাটি দেখিয়ে দিন।</p></div>
+    <div class="subtabs" id="gCats"></div>
+    <p class="count" id="gCount"></p>
+    <div id="greetOut"></div>
+    <div class="note tip"><p><strong>উচ্চারণ নিখুঁত না হলেও চলবে</strong> — কারো নিজের ভাষায়
+    দুটো শব্দ বললেই মুখে হাসি ফোটে। মালয় ও ইন্দোনেশীয় প্রায় একই ভাষা; আর উর্দুর
+    অনেক শব্দ হিন্দি সিনেমার সুবাদে আমাদের চেনা — পাকিস্তানি-ভারতীয় হাজীদের সাথে আলাপ সবচেয়ে সহজ।</p></div>
+  </div>
+
   <div class="divider"></div>
   <div class="grid g3">
     <a class="card" href="/salat"><div class="tile-ico">🧎</div><h3>নামাজ শব্দে শব্দে</h3>
@@ -111,9 +131,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=25';
-import { IMAM_CALLS, PHRASES, PHRASE_CATS } from '/js/data-arabic.js?v=25';
-import { track } from '/js/analytics.js?v=25';
+import { mount } from '/js/shell.js?v=28';
+import { IMAM_CALLS, PHRASES, PHRASE_CATS, GREET_LANGS, GREET_CATS, GREETINGS } from '/js/data-arabic.js?v=28';
+import { track } from '/js/analytics.js?v=28';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
@@ -122,7 +142,7 @@ const words = w => (w || []).map(([a, m]) =>
   `<span class="w"><span class="wa">${a}</span><span class="wb">${esc(m)}</span></span>`).join('');
 
 document.getElementById('ebA').textContent =
-  `🗣️ ${bn(IMAM_CALLS.length)}টি ঘোষণা · ${bn(PHRASES.length)}টি বাক্য`;
+  `🗣️ ${bn(IMAM_CALLS.length)}টি ঘোষণা · ${bn(PHRASES.length)}টি বাক্য · ${bn(GREETINGS.length)}টি আলাপ`;
 
 /* ---------- ইমামের ঘোষণা ---------- */
 document.getElementById('imamOut').innerHTML = IMAM_CALLS.map(c =>
@@ -134,6 +154,81 @@ document.getElementById('imamOut').innerHTML = IMAM_CALLS.map(c =>
     <div class="wbw">${words(c.w)}</div>
     ${c.note ? `<p class="ph-tip">👉 ${c.note}</p>` : ''}
   </article>`).join('');
+
+
+/* ---------- সবার সাথে আলাপ ---------- */
+/* 🔊 button — the phone reads the text aloud (Web Speech API; uses the device's own voices) */
+const say = (code, text) => `<button class="say" type="button" data-lang="${code}" data-say="${esc(text).replace(/"/g, '&quot;')}" aria-label="শুনুন" title="শুনুন">🔊</button>`;
+
+const gBar = document.getElementById('gCats');
+const gOut = document.getElementById('greetOut');
+const gCnt = document.getElementById('gCount');
+gBar.innerHTML = [{ id:'all', name:'সবগুলো', icon:'📚' }, ...GREET_CATS].map((c, i) =>
+  `<button class="tab" data-c="${c.id}" aria-selected="${i === 0}">${c.icon} ${c.name}</button>`).join('');
+
+const gCard = g => `<article class="ph greet" id="${g.id}">
+    <p class="ph-bn">${esc(g.bnQ)}</p>
+    <p class="ph-ar">${g.ar}</p>
+    <div><span class="ph-tr">${esc(g.tr)}</span>${say('ar', g.ar)}</div>
+    <div class="wbw">${words(g.w)}</div>
+    <div class="gl-grid">${GREET_LANGS.map(l =>
+      `<div class="gl"><div class="gl-top"><span class="gl-h">${l.flag} ${esc(l.name)}</span>${say(l.code, g[l.id][0])}</div>
+        <b class="gl-t" lang="${l.code}"${l.rtl ? ' dir="rtl"' : ''}>${esc(g[l.id][0])}</b><span class="gl-p">${esc(g[l.id][1])}</span></div>`).join('')}</div>
+    ${g.reply ? `<p class="ph-reply"><b>উত্তরে শুনতে পারেন:</b> ${g.reply}</p>` : ''}
+    ${g.tip ? `<p class="ph-tip">💡 ${g.tip}</p>` : ''}
+  </article>`;
+
+let gCat = 'all';
+function renderGreet() {
+  const list = GREETINGS.filter(g => gCat === 'all' || g.cat === gCat);
+  gOut.innerHTML = list.map(gCard).join('');
+  gCnt.textContent = `${bn(list.length)}টি আলাপ দেখানো হচ্ছে`;
+  gBar.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.c === gCat)));
+  markVoices();
+}
+gBar.addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if (b) { gCat = b.dataset.c; renderGreet(); track('greet_filter', { cat: gCat }); }
+});
+
+const TTS = 'speechSynthesis' in window ? window.speechSynthesis : null;
+const LOCALE = { ar:'ar-SA', ms:'ms-MY', id:'id-ID', tr:'tr-TR', ur:'ur-PK', fa:'fa-IR', ha:'ha-NG' };
+let voices = [];
+const norm = l => String(l).replace('_', '-').toLowerCase();
+const voiceFor = code => voices.find(v => norm(v.lang) === LOCALE[code].toLowerCase())
+  || voices.find(v => norm(v.lang).split('-')[0] === code);
+function markVoices() {
+  if (!voices.length) return;                    // voices not loaded yet — do not grey everything out
+  document.querySelectorAll('.say').forEach(b => b.classList.toggle('no-voice', !voiceFor(b.dataset.lang)));
+}
+function loadVoices() { voices = TTS ? TTS.getVoices() : []; markVoices(); }
+if (TTS) { loadVoices(); TTS.onvoiceschanged = loadVoices; }   // property form works on older Safari too
+
+let toastT;
+function toast(msg) {
+  let el = document.querySelector('.say-toast');
+  if (!el) { el = document.createElement('div'); el.className = 'say-toast'; el.setAttribute('role', 'status'); document.body.append(el); }
+  el.textContent = msg; el.hidden = false;
+  clearTimeout(toastT); toastT = setTimeout(() => { el.hidden = true; }, 5000);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.say');
+  if (!b) return;
+  const code = b.dataset.lang;
+  if (!TTS) return toast('এই ব্রাউজার জোরে পড়ে শোনাতে পারে না — Chrome বা Safari-তে খুলুন, অথবা লেখাটি দেখিয়ে দিন।');
+  if (!voices.length) loadVoices();
+  const v = voiceFor(code);
+  if (!v) { track('speak_novoice', { lang: code }); return toast('এই ফোনে এই ভাষার কণ্ঠ (voice) নেই। ফোনের Settings → Text-to-speech-এ ভাষাটি যোগ করুন — নইলে লেখাটি স্ক্রিনে দেখিয়ে দিন।'); }
+  TTS.cancel();
+  document.querySelectorAll('.say.playing').forEach(x => x.classList.remove('playing'));
+  const u = new SpeechSynthesisUtterance(b.dataset.say.replace(/\s*\/\s*/g, code === 'ur' || code === 'fa' || code === 'ar' ? '، ' : ', '));
+  u.voice = v; u.lang = v.lang; u.rate = 0.85;
+  u.onend = u.onerror = () => b.classList.remove('playing');
+  b.classList.add('playing');
+  TTS.speak(u);
+  track('speak', { lang: code, id: b.closest('[id]')?.id || '' });
+});
+renderGreet();
 
 /* ---------- দরকারি বাক্য ---------- */
 const bar = document.getElementById('phCats');
@@ -149,7 +244,7 @@ bar.innerHTML = [{ id:'all', name:'সবগুলো', icon:'📚' }, ...PHRASE
 const card = p => `<article class="ph" id="${p.id}">
   <p class="ph-bn">${esc(p.bnQ)}${p.dialect ? '<span class="badge b-day">কথ্য</span>' : ''}</p>
   <p class="ph-ar">${p.ar}</p>
-  <div><span class="ph-tr">${esc(p.tr)}</span></div>
+  <div><span class="ph-tr">${esc(p.tr)}</span>${say('ar', p.ar)}</div>
   <div class="wbw">${words(p.w)}</div>
   ${p.reply ? `<p class="ph-reply"><b>উত্তরে শুনতে পারেন:</b> ${p.reply}</p>` : ''}
   ${p.tip ? `<p class="ph-tip">💡 ${p.tip}</p>` : ''}
@@ -165,6 +260,7 @@ function render() {
   out.innerHTML = list.map(card).join('');
   cnt.textContent = `${bn(list.length)}টি বাক্য দেখানো হচ্ছে`;
   nil.hidden = list.length > 0;
+  markVoices();
   bar.querySelectorAll('.tab').forEach(b =>
     b.setAttribute('aria-selected', String(b.dataset.c === cat)));
 }

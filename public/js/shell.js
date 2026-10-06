@@ -1,7 +1,7 @@
 /* সাইট-শেল: হেডার, নেভিগেশন ড্রয়ার, শেয়ার রেল, ফুটার, থিম টগল */
-import { initFirebase } from './store.js?v=25';
-import { OFFLINE_MODE } from './firebase-config.js?v=25';
-import { initAnalytics, track } from './analytics.js?v=25';
+import { initFirebase } from './store.js?v=28';
+import { OFFLINE_MODE } from './firebase-config.js?v=28';
+import { initAnalytics, track } from './analytics.js?v=28';
 
 /* ডেস্কটপ নেভে সরাসরি দেখায় */
 const PAGES = [
@@ -25,6 +25,7 @@ const MORE = [
   ['/faq',       'প্রশ্নোত্তর', '❓'],
   ['/terms',     'পরিভাষা',     '📖'],
   ['/tips',      'টিপস',        '💡'],
+  ['/tools',     'অ্যাপ ও স্থান', '📱'],
     ['/checklist', 'চেকলিস্ট',    '✅'],
   /* ইংরেজি সংস্করণ — সহোদর সাইট। ইংরেজি রিপোর ‍shell.js-এর
      সংশ্লিষ্ট এন্ট্রির সাথে মিলিয়ে রাখুন। */

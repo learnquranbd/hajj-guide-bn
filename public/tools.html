@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>হজ-উমরাহর দরকারি অ্যাপ, অনুবাদ টুল ও জনপ্রিয় দর্শনীয় স্থান | হজ গাইড</title>
+<meta name="description" content="কথা বলতে অনুবাদ অ্যাপ, নুসুক ও সরকারি হজ অ্যাপ, গুগল ম্যাপ, ট্রেন ও জরুরি অ্যাপ — আর মক্কা-মদিনা-জেদ্দার জনপ্রিয় জাদুঘর ও দর্শনীয় স্থান, ম্যাপের লিংকসহ।">
+<meta name="theme-color" content="#08090a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕋</text></svg>">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="হজ গাইড">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=28">
+<!-- শেয়ার প্রিভিউ — Open Graph ও Twitter Card -->
+<link rel="canonical" href="https://hajj-guide-bn.web.app/tools">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="হজ গাইড">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:url" content="https://hajj-guide-bn.web.app/tools">
+<meta property="og:title" content="হজ-উমরাহর দরকারি অ্যাপ, অনুবাদ টুল ও জনপ্রিয় দর্শনীয় স্থান | হজ গাইড">
+<meta property="og:description" content="কথা বলতে অনুবাদ অ্যাপ, নুসুক ও সরকারি হজ অ্যাপ, গুগল ম্যাপ, ট্রেন ও জরুরি অ্যাপ — আর মক্কা-মদিনা-জেদ্দার জনপ্রিয় জাদুঘর ও দর্শনীয় স্থান, ম্যাপের লিংকসহ।">
+<meta property="og:image" content="https://hajj-guide-bn.web.app/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="মসজিদুল হারাম ও কাবা শরিফ — হজ গাইড, হজ্জে তামাত্তুর পূর্ণাঙ্গ বাংলা নির্দেশিকা">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="হজ-উমরাহর দরকারি অ্যাপ, অনুবাদ টুল ও জনপ্রিয় দর্শনীয় স্থান | হজ গাইড">
+<meta name="twitter:description" content="কথা বলতে অনুবাদ অ্যাপ, নুসুক ও সরকারি হজ অ্যাপ, গুগল ম্যাপ, ট্রেন ও জরুরি অ্যাপ — আর মক্কা-মদিনা-জেদ্দার জনপ্রিয় জাদুঘর ও দর্শনীয় স্থান, ম্যাপের লিংকসহ।">
+<meta name="twitter:image" content="https://hajj-guide-bn.web.app/img/og-cover.jpg">
+<!-- Google Analytics (GA4) — স্ট্যাটিক ট্যাগ, যাতে Google-এর ট্যাগ-ডিটেকশনও দেখতে পায় -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5Q68K019R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z5Q68K019R', { anonymize_ip: true });
+</script>
+<style>
+  .tool h3{display:flex;align-items:center;gap:10px;margin:0 0 4px}
+  .tool .t-ico{font-size:1.5rem;line-height:1}
+  .tool .t-by{font-size:.82rem;color:var(--ink-mute);margin:0 0 10px}
+  .tool p{margin:0}
+  .tool .t-how{margin:10px 0 0;font-size:.88rem;color:var(--ink-mute)}
+  .t-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .t-link{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:600;
+    padding:5px 13px;border-radius:99px;background:var(--gold-soft);color:var(--gold-2);
+    box-shadow:inset 0 0 0 1px var(--gold-line)}
+  :root[data-theme="light"] .t-link{color:var(--gold)}
+  .t-link:hover{background:var(--gold);color:var(--on-brand);text-decoration:none}
+  :root[data-theme="light"] .t-link:hover{color:var(--on-brand)}
+  .pl-ar{font-family:"Amiri",serif;direction:rtl;font-size:1.1rem;color:var(--gold-2);margin:0 0 8px}
+  :root[data-theme="light"] .pl-ar{color:var(--gold)}
+  .cat-h{margin:30px 0 14px;font-size:1.15rem}
+  .tool,.place{scroll-margin-top:96px}
+</style>
+</head>
+<body>
+
+<section class="wrap section-sm">
+  <span class="eyebrow" id="ebT">📱 ফোনে যা রাখবেন, যেখানে যাবেন</span>
+  <h1>অ্যাপ, টুল ও দর্শনীয় স্থান</h1>
+  <p class="lead">ভাষা না জানলেও কথা চালানো, পথ খুঁজে পাওয়া, অনুমতি নেওয়া আর বিপদে সাহায্য ডাকা — হজ-উমরাহয়
+  ফোনের কয়েকটি অ্যাপ সত্যিই কাজে লাগে। নিচে বাছাই করা অ্যাপ, আর যিয়ারতের বাইরে হাজীরা যেসব জাদুঘর ও
+  জায়গায় সবচেয়ে বেশি যান।</p>
+  <div class="note warn"><p><strong>দেশে থাকতেই ইনস্টল করুন ও একবার চালিয়ে দেখুন।</strong> অ্যাপের ফিচার ও নিয়ম প্রতি মৌসুমে বদলায় —
+  এখানে সাধারণ ধারণা দেওয়া হলো। শুধু Play Store / App Store থেকে নামান, প্রকাশকের নাম মিলিয়ে নিন।
+  কোনো অ্যাপের সাথে এই গাইডের সম্পর্ক নেই। আর অনুবাদ অ্যাপে মাসআলা জিজ্ঞেস করবেন না — সেটি আলেমের কাছে।</p></div>
+</section>
+
+<section class="wrap section-sm">
+  <h2 id="apps">📱 দরকারি অ্যাপ ও অনলাইন টুল</h2>
+  <div id="toolsOut"></div>
+</section>
+
+<section class="wrap section-sm">
+  <h2 id="places">📍 জনপ্রিয় দর্শনীয় স্থান</h2>
+  <p class="lead">এগুলো ইবাদতের অংশ নয় — হজের পর হাতে সময় থাকলে হাজীরা যেসব জাদুঘর ও জায়গায় সবচেয়ে বেশি যান।
+  ফজিলতপূর্ণ যিয়ারতের স্থানগুলো (হেরা, সওর, উহুদ, কুবা…) আলাদা পাতায় আছে।</p>
+  <div id="placesOut"></div>
+
+  <div class="divider"></div>
+  <div class="grid g3">
+    <a class="card" href="/map"><div class="tile-ico">🗺️</div><h3>মক্কার যিয়ারত</h3>
+      <p>হেরা, সওর, মিনা, আরাফা — ১৭টি স্থান, হাদীসসহ।</p></a>
+    <a class="card" href="/madinah"><div class="tile-ico">🕌</div><h3>মদিনার যিয়ারত</h3>
+      <p>মসজিদে নববী, কুবা, উহুদ, বাকী — ১১টি স্থান।</p></a>
+    <a class="card" href="/arabic"><div class="tile-ico">🗣️</div><h3>আরবি ও ৬ ভাষায় আলাপ</h3>
+      <p>অনুবাদ অ্যাপ না চললেও কাজ চালানোর বাক্য।</p></a>
+  </div>
+</section>
+
+<script type="module">
+import { mount } from '/js/shell.js?v=28';
+import { TOOL_CATS, TOOLS, PLACE_CITIES, PLACES } from '/js/data-tools.js?v=28';
+import { track } from '/js/analytics.js?v=28';
+mount();
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+const bn  = s => String(s).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+const ext = u => /^https?:/.test(u) ? ' target="_blank" rel="noopener"' : '';
+
+document.getElementById('ebT').textContent = `📱 ${bn(TOOLS.length)}টি অ্যাপ ও টুল · ${bn(PLACES.length)}টি দর্শনীয় স্থান`;
+
+document.getElementById('toolsOut').innerHTML = TOOL_CATS.map(cat => `
+  <h3 class="cat-h" id="cat-${cat.id}">${cat.icon} ${esc(cat.name)}</h3>
+  <div class="grid g2">${TOOLS.filter(t => t.cat === cat.id).map(t => `
+    <article class="card tool" id="${t.id}">
+      <h3><span class="t-ico">${t.icon}</span>${esc(t.name)}</h3>
+      <p class="t-by">${esc(t.by)}</p>
+      <p>${esc(t.what)}</p>
+      ${t.how ? `<p class="t-how">💡 ${esc(t.how)}</p>` : ''}
+      ${t.url ? `<div class="t-links"><a class="t-link" data-t="${t.id}" href="${t.url}"${ext(t.url)}>↗ ${/^https?:/.test(t.url) ? esc(t.url.replace(/^https?:\/\/(www\.)?/, '')) : 'খুলুন'}</a></div>` : ''}
+    </article>`).join('')}</div>`).join('');
+
+document.getElementById('placesOut').innerHTML = PLACE_CITIES.map(city => `
+  <h3 class="cat-h" id="city-${city.id}">${city.icon} ${esc(city.name)}</h3>
+  <div class="grid g2">${PLACES.filter(p => p.city === city.id).map(p => `
+    <article class="card place" id="${p.id}">
+      <h3>${esc(p.name)}</h3>
+      <p class="pl-ar">${p.ar}</p>
+      <p>${esc(p.what)}</p>
+      ${p.tip ? `<p class="t-how">💡 ${esc(p.tip)}</p>` : ''}
+      <div class="t-links">
+        <a class="t-link" data-t="${p.id}" href="${p.map}" target="_blank" rel="noopener">📍 ম্যাপে দেখুন</a>
+        ${p.see ? `<a class="t-link" href="${p.see}">🔗 যিয়ারতের পাতায়</a>` : ''}
+      </div>
+    </article>`).join('')}</div>`).join('');
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('a.t-link[data-t]');
+  if (a) track('tools_click', { id: a.dataset.t });
+});
+
+if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+</script>
+</body>
+</html>

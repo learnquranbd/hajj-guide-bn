@@ -10,7 +10,7 @@
    - GA, ম্যাপ টাইল      → কখনো ক্যাশ নয় (অগণিত ও অর্থহীন)
    ------------------------------------------------------------------ */
 
-const CACHE = 'hajj-guide-v25';   /* bump-version.sh এটি হালনাগাদ করে */
+const CACHE = 'hajj-guide-v28';   /* bump-version.sh এটি হালনাগাদ করে */
 /* Firebase-এ cleanUrls চালু — /offline.html রিডাইরেক্ট হয়; দুটোই রাখা হয়,
    কারণ লোকাল সার্ভারে clean URL কাজ করে না */
 const OFFLINE = '/offline';
@@ -20,16 +20,16 @@ const OFFLINE_ALT = '/offline.html';
 const CORE = [
   '/', '/steps', '/umrah', '/rules', '/dua', '/salat',
   '/map', '/madinah', '/timeline', '/faq', '/terms',
-  '/tips', '/checklist', '/qiran', '/ifrad', '/sources', '/inspire', '/arabic',
+  '/tips', '/checklist', '/qiran', '/ifrad', '/sources', '/inspire', '/arabic', '/tools',
   OFFLINE, OFFLINE_ALT,
-  '/css/style.css?v=25',
-  '/js/shell.js?v=25', '/js/store.js?v=25', '/js/analytics.js?v=25', '/js/firebase-config.js?v=25',
-  '/js/data-steps.js?v=25', '/js/data-dua.js?v=25', '/js/data-salat.js?v=25',
-  '/js/data-checklist.js?v=25', '/js/data-umrah.js?v=25', '/js/data-faq.js?v=25',
-  '/js/data-terms.js?v=25', '/js/data-ziyarat.js?v=25', '/js/data-hajj-types.js?v=25',
-  '/js/data-timeline.js?v=25', '/js/data-quran-hadith.js?v=25',
-  '/js/data-inspiration.js?v=25', '/js/data-arabic.js?v=25', '/js/data-janazah.js?v=25', '/js/dua-modal.js?v=25',
-  '/js/data-madinah-ziyarat.js?v=25', '/js/ziyarat-render.js?v=25',
+  '/css/style.css?v=28',
+  '/js/shell.js?v=28', '/js/store.js?v=28', '/js/analytics.js?v=28', '/js/firebase-config.js?v=28',
+  '/js/data-steps.js?v=28', '/js/data-dua.js?v=28', '/js/data-salat.js?v=28',
+  '/js/data-checklist.js?v=28', '/js/data-umrah.js?v=28', '/js/data-faq.js?v=28',
+  '/js/data-terms.js?v=28', '/js/data-ziyarat.js?v=28', '/js/data-hajj-types.js?v=28',
+  '/js/data-timeline.js?v=28', '/js/data-quran-hadith.js?v=28',
+  '/js/data-inspiration.js?v=28', '/js/data-arabic.js?v=28', '/js/data-tools.js?v=28', '/js/data-janazah.js?v=28', '/js/dua-modal.js?v=28',
+  '/js/data-madinah-ziyarat.js?v=28', '/js/ziyarat-render.js?v=28',
   '/img/icon-192.png', '/img/icon-512.png'
 ];
 
