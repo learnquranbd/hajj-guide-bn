@@ -82,8 +82,8 @@ Also: `/404`, `/offline`. `sitemap.xml` lists 19 URLs.
 - BN: Hind Siliguri font, Bengali digits ০১২৩. EN: Inter font, Western digits.
 
 ## /arabic "Talk with fellow pilgrims" + /tools (added 2026-10-06)
-- `GREETINGS` (58) in `data-arabic.js`, filtered by `GREET_CATS`: greet 22 · chat 12 ·
-  ibadah 12 · help 12. Each entry: `ar` + `tr` + `w` (word-by-word rule applies) and one
+- `GREETINGS` (73) in `data-arabic.js`, filtered by `GREET_CATS`: greet 26 · chat 16 ·
+  ibadah 16 · help 15. Each entry: `ar` + `tr` + `w` (word-by-word rule applies) and one
   `[text, pronunciation]` pair per `GREET_LANGS` key — `ms` `idn` `tur` `ur` `fa` `hau`.
   `GREET_LANGS` carries `code` (BCP-47, used for `lang=` and TTS) and `rtl` (Urdu, Persian).
   Pronunciation is Bangla script in BN and English respelling in EN; the phrase text
