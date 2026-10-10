@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=29">
+<link rel="stylesheet" href="/css/style.css?v=30">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -77,8 +77,9 @@
   <div class="empty-note" id="srcEmpty" hidden>এই শব্দে কিছু পাওয়া যায়নি। অন্য শব্দে চেষ্টা করুন।</div>
 
   <div class="note warn" style="margin-top:26px"><p><strong>সূত্র সম্পর্কে:</strong>
-  যেখানে হাদীসের নম্বর সম্পর্কে সম্পূর্ণ নিশ্চিত হওয়া যায়নি, সেখানে ইচ্ছাকৃতভাবে
-  <strong>শুধু সংগ্রহের নাম</strong> দেওয়া হয়েছে — আন্দাজে নম্বর লেখা হয়নি।
+  প্রতিটি হাদীসের সাথে এখন <strong>গ্রন্থের নাম ও হাদীস নম্বর</strong> দেওয়া হয়েছে —
+  sunnah.com-এর নম্বর অনুযায়ী (সহীহ মুসলিম ফুয়াদ আব্দুল বাকীর নম্বরায়নে), প্রতিটি বর্ণনার মূল পাঠের সাথে মিলিয়ে।
+  কোনো বর্ণনার নম্বর নিশ্চিত না হলে শুধু সংগ্রহের নাম দেওয়া হবে — আন্দাজে নম্বর লেখা হয় না।
   যে বর্ণনাগুলোর সনদ নিয়ে মুহাদ্দিসদের মতভেদ আছে, সেগুলোতে তা আলাদা করে উল্লেখ করা হয়েছে।
   গবেষণা বা দলিল হিসেবে ব্যবহারের আগে মূল গ্রন্থের সাথে মিলিয়ে নিন।</p></div>
 </section>
@@ -96,9 +97,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=29';
-import { VERSES, HADITHS, SOURCE_CATS } from '/js/data-quran-hadith.js?v=29';
-import { track } from '/js/analytics.js?v=29';
+import { mount } from '/js/shell.js?v=30';
+import { VERSES, HADITHS, SOURCE_CATS } from '/js/data-quran-hadith.js?v=30';
+import { track } from '/js/analytics.js?v=30';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

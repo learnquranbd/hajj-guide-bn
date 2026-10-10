@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=29">
+<link rel="stylesheet" href="/css/style.css?v=30">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
   integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
   crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -388,12 +388,12 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=29';
-import { track } from '/js/analytics.js?v=29';
-import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=29';
-import { DUAS } from '/js/data-dua.js?v=29';
-import { placeCard, adabBlock, initPlaceMaps } from '/js/ziyarat-render.js?v=29';
-import { initDuaModal } from '/js/dua-modal.js?v=29';
+import { mount } from '/js/shell.js?v=30';
+import { track } from '/js/analytics.js?v=30';
+import { MAKKAH_ZIYARAT, ZIYARAT_ADAB } from '/js/data-ziyarat.js?v=30';
+import { DUAS } from '/js/data-dua.js?v=30';
+import { placeCard, adabBlock, initPlaceMaps } from '/js/ziyarat-render.js?v=30';
+import { initDuaModal } from '/js/dua-modal.js?v=30';
 mount();
 /* দোয়ার চিপ মডালে খোলে — ব্যবহারকারী ম্যাপের পাতাতেই থাকেন */
 initDuaModal(id => track('ziyarat_dua', { dua: id }));
@@ -450,7 +450,7 @@ const PLACES = [
   { id:'taneem',  name:'মসজিদে আয়েশা (তানঈম)', icon:'🤍', lat:21.4677, lng:39.8014, z:16,
     d:'মক্কার বাসিন্দা ও মক্কায় অবস্থানরতদের জন্য উমরাহর মীকাত। মসজিদুল হারাম থেকে প্রায় ৭ কিমি উত্তরে। অতিরিক্ত উমরাহ করতে চাইলে এখান থেকে ইহরাম বাঁধতে হয়।' },
   { id:'nabawi',  name:'মসজিদে নববী (মদিনা)', icon:'🟢', lat:24.4672, lng:39.6112, z:16,
-    d:'মদিনা মুনাওয়ারা — নবীজি (সাঃ)-এর মসজিদ ও রওজা শরিফ। এখানে এক নামাজ এক হাজার নামাজের সমান। মক্কা থেকে প্রায় ৪৫০ কিমি উত্তরে, সড়কপথে ৫–৬ ঘণ্টা বা হারামাইন ট্রেনে ২.৫ ঘণ্টা।' }
+    d:'মদিনা মুনাওয়ারা — নবীজি (সাঃ)-এর মসজিদ ও রওজা শরিফ। এখানে এক নামাজ এক হাজার নামাজের সমান (সহীহ বুখারী ১১৯০)। মক্কা থেকে প্রায় ৪৫০ কিমি উত্তরে, সড়কপথে ৫–৬ ঘণ্টা বা হারামাইন ট্রেনে ২.৫ ঘণ্টা।' }
 ];
 
 const esc = t => String(t).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

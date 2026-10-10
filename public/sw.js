@@ -10,7 +10,7 @@
    - GA, ম্যাপ টাইল      → কখনো ক্যাশ নয় (অগণিত ও অর্থহীন)
    ------------------------------------------------------------------ */
 
-const CACHE = 'hajj-guide-v29';   /* bump-version.sh এটি হালনাগাদ করে */
+const CACHE = 'hajj-guide-v30';   /* bump-version.sh এটি হালনাগাদ করে */
 /* Firebase-এ cleanUrls চালু — /offline.html রিডাইরেক্ট হয়; দুটোই রাখা হয়,
    কারণ লোকাল সার্ভারে clean URL কাজ করে না */
 const OFFLINE = '/offline';
@@ -22,14 +22,14 @@ const CORE = [
   '/map', '/madinah', '/timeline', '/faq', '/terms',
   '/tips', '/checklist', '/qiran', '/ifrad', '/sources', '/inspire', '/arabic', '/tools',
   OFFLINE, OFFLINE_ALT,
-  '/css/style.css?v=29',
-  '/js/shell.js?v=29', '/js/store.js?v=29', '/js/analytics.js?v=29', '/js/firebase-config.js?v=29',
-  '/js/data-steps.js?v=29', '/js/data-dua.js?v=29', '/js/data-salat.js?v=29',
-  '/js/data-checklist.js?v=29', '/js/data-umrah.js?v=29', '/js/data-faq.js?v=29',
-  '/js/data-terms.js?v=29', '/js/data-ziyarat.js?v=29', '/js/data-hajj-types.js?v=29',
-  '/js/data-timeline.js?v=29', '/js/data-quran-hadith.js?v=29',
-  '/js/data-inspiration.js?v=29', '/js/data-arabic.js?v=29', '/js/data-tools.js?v=29', '/js/data-janazah.js?v=29', '/js/dua-modal.js?v=29',
-  '/js/data-madinah-ziyarat.js?v=29', '/js/ziyarat-render.js?v=29',
+  '/css/style.css?v=30',
+  '/js/shell.js?v=30', '/js/store.js?v=30', '/js/analytics.js?v=30', '/js/firebase-config.js?v=30',
+  '/js/data-steps.js?v=30', '/js/data-dua.js?v=30', '/js/data-salat.js?v=30',
+  '/js/data-checklist.js?v=30', '/js/data-umrah.js?v=30', '/js/data-faq.js?v=30',
+  '/js/data-terms.js?v=30', '/js/data-ziyarat.js?v=30', '/js/data-hajj-types.js?v=30',
+  '/js/data-timeline.js?v=30', '/js/data-quran-hadith.js?v=30',
+  '/js/data-inspiration.js?v=30', '/js/data-arabic.js?v=30', '/js/data-tools.js?v=30', '/js/data-janazah.js?v=30', '/js/dua-modal.js?v=30',
+  '/js/data-madinah-ziyarat.js?v=30', '/js/ziyarat-render.js?v=30',
   '/img/icon-192.png', '/img/icon-512.png'
 ];
 
