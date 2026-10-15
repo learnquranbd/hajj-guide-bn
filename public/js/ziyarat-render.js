@@ -81,8 +81,8 @@ function drawMap(el) {
     map.dragging.disable();
     el.addEventListener('click', () => { map.dragging.enable(); map.scrollWheelZoom.enable(); }, { once: true });
   }).catch(() => {
-    el.innerHTML = '<p class="muted" style="padding:14px;margin:0">ম্যাপটি লোড করা যায়নি। '
-      + 'উপরের “ম্যাপে দেখুন” লিংকটি ব্যবহার করুন।</p>';
+    el.innerHTML = '<p class="muted" style="padding:14px;margin:0">ম্যাপটি লোড হয়নি। '
+      + 'উপরের “ম্যাপে দেখুন” লিংকে চাপুন।</p>';
   });
 }
 
@@ -130,7 +130,7 @@ export function placeCard(p, opt = {}) {
     ${fadl}
     ${p.visit ? `<p class="muted" style="margin-top:10px">🧭 ${p.visit}</p>` : ''}
     ${p.warn ? `<div class="note warn"><p>${p.warn}</p></div>` : ''}
-    ${p.flag ? `<p class="ziy-flag">ℹ️ <strong>যা নিশ্চিত নই:</strong> ${p.flag}</p>` : ''}
+    ${p.flag ? `<p class="ziy-flag">ℹ️ <strong>যে বিষয়ে নিশ্চিত নই:</strong> ${p.flag}</p>` : ''}
     ${chips ? `<div class="dua-chips">${chips}</div>` : ''}
     ${q ? `<p style="margin:14px 0 0"><a class="chip" target="_blank" rel="noopener noreferrer"
        href="https://www.google.com/maps/search/?api=1&query=${q}" data-ziy="${p.id}">↗ ম্যাপে দেখুন</a></p>

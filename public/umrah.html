@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -73,16 +73,16 @@
   <div class="stats" style="margin-top:22px" id="uFacts"></div>
 
   <div class="note tip" style="margin-top:22px"><p><strong>হজ করতে যাচ্ছেন?</strong>
-  হজ্জে তামাত্তুতে প্রথমেই এই উমরাহটিই করতে হয় — সেক্ষেত্রে
+  হজ্জে তামাত্তুতে প্রথমেই এই উমরাহ করতে হয়। সেক্ষেত্রে
   <a href="/steps">ধাপে ধাপে হজ</a> পৃষ্ঠা অনুসরণ করুন, সেখানে উমরাহ পর্বটি হজের ক্রমে সাজানো আছে।
-  এই পৃষ্ঠাটি তাঁদের জন্য যাঁরা <strong>শুধু উমরাহ</strong> করতে যাচ্ছেন।</p></div>
+  এই পাতাটি তাঁদের জন্য, যাঁরা <strong>শুধু উমরাহ</strong> করতে যাচ্ছেন।</p></div>
 </section>
 
 <div class="hizam" aria-hidden="true"></div>
 
 <section class="wrap section-sm">
   <h2>উমরাহর ধাপসমূহ</h2>
-  <p class="lead" style="margin-bottom:22px">নিচের ক্রমটি হুবহু অনুসরণ করুন — ইহরাম বাঁধা থেকে চুল কেটে হালাল হওয়া পর্যন্ত।</p>
+  <p class="lead" style="margin-bottom:22px">ইহরাম বাঁধা থেকে চুল কেটে হালাল হওয়া পর্যন্ত, নিচের ক্রম হুবহু মেনে চলুন।</p>
   <ul class="tl" id="uSteps"></ul>
 </section>
 
@@ -95,7 +95,7 @@
   <div class="divider"></div>
   <div class="grid g3">
     <a class="card" href="/dua"><div class="tile-ico">🤲</div><h3>উমরাহর দোয়া</h3>
-      <p>তালবিয়া, তাওয়াফ ও সাঈর মাসনূন দোয়া — শব্দে শব্দে অর্থসহ।</p></a>
+      <p>তালবিয়া, তাওয়াফ ও সাঈর মাসনূন দোয়া, শব্দে শব্দে অর্থসহ।</p></a>
     <a class="card" href="/salat"><div class="tile-ico">🧎</div><h3>নামাজ শব্দে শব্দে</h3>
       <p>হারামে নামাজের ফজিলত, কসর-জমা এবং নামাজের প্রতিটি দোয়ার অর্থ।</p></a>
     <a class="card" href="/map"><div class="tile-ico">🗺️</div><h3>মানচিত্র</h3>
@@ -104,11 +104,11 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { UMRAH_INTRO, UMRAH_STEPS, UMRAH_NOTES } from '/js/data-umrah.js?v=30';
-import { DUAS } from '/js/data-dua.js?v=30';
-import { track } from '/js/analytics.js?v=30';
-import { initDuaModal } from '/js/dua-modal.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { UMRAH_INTRO, UMRAH_STEPS, UMRAH_NOTES } from '/js/data-umrah.js?v=31';
+import { DUAS } from '/js/data-dua.js?v=31';
+import { track } from '/js/analytics.js?v=31';
+import { initDuaModal } from '/js/dua-modal.js?v=31';
 mount();
 /* দোয়ার চিপ এখন মডালে খোলে — ব্যবহারকারী ধাপের পাতাতেই থাকেন */
 initDuaModal(id => track('umrah_dua', { dua: id }));

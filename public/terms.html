@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   h2{scroll-margin-top:96px}
 </style>
@@ -48,8 +48,8 @@
 <section class="wrap section-sm">
   <span class="eyebrow" id="ebT">📖 পরিভাষা</span>
   <h1>হজ-উমরাহর শব্দগুলোর অর্থ</h1>
-  <p class="lead">হজের বইয়ে ও মুয়াল্লিমের মুখে যে শব্দগুলো বারবার আসে — ইযতিবা, রমল, উকুফ, নফর আউয়াল —
-  প্রতিটির সহজ বাংলা অর্থ, আরবি বানান ও উচ্চারণ এক জায়গায়।</p>
+  <p class="lead">হজের বইয়ে আর মুয়াল্লিমের মুখে যে শব্দগুলো বারবার শোনেন (ইযতিবা, রমল, উকুফ, নফর আউয়াল),
+  সেগুলোর সহজ বাংলা অর্থ, আরবি বানান ও উচ্চারণ এখানে এক জায়গায়।</p>
 
   <div class="search-wrap">
     <span class="s-ico">🔍</span>
@@ -66,15 +66,15 @@
   </div>
 
   <div class="note" style="margin-top:26px"><p><strong>একটি শব্দ, দুটি অর্থ:</strong>
-  “কসর” শব্দটি দুই জায়গায় দুই অর্থে আসে — <strong>চুল ছাঁটা</strong> এবং
-  <strong>সফরে নামাজ সংক্ষেপ করা</strong>। দুটি আলাদা এন্ট্রি হিসেবে দেওয়া আছে,
+  “কসর” শব্দটি দুই জায়গায় দুই অর্থে আসে: <strong>চুল ছাঁটা</strong> এবং
+  <strong>সফরে নামাজ কমিয়ে পড়া</strong>। দুটি আলাদা করে দেওয়া আছে,
   গুলিয়ে ফেলবেন না।</p></div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { TERMS, TERM_GROUPS } from '/js/data-terms.js?v=30';
-import { track } from '/js/analytics.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { TERMS, TERM_GROUPS } from '/js/data-terms.js?v=31';
+import { track } from '/js/analytics.js?v=31';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

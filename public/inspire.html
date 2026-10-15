@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -61,9 +61,9 @@
 <section class="wrap section-sm">
   <span class="eyebrow" id="ebI">🌱 হজের প্রেরণা</span>
   <h1>অন্তরের প্রস্তুতি</h1>
-  <p class="lead">নিয়ম-কানুন সব শিখে ফেলার পরও একটি প্রশ্ন থেকে যায় — “আমি কী নিয়ে যাচ্ছি,
-  আর কী নিয়ে ফিরব?” ক্লান্তি, ভিড় আর অপেক্ষার মাঝে যে কথাগুলো ধরে রাখে,
-  সেগুলোই এখানে — একজন মুয়াল্লিমের কণ্ঠে।</p>
+  <p class="lead">নিয়ম-কানুন সব শেখার পরও একটি প্রশ্ন থেকে যায়: “আমি কী নিয়ে যাচ্ছি,
+  আর কী নিয়ে ফিরব?” ক্লান্তি, ভিড় আর অপেক্ষার মধ্যে যে কথাগুলো মনকে শক্ত রাখে,
+  সেগুলোই এখানে, একজন মুয়াল্লিমের মুখে শোনার মতো করে।</p>
 
   <div class="search-wrap">
     <span class="s-ico">🔍</span>
@@ -77,7 +77,7 @@
   <div class="empty-note" id="inspEmpty" hidden>এই শব্দে কিছু পাওয়া যায়নি। অন্য শব্দে চেষ্টা করুন।</div>
 
   <div class="note tip" style="margin-top:26px"><p><strong>একটি কথা মনে রাখবেন:</strong>
-  অনুভূতি না এলে নিজেকে দোষ দেবেন না। কাবা দেখে কারও চোখে পানি আসে, কারও আসে না —
+  অনুভূতি না এলে নিজেকে দোষ দেবেন না। কাবা দেখে কারও চোখে পানি আসে, কারও আসে না;
   দুজনের হজই কবুল হতে পারে। আল্লাহ অন্তরের নিয়ত দেখেন, চোখের পানি মাপেন না।</p></div>
 </section>
 
@@ -85,18 +85,18 @@
   <div class="divider"></div>
   <div class="grid g3">
     <a class="card" href="/sources"><div class="tile-ico">📜</div><h3>কুরআন ও হাদীস</h3>
-      <p>১৬টি আয়াত ও ১৮টি হাদীস — শব্দে শব্দে অর্থসহ।</p></a>
+      <p>১৬টি আয়াত ও ১৮টি হাদীস, শব্দে শব্দে অর্থসহ।</p></a>
     <a class="card" href="/dua"><div class="tile-ico">🤲</div><h3>মাসনূন দোয়া</h3>
-      <p>৩২টি দোয়া — ফজিলত, সূত্র ও শব্দে শব্দে অর্থ।</p></a>
+      <p>৩২টি দোয়া, সাথে ফজিলত, সূত্র ও শব্দে শব্দে অর্থ।</p></a>
     <a class="card" href="/tips"><div class="tile-ico">💡</div><h3>ব্যবহারিক টিপস</h3>
-      <p>শরীর, ভিড় ও মন — মাঠে যা সত্যিই কাজে লাগে।</p></a>
+      <p>শরীর, ভিড় আর মন সামলানো; হজে গিয়ে যা সত্যিই কাজে লাগে।</p></a>
   </div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { INSPIRE, INSPIRE_CATS } from '/js/data-inspiration.js?v=30';
-import { track } from '/js/analytics.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { INSPIRE, INSPIRE_CATS } from '/js/data-inspiration.js?v=31';
+import { track } from '/js/analytics.js?v=31';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

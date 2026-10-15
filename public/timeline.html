@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -62,12 +62,12 @@
   <span class="eyebrow">🕐 ৮ → ১৩ জিলহজ</span>
   <h1>হজের ৫ দিন — ঘণ্টা ধরে</h1>
   <p class="lead"><a href="/steps">ধাপে ধাপে</a> পৃষ্ঠায় আছে <em>কী</em> করতে হবে।
-  এখানে আছে <em>কখন</em> — কোন ওয়াক্তে কোথায় থাকবেন, কখন রওনা দেবেন, কখন বিশ্রাম নেওয়ার
-  সুযোগ আছে, আর কখন ভিড় সবচেয়ে বেশি।</p>
+  এখানে আছে <em>কখন</em>: কোন ওয়াক্তে কোথায় থাকবেন, কখন রওনা দেবেন, কখন একটু বিশ্রামের
+  সুযোগ পাবেন, আর কখন ভিড় সবচেয়ে বেশি।</p>
 
-  <div class="note warn"><p><strong>সময়গুলো নামাজের ওয়াক্ত ধরে লেখা</strong> — ঘড়ির কাঁটা ধরে নয়।
-  কারণ প্রতি বছর ও প্রতিটি তাঁবুর অবস্থান অনুযায়ী প্রকৃত সময় বদলায়। বাসের সময়সূচি ও
-  কর্তৃপক্ষের নির্দেশনা সবসময় অগ্রাধিকার পাবে — মুয়াল্লিমের কথা শুনুন।</p></div>
+  <div class="note warn"><p><strong>সময়গুলো নামাজের ওয়াক্ত ধরে লেখা</strong>, ঘড়ি ধরে নয়।
+  কারণ বছরভেদে ও তাঁবুর অবস্থানভেদে আসল সময় বদলে যায়। বাসের সময়সূচি ও
+  কর্তৃপক্ষের নির্দেশনাই আগে মানতে হবে; মুয়াল্লিম যা বলেন, তা শুনুন।</p></div>
 
   <div class="kind-key">
     <span><i class="slot-kind k-amal">🤲</i> ইবাদত</span>
@@ -84,18 +84,18 @@
   <div class="divider"></div>
   <div class="grid g3">
     <a class="card" href="/steps"><div class="tile-ico">🧭</div><h3>ধাপে ধাপে হজ</h3>
-      <p>১৭টি ধাপ — প্রতিটির করণীয়, দোয়া ও সতর্কতা।</p></a>
+      <p>১৭টি ধাপ; প্রতিটি ধাপে কী করবেন, কোন দোয়া পড়বেন, কী খেয়াল রাখবেন।</p></a>
     <a class="card" href="/checklist"><div class="tile-ico">✅</div><h3>চেকলিস্ট</h3>
-      <p>৫৭টি আইটেম টিক দিয়ে মিলিয়ে নিন — অগ্রগতি সংরক্ষিত থাকে।</p></a>
+      <p>৫৭টি বিষয় টিক দিয়ে মিলিয়ে নিন; কতদূর হলো, তা সেভ হয়ে থাকে।</p></a>
     <a class="card" href="/tips"><div class="tile-ico">💡</div><h3>ব্যবহারিক টিপস</h3>
       <p>স্বাস্থ্য, হিটস্ট্রোক, ভিড় ও হারিয়ে গেলে করণীয়।</p></a>
   </div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { TIMELINE } from '/js/data-timeline.js?v=30';
-import { track } from '/js/analytics.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { TIMELINE } from '/js/data-timeline.js?v=31';
+import { track } from '/js/analytics.js?v=31';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

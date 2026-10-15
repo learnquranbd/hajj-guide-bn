@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -65,8 +65,8 @@
   <div class="stats" style="margin-top:22px" id="hFacts"></div>
 
   <div class="note warn" style="margin-top:22px"><p><strong>বাংলাদেশিদের প্রায় সবাই তামাত্তু করেন।</strong>
-  প্যাকেজে হজের ৩–৪ সপ্তাহ আগেই মক্কায় পৌঁছাতে হয়, আর এত দীর্ঘ সময় ইহরামে থাকা বাস্তবে প্রায় অসম্ভব।
-  তাই এই পৃষ্ঠাটি পড়ার আগে নিশ্চিত হয়ে নিন আপনি আসলেই ইফরাদ করছেন —
+  প্যাকেজে হজের ৩–৪ সপ্তাহ আগেই মক্কায় পৌঁছাতে হয়, আর এত লম্বা সময় ইহরাম অবস্থায় থাকা প্রায় অসম্ভব।
+  তাই এই পাতা পড়ার আগে ভালো করে জেনে নিন, আপনি সত্যিই ইফরাদ করছেন কি না।
   সন্দেহ থাকলে <a href="/steps">ধাপে ধাপে তামাত্তু</a> দেখুন, অথবা মুয়াল্লিমের সাথে মিলিয়ে নিন।</p></div>
 </section>
 
@@ -81,7 +81,7 @@
 
 <section class="wrap section-sm">
   <h2 id="steps">ইফরাদ-এর ধাপসমূহ</h2>
-  <p class="lead" style="margin-bottom:22px">ক্রমটি হুবহু অনুসরণ করুন।</p>
+  <p class="lead" style="margin-bottom:22px">নিচের ক্রম হুবহু মেনে চলুন।</p>
   <ul class="tl" id="hSteps"></ul>
 </section>
 
@@ -94,20 +94,20 @@
   <div class="divider"></div>
   <div class="grid g3">
     <a class="card" href="/steps"><div class="tile-ico">🧭</div><h3>তামাত্তু — ধাপে ধাপে</h3>
-      <p>বাংলাদেশিদের প্রায় সবাই যেটি করেন — ৩ পর্বে ১৭টি ধাপ।</p></a>
+      <p>বাংলাদেশিদের প্রায় সবাই যেটি করেন; ৩ পর্বে ১৭টি ধাপ।</p></a>
     <a class="card" href="/qiran"><div class="tile-ico">🔗</div><h3>কিরান হজ</h3>
-      <p>এক ইহরামে উমরাহ ও হজ — হানাফি মতে সর্বোত্তম।</p></a>
+      <p>এক ইহরামে উমরাহ ও হজ; হানাফি মতে এটিই সর্বোত্তম।</p></a>
     <a class="card" href="/rules"><div class="tile-ico">⚖️</div><h3>বিধি-বিধান</h3>
       <p>ফরজ, ওয়াজিব, নিষিদ্ধ কাজ এবং দম ও সদকার সারণি।</p></a>
   </div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { COMPARE, QIRAN, IFRAD } from '/js/data-hajj-types.js?v=30';
-import { DUAS } from '/js/data-dua.js?v=30';
-import { track } from '/js/analytics.js?v=30';
-import { initDuaModal } from '/js/dua-modal.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { COMPARE, QIRAN, IFRAD } from '/js/data-hajj-types.js?v=31';
+import { DUAS } from '/js/data-dua.js?v=31';
+import { track } from '/js/analytics.js?v=31';
+import { initDuaModal } from '/js/dua-modal.js?v=31';
 mount();
 /* দোয়ার চিপ এখন মডালে খোলে — ব্যবহারকারী ধাপের পাতাতেই থাকেন */
 initDuaModal(id => track('hajjtype_dua', { dua: id }));

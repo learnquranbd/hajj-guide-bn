@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   h2{scroll-margin-top:96px}
 </style>
@@ -48,8 +48,8 @@
 <section class="wrap section-sm">
   <span class="eyebrow" id="ebFaq">❓ প্রশ্নোত্তর</span>
   <h1>যে প্রশ্নগুলো সবাই করেন</h1>
-  <p class="lead">হজ ও উমরাহ নিয়ে বাস্তবে যেসব প্রশ্ন বারবার ওঠে — সংক্ষেপে, সরাসরি উত্তর।
-  খুঁজে না পেলে নিচের ঘরে লিখে খুঁজুন।</p>
+  <p class="lead">হজ ও উমরাহ নিয়ে যেসব প্রশ্ন বারবার আসে, সেগুলোর ছোট ও সোজা উত্তর।
+  যা খুঁজছেন তা না পেলে নিচের ঘরে লিখে সার্চ করুন।</p>
 
   <div class="search-wrap">
     <span class="s-ico">🔍</span>
@@ -66,17 +66,17 @@
   </div>
 
   <div class="note warn" style="margin-top:26px"><p><strong>মনে রাখুন:</strong>
-  এখানকার উত্তরগুলো প্রধানত <strong>হানাফি</strong> মত অনুসারে এবং শিক্ষামূলক উদ্দেশ্যে।
-  আপনার নিজের পরিস্থিতি ভিন্ন হতে পারে — বিশেষত দম, সদকা ও নারীদের মাসআলায়।
-  চূড়ান্ত সিদ্ধান্তের আগে আপনার মুয়াল্লিম বা নির্ভরযোগ্য আলেমের সাথে মিলিয়ে নিন।
-  সরকারি নিয়ম, ভিসা ও খরচ প্রতি বছর বদলায় — সেগুলোর জন্য
+  এখানকার উত্তরগুলো মূলত <strong>হানাফি</strong> মত অনুযায়ী, শেখার সুবিধার জন্য লেখা।
+  আপনার নিজের অবস্থা ভিন্ন হতে পারে, বিশেষ করে দম, সদকা ও নারীদের মাসআলায়।
+  শেষ সিদ্ধান্ত নেওয়ার আগে আপনার মুয়াল্লিম বা নির্ভরযোগ্য আলেমের সাথে মিলিয়ে নিন।
+  সরকারি নিয়ম, ভিসা ও খরচ প্রতি বছর বদলায়; সেগুলোর জন্য
   <a href="https://hajj.gov.bd" target="_blank" rel="noopener noreferrer">hajj.gov.bd</a> দেখুন।</p></div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { FAQS, FAQ_CATS } from '/js/data-faq.js?v=30';
-import { track } from '/js/analytics.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { FAQS, FAQ_CATS } from '/js/data-faq.js?v=31';
+import { track } from '/js/analytics.js?v=31';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));

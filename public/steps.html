@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .step-card{margin-bottom:0}
   .step-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
@@ -66,8 +66,8 @@
 <section class="wrap section-sm">
   <span class="eyebrow">🧭 পর্ব ১ → ৩ · মোট ১৭ ধাপ</span>
   <h1>ধাপে ধাপে হজ্জে তামাত্তু</h1>
-  <p class="lead">নিচের ক্রমটি হুবহু অনুসরণ করুন। প্রতিটি ধাপ শেষ করে টিক দিন — আপনার অগ্রগতি
-  নিজে থেকেই সংরক্ষিত হবে, পরে ফিরে এলেও যেখানে ছিলেন সেখান থেকেই দেখতে পাবেন।</p>
+  <p class="lead">নিচের ক্রম হুবহু মেনে চলুন। প্রতিটি ধাপ শেষ করে টিক দিন; কতদূর এগোলেন তা
+  নিজে থেকেই সেভ হয়ে থাকবে, পরে ফিরে এলেও যেখানে ছিলেন সেখান থেকেই শুরু করতে পারবেন।</p>
 
   <div class="sticky-prog">
     <div class="row"><strong id="pText">০টি ধাপ সম্পন্ন</strong><span class="muted" id="pPct">০%</span></div>
@@ -77,19 +77,19 @@
   <div id="out"></div>
 
   <div class="note tip" style="margin-top:30px">
-    <p><strong>মনে রাখুন:</strong> হজের আমলে ভুল হয়ে গেলে ঘাবড়াবেন না। বেশিরভাগ ভুলের প্রতিকার আছে —
-    কোনটিতে দম, কোনটিতে সদকা তা <a href="/rules#dam">বিধি-বিধান পৃষ্ঠায়</a> দেখুন। সন্দেহ হলে
+    <p><strong>মনে রাখুন:</strong> হজের আমলে ভুল হয়ে গেলে ঘাবড়াবেন না। বেশিরভাগ ভুলেরই প্রতিকার আছে।
+    কোনটিতে দম, কোনটিতে সদকা, তা <a href="/rules#dam">বিধি-বিধান পৃষ্ঠায়</a> দেখুন। সন্দেহ হলে
     সাথে সাথে আপনার মুয়াল্লিম বা দলের আলেমের সাথে কথা বলুন।</p>
   </div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { PHASES, KIND_CLASS } from '/js/data-steps.js?v=30';
-import { DUAS } from '/js/data-dua.js?v=30';
-import { get, set, onChange } from '/js/store.js?v=30';
-import { initDuaModal } from '/js/dua-modal.js?v=30';
-import { track } from '/js/analytics.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { PHASES, KIND_CLASS } from '/js/data-steps.js?v=31';
+import { DUAS } from '/js/data-dua.js?v=31';
+import { get, set, onChange } from '/js/store.js?v=31';
+import { initDuaModal } from '/js/dua-modal.js?v=31';
+import { track } from '/js/analytics.js?v=31';
 mount();
 /* দোয়ার চিপ এখন মডালে খোলে — ব্যবহারকারী ধাপের পাতাতেই থাকেন */
 initDuaModal(id => track('step_dua', { dua: id }));
@@ -150,7 +150,7 @@ onChange(state => {
     if (on) done++;
   });
   const pct = Math.round(done / total * 100);
-  document.getElementById('pText').textContent = `${bn(done)}টি ধাপ সম্পন্ন — বাকি ${bn(total - done)}টি`;
+  document.getElementById('pText').textContent = `${bn(done)}টি ধাপ সম্পন্ন, বাকি ${bn(total - done)}টি`;
   document.getElementById('pPct').textContent = bn(pct) + '%';
   document.getElementById('pBar').style.width = pct + '%';
 

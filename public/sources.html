@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .u-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-mute);font-size:.88rem;margin-bottom:12px}
   .do-list{margin:0;padding-inline-start:26px;list-style-type:bengali}
@@ -62,8 +62,8 @@
   <span class="eyebrow" id="ebS">📜 কুরআন ও হাদীস</span>
   <h1>হজের পেছনের দলিল</h1>
   <p class="lead">প্রতিটি আমলের পেছনে একটি আয়াত বা হাদীস আছে। কেন তাওয়াফ সাতবার,
-  কেন আরাফাতেই দাঁড়াতে হয়, কেন ঝগড়া করা নিষেধ — উৎস জানা থাকলে আমলটি আর
-  নিয়ম থাকে না, অর্থ হয়ে যায়।</p>
+  কেন আরাফাতেই অবস্থান করতে হয়, কেন ঝগড়া করা নিষেধ; দলিল জানা থাকলে আমলটি আর
+  শুধু নিয়ম থাকে না, তার অর্থ বুঝে করা যায়।</p>
 
   <div class="search-wrap">
     <span class="s-ico">🔍</span>
@@ -77,9 +77,9 @@
   <div class="empty-note" id="srcEmpty" hidden>এই শব্দে কিছু পাওয়া যায়নি। অন্য শব্দে চেষ্টা করুন।</div>
 
   <div class="note warn" style="margin-top:26px"><p><strong>সূত্র সম্পর্কে:</strong>
-  প্রতিটি হাদীসের সাথে এখন <strong>গ্রন্থের নাম ও হাদীস নম্বর</strong> দেওয়া হয়েছে —
-  sunnah.com-এর নম্বর অনুযায়ী (সহীহ মুসলিম ফুয়াদ আব্দুল বাকীর নম্বরায়নে), প্রতিটি বর্ণনার মূল পাঠের সাথে মিলিয়ে।
-  কোনো বর্ণনার নম্বর নিশ্চিত না হলে শুধু সংগ্রহের নাম দেওয়া হবে — আন্দাজে নম্বর লেখা হয় না।
+  প্রতিটি হাদীসের সাথে এখন <strong>গ্রন্থের নাম ও হাদীস নম্বর</strong> দেওয়া হয়েছে।
+  নম্বরগুলো sunnah.com অনুযায়ী (সহীহ মুসলিমের ক্ষেত্রে ফুয়াদ আব্দুল বাকীর নম্বর), প্রতিটি বর্ণনার মূল পাঠের সাথে মিলিয়ে দেওয়া।
+  কোনো বর্ণনার নম্বর নিশ্চিত না হলে শুধু গ্রন্থের নাম দেওয়া হবে; আন্দাজে নম্বর লেখা হয় না।
   যে বর্ণনাগুলোর সনদ নিয়ে মুহাদ্দিসদের মতভেদ আছে, সেগুলোতে তা আলাদা করে উল্লেখ করা হয়েছে।
   গবেষণা বা দলিল হিসেবে ব্যবহারের আগে মূল গ্রন্থের সাথে মিলিয়ে নিন।</p></div>
 </section>
@@ -88,7 +88,7 @@
   <div class="divider"></div>
   <div class="grid g3">
     <a class="card" href="/dua"><div class="tile-ico">🤲</div><h3>মাসনূন দোয়া</h3>
-      <p>৩২টি দোয়া — আরবি, উচ্চারণ ও শব্দে শব্দে অর্থ।</p></a>
+      <p>৩২টি দোয়া, আরবি, উচ্চারণ ও শব্দে শব্দে অর্থসহ।</p></a>
     <a class="card" href="/salat"><div class="tile-ico">🧎</div><h3>নামাজ শব্দে শব্দে</h3>
       <p>নামাজের দোয়া ও ৯টি সূরা, আয়াত ধরে ধরে।</p></a>
     <a class="card" href="/terms"><div class="tile-ico">📖</div><h3>পরিভাষা</h3>
@@ -97,9 +97,9 @@
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { VERSES, HADITHS, SOURCE_CATS } from '/js/data-quran-hadith.js?v=30';
-import { track } from '/js/analytics.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { VERSES, HADITHS, SOURCE_CATS } from '/js/data-quran-hadith.js?v=31';
+import { track } from '/js/analytics.js?v=31';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
@@ -140,7 +140,7 @@ const card = x => {
     ${x.ar ? `<div class="ar-box"><p class="ar">${x.ar}</p></div>` : ''}
     ${x.tr ? `<div class="row-tr"><b>বাংলা উচ্চারণ</b><p class="translit" style="margin:0">${esc(x.tr)}</p></div>` : ''}
     <div class="row-tr"><b>অর্থ</b><p class="meaning" style="margin:0">${esc(x.bn)}</p></div>
-    <div class="note tip"><p><strong>মাঠে কাজে লাগবে:</strong> ${x.why}</p></div>
+    <div class="note tip"><p><strong>হজে যেভাবে কাজে লাগবে:</strong> ${x.why}</p></div>
     ${x.flag ? `<p class="src">⚖️ <em>${esc(x.flag)}</em></p>` : ''}
   </article>`;
 };

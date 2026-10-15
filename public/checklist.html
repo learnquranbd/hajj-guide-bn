@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-title" content="হজ গাইড">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=30">
+<link rel="stylesheet" href="/css/style.css?v=31">
 <style>
   .grp{margin-bottom:30px}
   .grp-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -60,8 +60,8 @@
 <section class="wrap section-sm">
   <span class="eyebrow">✅ ইন্টারঅ্যাক্টিভ চেকলিস্ট</span>
   <h1>হজ চেকলিস্ট</h1>
-  <p class="lead">প্রস্তুতি থেকে বিদায়ী তাওয়াফ পর্যন্ত প্রতিটি করণীয় এক জায়গায়। যা শেষ করেছেন টিক দিন —
-  আপনার অগ্রগতি এই ব্রাউজারে সংরক্ষিত থাকবে, পরে ফিরে এলেও থাকবে।</p>
+  <p class="lead">প্রস্তুতি থেকে বিদায়ী তাওয়াফ পর্যন্ত সব কাজ এক জায়গায়। যা শেষ করেছেন, তাতে টিক দিন;
+  টিকগুলো এই ব্রাউজারে সেভ হয়ে থাকবে, পরে ফিরে এলেও পাবেন।</p>
 
   <div class="sticky-prog">
     <div class="row"><strong id="pText">—</strong><span class="muted" id="pPct">০%</span></div>
@@ -74,15 +74,15 @@
 
   <div id="out"></div>
 
-  <div class="note tip"><p><strong>অফলাইনেও চলবে:</strong> একবার পৃষ্ঠাটি খুললে ইন্টারনেট ছাড়াও
-  আপনার টিকগুলো সংরক্ষিত থাকে। ব্রাউজারের ডেটা মুছে ফেললে বা অন্য ফোনে খুললে তালিকা আবার খালি দেখাবে —
-  তাই যাত্রার আগে একবার প্রিন্ট করে নেওয়া বুদ্ধিমানের কাজ।</p></div>
+  <div class="note tip"><p><strong>অফলাইনেও চলবে:</strong> একবার পাতাটি খুললে ইন্টারনেট ছাড়াও
+  আপনার টিকগুলো থেকে যায়। তবে ব্রাউজারের ডেটা মুছে ফেললে বা অন্য ফোনে খুললে তালিকা আবার খালি দেখাবে;
+  তাই যাত্রার আগে একবার প্রিন্ট করে নেওয়াই ভালো।</p></div>
 </section>
 
 <script type="module">
-import { mount } from '/js/shell.js?v=30';
-import { GROUPS } from '/js/data-checklist.js?v=30';
-import { set, onChange } from '/js/store.js?v=30';
+import { mount } from '/js/shell.js?v=31';
+import { GROUPS } from '/js/data-checklist.js?v=31';
+import { set, onChange } from '/js/store.js?v=31';
 mount();
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[c]));
@@ -123,7 +123,7 @@ onChange(state => {
   });
   const pct = Math.round(done / total * 100);
   document.getElementById('pText').textContent =
-    done === total ? '🎉 সবকিছু সম্পন্ন — আল্লাহ আপনার হজ কবুল করুন' : `${bn(done)} / ${bn(total)} সম্পন্ন`;
+    done === total ? '🎉 সব কাজ শেষ! আল্লাহ আপনার হজ কবুল করুন' : `${bn(done)} / ${bn(total)} সম্পন্ন`;
   document.getElementById('pPct').textContent = bn(pct) + '%';
   document.getElementById('pBar').style.width = pct + '%';
 });
