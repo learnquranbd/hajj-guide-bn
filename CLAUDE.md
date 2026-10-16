@@ -103,8 +103,8 @@ Also: `/404`, `/offline`. `sitemap.xml` lists 19 URLs.
   sights beyond the ziyarat, each with a Google Maps search link. App facts drift:
   re-check before each Hajj season. Links only to URLs verified reachable.
 
-## Current BN↔EN sync status (2026-10-06)
-Both deployed and pushed: BN v28 (`b5124a3`), EN v5 (`94e702e`). In sync: identical
+## Current BN↔EN sync status (2026-10-16)
+Both deployed: BN v32 (`8d75706`), EN v9 (`50fe6e3`) — not yet pushed (GitHub 403). In sync: identical
 file set, matching data exports/lengths/id sets, matching feature flags, matching
 sw.js strategy, both sister-links present, no Bengali leaked into the EN repo.
 **One deliberate gap:** GA4 is installed in all 20 BN pages' `<head>` (tag
